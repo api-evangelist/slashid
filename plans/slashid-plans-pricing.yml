@@ -1,0 +1,68 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: SlashID
+providerId: slashid
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+type: freemium
+notes: >
+  SlashID offers a free sandbox account for development. Production pricing is
+  consumption-based (per active identity). On AWS Marketplace, user identities
+  are billed at $0.60 per identity. Enterprise pricing requires contacting
+  SlashID directly. No publicly documented tiered plan page was found as of
+  June 2026; the model follows a usage-based / contact-for-enterprise pattern.
+plans:
+  - name: Developer (Sandbox)
+    description: >
+      Free sandbox account for development and testing. Provides access to the
+      SlashID API with a sandbox organization to experiment with authentication
+      flows and user management without production billing.
+    type: free
+    limits:
+      - name: Environment
+        type: boolean
+        value: sandbox
+        notes: Sandbox/development environment only
+      - name: API Access
+        type: boolean
+        value: true
+        notes: Full API access in sandbox mode
+
+  - name: Production (Usage-Based)
+    description: >
+      Pay-as-you-go production tier billed per active user identity. Available
+      directly from SlashID and via AWS Marketplace. Subscription can be
+      cancelled at any time with a full refund within 72 hours of purchase.
+    type: paid
+    limits:
+      - name: User Identities
+        type: metered
+        metric: identity
+        price: 0.60
+        currency: USD
+        unit: per identity
+        notes: Per-user-identity pricing; excludes non-human identities
+      - name: API Calls
+        type: metered
+        notes: Usage-based; specific per-call limits not publicly documented
+
+  - name: Enterprise
+    description: >
+      Enterprise plan with custom pricing, SLA guarantees, advanced compliance
+      support (HIPAA, GDPR, CCPA, GLBA), dedicated support, and multi-region
+      deployment options. Contact SlashID sales for details.
+    type: enterprise
+    limits:
+      - name: Custom Pricing
+        type: boolean
+        value: true
+        notes: Contact SlashID for pricing
+      - name: Compliance
+        type: boolean
+        value: true
+        notes: HIPAA, GDPR, CCPA, GLBA support included
+      - name: SLA
+        type: boolean
+        value: true
+        notes: Enterprise-grade SLA with dedicated support

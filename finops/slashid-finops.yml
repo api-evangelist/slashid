@@ -1,0 +1,75 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+provider: SlashID
+providerId: slashid
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+billingModel: consumption
+notes: >
+  SlashID uses a consumption-based billing model priced per active user identity.
+  AWS Marketplace pricing is $0.60 per identity. Non-human identities (service
+  accounts, M2M tokens) are excluded from per-identity billing. Enterprise
+  customers negotiate custom pricing. Cost drivers are primarily active user
+  count and any additional infrastructure costs for multi-region deployments.
+focusColumns:
+  - ChargeCategory
+  - ChargeDescription
+  - ConsumedQuantity
+  - ConsumedUnit
+  - EffectiveCost
+  - ListCost
+  - ListUnitPrice
+  - PricingCategory
+  - PricingQuantity
+  - PricingUnit
+  - ProviderName
+  - ResourceId
+  - ServiceCategory
+  - ServiceName
+  - SkuId
+  - UsageType
+meters:
+  - name: User Identities
+    description: Active human user identities managed by SlashID
+    unit: identity
+    unitPrice: 0.60
+    currency: USD
+    notes: Per active user identity; excludes non-human/M2M identities
+  - name: API Requests
+    description: API calls made to the SlashID REST API
+    unit: request
+    notes: Usage tracked at organization level; specific per-request pricing not publicly documented
+  - name: Authentications
+    description: Authentication events processed by the SlashID platform
+    unit: event
+    notes: Included in per-identity pricing; volume thresholds may apply at enterprise tier
+principles:
+  - name: Visibility
+    description: >
+      Track active identity counts monthly to forecast costs. Monitor API
+      usage via the SlashID console dashboard. Use organization-level
+      analytics for attribution by team or application.
+    actions:
+      - Monitor monthly active identity (MAI) count in SlashID console
+      - Set up webhook notifications for unusual authentication volume spikes
+      - Tag organizations by team/project for cost attribution
+  - name: Optimization
+    description: >
+      Optimize costs by deactivating inactive user identities, consolidating
+      overlapping organizations, and right-sizing multi-region deployments.
+      Evaluate AWS Marketplace commitment discounts versus direct billing.
+    actions:
+      - Audit and remove inactive user identities regularly
+      - Use sandbox environment for all non-production testing
+      - Evaluate enterprise pricing if MAI exceeds 10,000 identities
+      - Compare AWS Marketplace vs direct billing for committed use discounts
+  - name: Accountability
+    description: >
+      Align identity platform costs to business units or products using
+      SlashID sub-organizations to isolate billing units and attribute costs
+      to owning teams.
+    actions:
+      - Create sub-organizations per product or business unit
+      - Review identity costs as part of monthly cloud spend review
+      - Use FOCUS-aligned cost exports for cross-provider cost analysis

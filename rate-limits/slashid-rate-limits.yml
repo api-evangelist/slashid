@@ -1,0 +1,46 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: SlashID
+providerId: slashid
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+notes: >
+  SlashID does not publicly document specific API rate limits in their developer
+  documentation as of June 2026. The platform internally uses a GCRA
+  (Generic Cell Rate Algorithm) rate limiter described on their engineering blog.
+  Example configurations from their public blog post indicate the system is
+  designed for high throughput (10,000+ req/s globally), with per-identity and
+  per-endpoint limits configurable per organization. Production limits are
+  set per organization configuration and may be obtained by contacting SlashID
+  support. A 429 Too Many Requests response is returned when limits are exceeded.
+retryAfter:
+  header: Retry-After
+  notes: Standard HTTP Retry-After header returned with 429 responses
+throttled: 429
+limits:
+  - scope: global
+    metric: requests
+    limit: 10000
+    timeFrame: 1s
+    notes: >
+      Approximate global burst limit based on SlashID engineering blog post
+      describing their internal GCRA rate limiting architecture. This is an
+      illustrative value; actual production limits are organization-specific.
+    source: https://www.slashid.dev/blog/id-based-rate-limiting/
+  - scope: per-identity
+    metric: requests
+    limit: 600
+    timeFrame: 1m
+    notes: >
+      Per-username/identity burst limit example from SlashID engineering blog.
+      Actual per-identity limits are configurable per organization.
+    source: https://www.slashid.dev/blog/id-based-rate-limiting/
+  - scope: per-endpoint
+    metric: requests
+    limit: 60
+    timeFrame: 1m
+    notes: >
+      Typical per-endpoint rate limit example from SlashID documentation.
+      Endpoints with higher resource cost may have lower limits (e.g., 5/min).
+    source: https://www.slashid.dev/blog/id-based-rate-limiting/
