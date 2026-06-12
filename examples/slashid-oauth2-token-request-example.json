@@ -1,0 +1,6 @@
+{
+  "grant_type": "client_credentials",
+  "client_id": "client_abc123",
+  "client_secret": "secret_xyz",
+  "scope": "openid profile"
+}

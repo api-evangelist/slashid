@@ -1,0 +1,11 @@
+{
+  "workflow_id": "wf_abc123",
+  "name": "Suspicious Login Detection",
+  "status": "active",
+  "configuration": {
+    "data_input": {
+      "type": "lifecycle"
+    },
+    "actions": []
+  }
+}

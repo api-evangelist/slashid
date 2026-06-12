@@ -55,6 +55,8 @@ apis:
         url: https://developer.slashid.dev/docs/intro
       - type: OpenAPI
         url: https://cdn.slashid.com/slashid-openapi-latest.yaml
+      - type: OpenAPI
+        url: openapi/slashid-api-openapi.yml
 common:
   - type: Website
     url: https://www.slashid.dev/
@@ -78,6 +80,10 @@ common:
     url: rate-limits/slashid-rate-limits.yml
   - type: FinOps
     url: finops/slashid-finops.yml
+  - type: Vocabulary
+    url: vocabulary/slashid-vocabulary.yml
+  - type: JSONLd
+    url: json-ld/slashid-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

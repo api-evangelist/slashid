@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.slashid.dev/schemas/OrganizationResponse.json",
+  "title": "OrganizationResponse",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Organization"
+    },
+    {
+      "type": "object",
+      "required": [
+        "persons_pool_org_ids",
+        "group_pool_org_ids"
+      ],
+      "properties": {
+        "parent_id": {
+          "description": "The ID of the parent organization.",
+          "$ref": "#/components/schemas/OrganizationID"
+        },
+        "persons_pool_org_ids": {
+          "description": "The list of organizations or suborganizations that share user identities with this organization",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/OrganizationID"
+          }
+        },
+        "group_pool_org_ids": {
+          "description": "The list of organizations or suborganizations that share user groups with this organization",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/OrganizationID"
+          }
+        },
+        "inherits_rbac_pools": {
+          "type": "boolean"
+        }
+      }
+    }
+  ]
+}

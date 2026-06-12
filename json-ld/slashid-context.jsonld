@@ -1,0 +1,202 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "slashid": "https://developer.slashid.dev/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Person": {
+      "@id": "slashid:Person",
+      "@type": "@id",
+      "description": "A user identity record managed by SlashID"
+    },
+    "person_id": {
+      "@id": "slashid:personId",
+      "@type": "xsd:string"
+    },
+    "active": {
+      "@id": "slashid:active",
+      "@type": "xsd:boolean"
+    },
+    "region": {
+      "@id": "slashid:region",
+      "@type": "xsd:string"
+    },
+    "handles": {
+      "@id": "slashid:handle",
+      "@container": "@set"
+    },
+    "Handle": {
+      "@id": "slashid:Handle",
+      "@type": "@id"
+    },
+    "handle_type": {
+      "@id": "slashid:handleType",
+      "@type": "xsd:string"
+    },
+    "handle_value": {
+      "@id": "slashid:handleValue",
+      "@type": "xsd:string"
+    },
+
+    "Credential": {
+      "@id": "slashid:Credential",
+      "@type": "@id"
+    },
+    "credential_id": {
+      "@id": "slashid:credentialId",
+      "@type": "xsd:string"
+    },
+    "credential_type": {
+      "@id": "slashid:credentialType",
+      "@type": "xsd:string"
+    },
+
+    "Organization": {
+      "@id": "slashid:Organization",
+      "@type": "@id"
+    },
+    "org_id": {
+      "@id": "slashid:orgId",
+      "@type": "xsd:string"
+    },
+    "org_name": {
+      "@id": "schema:name"
+    },
+
+    "Group": {
+      "@id": "slashid:Group",
+      "@type": "@id"
+    },
+    "group_name": {
+      "@id": "slashid:groupName",
+      "@type": "xsd:string"
+    },
+
+    "Role": {
+      "@id": "slashid:Role",
+      "@type": "@id"
+    },
+    "role_name": {
+      "@id": "slashid:roleName",
+      "@type": "xsd:string"
+    },
+
+    "Permission": {
+      "@id": "slashid:Permission",
+      "@type": "@id"
+    },
+    "permission_name": {
+      "@id": "slashid:permissionName",
+      "@type": "xsd:string"
+    },
+
+    "Webhook": {
+      "@id": "slashid:Webhook",
+      "@type": "@id"
+    },
+    "webhook_id": {
+      "@id": "slashid:webhookId",
+      "@type": "xsd:string"
+    },
+    "target_url": {
+      "@id": "slashid:targetUrl",
+      "@type": "@id"
+    },
+
+    "Token": {
+      "@id": "slashid:Token",
+      "@type": "@id"
+    },
+    "token": {
+      "@id": "slashid:tokenValue",
+      "@type": "xsd:string"
+    },
+
+    "Workflow": {
+      "@id": "slashid:Workflow",
+      "@type": "@id"
+    },
+    "workflow_id": {
+      "@id": "slashid:workflowId",
+      "@type": "xsd:string"
+    },
+    "workflow_status": {
+      "@id": "slashid:workflowStatus",
+      "@type": "xsd:string"
+    },
+
+    "OAuth2Client": {
+      "@id": "slashid:OAuth2Client",
+      "@type": "@id"
+    },
+    "client_id": {
+      "@id": "slashid:clientId",
+      "@type": "xsd:string"
+    },
+    "client_name": {
+      "@id": "schema:name"
+    },
+    "redirect_uris": {
+      "@id": "slashid:redirectUri",
+      "@container": "@set"
+    },
+    "grant_types": {
+      "@id": "slashid:grantType",
+      "@container": "@set"
+    },
+    "scopes": {
+      "@id": "slashid:scope",
+      "@container": "@set"
+    },
+
+    "GDPRConsent": {
+      "@id": "slashid:GDPRConsent",
+      "@type": "@id"
+    },
+    "consent_level": {
+      "@id": "slashid:consentLevel",
+      "@type": "xsd:string"
+    },
+
+    "AttributeBucket": {
+      "@id": "slashid:AttributeBucket",
+      "@type": "@id"
+    },
+    "bucket_name": {
+      "@id": "slashid:bucketName",
+      "@type": "xsd:string"
+    },
+    "attributes": {
+      "@id": "slashid:attributes",
+      "@type": "@json"
+    },
+
+    "ExternalCredential": {
+      "@id": "slashid:ExternalCredential",
+      "@type": "@id"
+    },
+    "external_provider": {
+      "@id": "slashid:externalProvider",
+      "@type": "xsd:string"
+    },
+
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "email": {
+      "@id": "schema:email"
+    }
+  }
+}

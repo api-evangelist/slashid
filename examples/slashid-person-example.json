@@ -1,0 +1,13 @@
+{
+  "person_id": "pid:example:abc123",
+  "active": true,
+  "region": "us-iowa-1",
+  "handles": [
+    {
+      "type": "email_address",
+      "value": "user@example.com"
+    }
+  ],
+  "roles": [],
+  "groups": []
+}

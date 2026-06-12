@@ -1,0 +1,184 @@
+vocabulary:
+  - term: Person
+    definition: >
+      The core identity entity in SlashID. A Person has a unique person_id,
+      belongs to an organization, and can hold multiple handles (email, phone,
+      username), credentials, attributes, groups, roles, and GDPR consents.
+    tags:
+      - Identity Management
+      - Persons
+
+  - term: Handle
+    definition: >
+      A unique identifier for a Person within an organization. Handles have a
+      type (email_address, phone_number, username, etc.) and a value. A Person
+      may hold multiple handles.
+    tags:
+      - Identity Management
+      - Person handles
+
+  - term: Credential
+    definition: >
+      An authentication factor bound to a Person. Types include password,
+      email_link (magic link), passkey (WebAuthn public key), TOTP, and
+      biometric. Credentials are created, listed, and deleted via the
+      Person Credentials endpoints.
+    tags:
+      - Identity Management
+      - Person Credentials
+
+  - term: Direct-ID
+    definition: >
+      A short-lived, opaque identifier returned by the /persons/{person_id}/direct-id
+      endpoint. Used to reference a Person without exposing their person_id
+      in client-facing flows.
+    tags:
+      - Identity Management
+      - Tokens
+
+  - term: Token
+    definition: >
+      A signed JWT issued by SlashID after successful authentication. Tokens
+      carry identity claims, are validated via /token/validate, and can be
+      revoked via /token/revoke. The mint-token endpoint lets privileged callers
+      create tokens programmatically.
+    tags:
+      - Tokens
+      - Identity Management
+
+  - term: Organization
+    definition: >
+      A tenant within SlashID. Each organization has its own persons, groups,
+      roles, permissions, webhooks, OAuth2 clients, and configuration. Sub-
+      organizations can be created under a parent organization.
+    tags:
+      - Organizations
+
+  - term: Group
+    definition: >
+      A named collection of Persons within an organization. Groups are used for
+      coarse-grained access control and can be assigned to Persons or used as
+      RBAC targets.
+    tags:
+      - Groups
+      - RBAC
+
+  - term: Role
+    definition: >
+      A named RBAC construct that bundles one or more Permissions. Roles are
+      assigned to Persons or Groups and evaluated by the /rbac/check endpoint.
+    tags:
+      - RBAC
+
+  - term: Permission
+    definition: >
+      A fine-grained RBAC action string (e.g. "documents:read"). Permissions
+      are grouped into Roles and checked programmatically or at the API gateway
+      edge via Gate.
+    tags:
+      - RBAC
+
+  - term: Webhook
+    definition: >
+      An HTTP callback registered at the organization level. Webhooks fire on
+      SlashID events (authentication success/failure, person lifecycle, Gate
+      events) and can be validated with shared secrets. Sync hooks can modify
+      authentication flows in real time.
+    tags:
+      - Organization Webhooks
+
+  - term: Workflow
+    definition: >
+      An automated Identity Protection rule that evaluates incoming events or
+      lifecycle signals against configurable predicates and triggers remediation,
+      notification, or ticket actions. Workflows are authored in Cypher-style
+      query language.
+    tags:
+      - Workflows
+
+  - term: OAuth2 Client
+    definition: >
+      An OIDC/OAuth2 application registered with SlashID. Supports
+      client_credentials, authorization_code, and refresh_token grant types.
+      Each client has scopes, redirect URIs, and an optional UI configuration
+      for the hosted consent page.
+    tags:
+      - OAuth2
+
+  - term: SSO
+    definition: >
+      Single Sign-On integration. SlashID supports SAML and OIDC-based SSO.
+      SAML provider credentials are registered at the organization level;
+      OIDC tokens obtained through SSO can be retrieved and revoked via
+      dedicated endpoints.
+    tags:
+      - SSO
+      - OIDC discovery
+
+  - term: External Credential
+    definition: >
+      A record that links a Person to an identity at an external OAuth provider
+      (Google, GitHub, Apple, Facebook, Line, Azure AD, Okta, etc.). Stored
+      under /persons/{person_id}/external-credentials or
+      /organizations/external-credentials.
+    tags:
+      - Organization External Credentials
+
+  - term: Gate
+    definition: >
+      SlashID's identity-aware API and workload proxy. Gate enforces token
+      validation and RBAC policies at the edge without requiring application
+      code changes. Gate events (GateRequestHandled, GateServerStarted) are
+      emitted as webhooks and test events.
+    tags:
+      - Identity Protection
+
+  - term: Region
+    definition: >
+      The data-residency zone where Person data is stored (e.g. us-iowa-1,
+      eu-belgium-1). Specified at Person creation time and returned on every
+      PersonRet object.
+    tags:
+      - Identity Management
+      - Persons
+
+  - term: Attribute Bucket
+    definition: >
+      A named namespace for arbitrary Person or Organization attributes. Buckets
+      have configurable sharing scope (person, org, or public) and access
+      permissions. Attributes are stored as key-value pairs inside a bucket.
+    tags:
+      - Person Attributes
+      - Organization Attributes
+
+  - term: GDPR Consent
+    definition: >
+      A structured consent record attached to a Person that tracks consent level
+      (accepted/declined) and timestamp. Managed via the
+      /persons/{person_id}/consent/gdpr and /consent/gdpr endpoints.
+    tags:
+      - Person Consents
+
+  - term: Bulk Import
+    definition: >
+      The /persons/bulk-import endpoint accepts arrays of PersonCreateReq
+      objects, enabling large-scale migration of existing user records into a
+      SlashID organization in a single API call.
+    tags:
+      - Persons Bulk Import
+
+  - term: API Key
+    definition: >
+      A static secret passed in the SlashID-API-Key HTTP header to authenticate
+      server-side API calls. Organization API keys are managed via
+      /organizations/api-key.
+    tags:
+      - Identity Management
+
+  - term: Super Admin
+    definition: >
+      A privileged operator account with cross-organization management
+      capabilities. Super Admins are created, listed, and audited via the
+      /super-admin endpoints and are restricted to internal/platform use.
+    tags:
+      - Super Admin Management

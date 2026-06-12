@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.slashid.dev/schemas/PersonHandle.json",
+  "title": "PersonHandle",
+  "required": [
+    "type",
+    "value"
+  ],
+  "type": "object",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/PersonHandleType"
+    },
+    "value": {
+      "type": "string",
+      "example": "user@user.com"
+    }
+  }
+}

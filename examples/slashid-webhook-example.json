@@ -1,0 +1,12 @@
+{
+  "id": "wh_abc123",
+  "name": "my-webhook",
+  "target_url": "https://example.com/webhook",
+  "description": "Fires on authentication events",
+  "triggers": [
+    {
+      "trigger_type": "event",
+      "trigger_name": "AuthenticationSucceeded_v1"
+    }
+  ]
+}

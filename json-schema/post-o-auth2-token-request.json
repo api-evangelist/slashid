@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developer.slashid.dev/schemas/PostOAuth2TokenRequest.json",
+  "title": "PostOAuth2TokenRequest",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/PostOAuth2TokenRequestClientCredentials"
+    },
+    {
+      "$ref": "#/components/schemas/PostOAuth2TokenRequestAuthorizationCode"
+    },
+    {
+      "$ref": "#/components/schemas/PostOAuth2TokenRequestRefreshToken"
+    }
+  ],
+  "discriminator": {
+    "propertyName": "grant_type",
+    "mapping": {
+      "client_credentials": "#/components/schemas/PostOAuth2TokenRequestClientCredentials",
+      "authorization_code": "#/components/schemas/PostOAuth2TokenRequestAuthorizationCode",
+      "refresh_token": "#/components/schemas/PostOAuth2TokenRequestRefreshToken"
+    }
+  }
+}
