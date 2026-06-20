@@ -13,7 +13,7 @@ description: >
   The service publishes an OpenAPI 1.1 specification and offers JavaScript,
   React, and Remix SDKs alongside API-key and OAuth2/OIDC authentication.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Identity
   - Authentication
