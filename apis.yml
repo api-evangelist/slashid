@@ -72,7 +72,7 @@ common:
     url: https://status.slashid.dev/
   - type: X
     url: https://x.com/slashid_dev
-  - type: SignUp
+  - type: Signup
     url: https://console.slashid.dev/signup
   - type: Plans
     url: plans/slashid-plans-pricing.yml
@@ -82,7 +82,7 @@ common:
     url: finops/slashid-finops.yml
   - type: Vocabulary
     url: vocabulary/slashid-vocabulary.yml
-  - type: JSONLd
+  - type: JSONLD
     url: json-ld/slashid-context.jsonld
 maintainers:
   - FN: Kin Lane
