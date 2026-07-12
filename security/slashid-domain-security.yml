@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.slashid.dev
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 14 21:11:48 2026 GMT
+  hsts: false
+- host: developer.slashid.dev
+  https: false
+- host: api.slashid.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 23 01:47:38 2026 GMT
+  hsts: null
+domains:
+- domain: slashid.dev
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: slashid.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

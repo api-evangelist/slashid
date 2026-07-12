@@ -58,6 +58,12 @@ apis:
       - type: OpenAPI
         url: openapi/slashid-api-openapi.yml
 common:
+  - type: TrustCenter
+    url: security/slashid-trust-center.yml
+  - type: DomainSecurity
+    url: security/slashid-domain-security.yml
+  - type: Authentication
+    url: authentication/slashid-authentication.yml
   - type: Website
     url: https://www.slashid.dev/
   - type: Documentation

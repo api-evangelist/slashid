@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/slashid-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: SlashID-API-Key
+  description: Authorizes the request with the organization's API Key.
+  sources:
+  - openapi/slashid-api-openapi.yml
+- name: OAuth2ClientIdSecret
+  type: http
+  scheme: basic
+  description: Authorizes the request with a client ID/client secret pair
+  sources:
+  - openapi/slashid-api-openapi.yml
+- name: OAuth2AccessTokenBearer
+  type: http
+  scheme: bearer
+  bearerFormat: opaque
+  description: Authorizes the request with an Access Token for the current user.
+  sources:
+  - openapi/slashid-api-openapi.yml
