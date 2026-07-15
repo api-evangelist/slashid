@@ -58,6 +58,8 @@ apis:
       - type: OpenAPI
         url: openapi/slashid-api-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/slashid-agentic-access.yml
   - type: TrustCenter
     url: security/slashid-trust-center.yml
   - type: DomainSecurity
