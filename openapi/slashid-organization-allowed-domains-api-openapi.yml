@@ -1,0 +1,293 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Organization Allowed Domains API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organization Allowed Domains
+paths:
+  /organizations/config/domains:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetOrganizationsConfigDomains
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Organization Allowed Domains
+      summary: List the allowed domains
+      description: Returns a list of the allowed origin domains for your organization.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: DeleteOrganizationsConfigDomains
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Allowed Domains
+      summary: Remove allowed domains
+      description: 'Remove the specified domain from the list of allowed origin domains, or delete all domains. origin domains. If the specified domain does not exist in the list of allowed origin domains, no action will be taken, and a 200 status code will be returned.
+
+        If both domain and deleteAll query parameters are specified, API will return 400 (Bad Request) status code.
+
+        '
+      parameters:
+      - name: domain
+        in: query
+        description: The name of the domain to delete
+        required: false
+        schema:
+          type: string
+      - name: deleteAll
+        in: query
+        description: Whether to delete all domains
+        required: false
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: PostOrganizationsConfigDomains
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Allowed Domains
+      summary: Add allowed domains
+      description: 'Add the specified domain patterns to the list of allowed origin domains, or overwrite the existing list.
+
+
+        Domains may be specified exactly, or as patterns using asterisk wildcards ''*''.
+
+        The ''*'' wildcard will match zero or more characters.
+
+        If a pattern is used, any origin domain matching the pattern will be treated as an allowed domain.
+
+        Otherwise, the origin domain must match the allowed domain exactly. Matching is case-insensitive.
+
+        For example, to specify that domain ''xyz.com'' and all of its subdomains are allowed, use
+
+        [''xyz.com'', ''*.xyz.com'']. This would allow requests with origins ''xyz.com'', ''a.xyz.com'', ''b.c.xyz.com'', and so
+
+        on (but would not allow requests from ''xyz.net'').
+
+
+        If overwrite is set to true, all existing allowed domains/patterns will be removed and replaced with the provided list.
+
+        If overwrite is set to false, the provided list of domain patterns will be appended to the existing list
+
+        of allowed origin domains. Adding a domain pattern that already exists in the list of allowed origin domains
+
+        will have no effect.'
+      parameters:
+      - name: overwrite
+        in: query
+        description: If true, the current list of domains will be replaced with the provided list
+        required: false
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationDomainsPatchRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '408':
+          $ref: '#/components/responses/Timeout'
+components:
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+  schemas:
+    OrganizationDomainsPatchRequest:
+      type: object
+      properties:
+        domains:
+          type: array
+          description: List of domain patterns
+          items:
+            $ref: '#/components/schemas/OrganizationDomainPattern'
+      example:
+        domains:
+        - ok.com
+        - '*.ok.com'
+        - my?site.org
+        - a[0-9].my?site.org
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    OrganizationDomainPattern:
+      type: string
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+  responses:
+    PaymentRequired:
+      description: Pricing Tier Violation - operation violated the limits specified in its pricing tier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Timeout:
+      description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
+
+        The operation may still be in progress, and will be completed eventually.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

@@ -1,0 +1,137 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups OIDC discovery API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: OIDC discovery
+paths:
+  /.well-known/openid-configuration:
+    get:
+      operationId: GetWellKnownOpenidConfiguration
+      tags:
+      - OIDC discovery
+      summary: Retrieve OpenID configuration values
+      description: Endpoint to retrieve OpenID configuration values for SlashID in JSON format, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenIDConfig'
+  /.well-known/jwks.json:
+    get:
+      operationId: GetWellKnownJwksJson
+      tags:
+      - OIDC discovery
+      summary: Retrieve public key JWKS for user tokens
+      description: Endpoint to retrieve a JSON Web Key Set for JWT validation, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWKS'
+components:
+  schemas:
+    OpenIDConfig:
+      type: object
+      required:
+      - issuer
+      - authorization_endpoint
+      - token_endpoint
+      - jwks_uri
+      - response_types_supported
+      - subject_types_supported
+      - id_token_signing_alg_values_supported
+      properties:
+        issuer:
+          type: string
+          description: URL using the https scheme with no query or fragment components that the OP asserts as its Issuer Identifier. If Issuer discovery is supported (see Section 2), this value MUST be identical to the issuer value returned by WebFinger. This also MUST be identical to the iss Claim value in ID Tokens issued from this Issuer.
+        authorization_endpoint:
+          type: string
+          description: URL of the OP's OAuth 2.0 Authorization Endpoint. This URL MUST use the https scheme and MAY contain port, path, and query parameter components.
+        token_endpoint:
+          type: string
+          description: URL of the OP's OAuth 2.0 Token Endpoint [OpenID.Core]. This is REQUIRED unless only the Implicit Flow is used. This URL MUST use the https scheme and MAY contain port, path, and query parameter components.
+        userinfo_endpoint:
+          type: string
+          description: URL of the OP's UserInfo Endpoint [OpenID.Core]. This URL MUST use the https scheme and MAY contain port, path, and query parameter components.
+        jwks_uri:
+          type: string
+          description: URL of the OP's JWK Set [JWK] document, which MUST use the https scheme. This contains the signing key(s) the RP uses to validate signatures from the OP. The JWK Set MAY also contain the Server's encryption key(s), which are used by RPs to encrypt requests to the Server. When both signing and encryption keys are made available, a use (public key use) parameter value is REQUIRED for all keys in the referenced JWK Set to indicate each key's intended usage. Although some algorithms allow the same key to be used for both signatures and encryption, doing so is NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate. The JWK Set MUST NOT contain private or symmetric key values.
+        registration_endpoint:
+          type: string
+          description: URL of the OP's Dynamic Client Registration Endpoint [OpenID.Registration], which MUST use the https scheme.
+        scopes_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 scope values that this server supports. The server MUST support the openid scope value. Servers MAY choose not to advertise some supported scope values even when this parameter is used, although those defined in [OpenID.Core] SHOULD be listed, if supported.
+        response_types_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Dynamic OpenID Providers MUST support the code, id_token, and the id_token token Response Type values.
+        grant_types_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the OAuth 2.0 Grant Type values that this OP supports. Dynamic OpenID Providers MUST support the authorization_code and implicit Grant Type values and MAY support other Grant Types. If omitted, the default value is ["authorization_code", "implicit"].
+        acr_values_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the Authentication Context Class References that this OP supports.
+        subject_types_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the Subject Identifier types that this OP supports. Valid types include pairwise and public.
+        id_token_signing_alg_values_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID Token to encode the Claims in a JWT [JWT]. The algorithm RS256 MUST be included. The value none MAY be supported but MUST NOT be used unless the Response Type used returns no ID Token from the Authorization Endpoint (such as when using the Authorization Code Flow).
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of Client Authentication methods supported by this Token Endpoint. The options are client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0 [OpenID.Core]. Other authentication methods MAY be defined by extensions. If omitted, the default is client_secret_basic -- the HTTP Basic Authentication Scheme specified in Section 2.3.1 of OAuth 2.0 [RFC6749].
+        claims_supported:
+          type: array
+          items:
+            type: string
+          description: JSON array containing a list of the Claim Names of the Claims that the OpenID Provider MAY be able to supply values for. Note that for privacy or other reasons, this might not be an exhaustive list.
+    JWKS:
+      type: object
+      additionalProperties: true
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

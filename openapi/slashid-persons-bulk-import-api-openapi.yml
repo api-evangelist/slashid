@@ -1,0 +1,226 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Persons Bulk Import API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Persons Bulk Import
+paths:
+  /persons/bulk-import:
+    get:
+      operationId: GetPersonsBulkImport
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Persons Bulk Import
+      summary: Fetch the import CSV template
+      parameters:
+      - $ref: '#/components/parameters/OrgIDHeader'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: PostPersonsBulkImport
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Persons Bulk Import
+      summary: Bulk import persons
+      description: 'Bulk import persons into your organization by uploading a CSV file.
+
+
+        The import will take the following CSV column headers into consideration:
+
+
+        "slashid:emails","slashid:phone_numbers","slashid:usernames","slashid:region","slashid:groups","slashid:attributes"
+
+
+        Each row in the CSV must contain at least one handle for the person
+
+        (email address, phone number, or a username). Optionally, you can
+
+        specify a list of roles, a geographical region and attributes.
+
+        Attributes are a JSON-encoded map from attribute bucket names to
+
+        key-value pairs. Email addresses, phone numbers, and usernames must be
+
+        comma-separated.'
+      parameters:
+      - $ref: '#/components/parameters/OrgIDHeader'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PersonsBulkImportRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/PersonsBulkImportResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+components:
+  schemas:
+    PersonsBulkImportResponse:
+      type: object
+      properties:
+        successful_imports:
+          description: Number of sucessfully imported persons.
+          type: integer
+        failed_imports:
+          description: Number of persons that we failed to import.
+          type: integer
+        failed_csv:
+          description: CSV containing the persons we failed to import and the reason behind the failure.
+          type: string
+      required:
+      - successful_imports
+      - failed_imports
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    PersonsBulkImportRequest:
+      type: object
+      properties:
+        persons:
+          description: File in CSV format that contains the persons to import.
+          type: string
+          format: binary
+      required:
+      - persons
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    PaymentRequired:
+      description: Pricing Tier Violation - operation violated the limits specified in its pricing tier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  parameters:
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

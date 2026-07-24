@@ -1,0 +1,360 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Super Admin Management API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Super Admin Management
+paths:
+  /super-admins:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostSuperAdmins
+      x-super-admin: true
+      tags:
+      - Super Admin Management
+      summary: Create a super-admin
+      description: 'Add a person to the super-admins table. Only existing super-admins can create new super-admins. The person must already exist in the system.
+
+        '
+      requestBody:
+        description: Super-admin creation request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuperAdminCreateReq'
+      responses:
+        '201':
+          description: Super-admin created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/SuperAdmin'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+    get:
+      operationId: GetSuperAdmins
+      x-super-admin: true
+      tags:
+      - Super Admin Management
+      summary: List all super-admins
+      description: Retrieve a list of all super-admins in the system. Only super-admins can view this list
+      responses:
+        '200':
+          description: List of super-admins
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SuperAdmin'
+                  required:
+                  - result
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /super-admins/{person_id}:
+    parameters:
+    - name: person_id
+      in: path
+      required: true
+      description: External person ID (UUID)
+      schema:
+        type: string
+        format: uuid
+    - $ref: '#/components/parameters/OrgIDHeader'
+    delete:
+      operationId: DeleteSuperAdminsPersonId
+      x-super-admin: true
+      tags:
+      - Super Admin Management
+      summary: Remove super-admin access
+      description: 'Remove a person from the super-admins table by their external person ID. Only existing super-admins can revoke super-admin access.
+
+        '
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /super-admins/audit-logs:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - name: limit
+      in: query
+      description: Maximum number of audit log entries to return
+      schema:
+        type: integer
+        default: 100
+        minimum: 1
+        maximum: 1000
+    - name: offset
+      in: query
+      description: Number of audit log entries to skip
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    - name: person_id
+      in: query
+      description: Filter by super-admin person ID
+      schema:
+        type: string
+        format: uuid
+    - name: organization_id
+      in: query
+      description: Filter by organization ID
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: GetSuperAdminsAuditLogs
+      x-super-admin: true
+      tags:
+      - Super Admin Management
+      summary: Get super-admin audit logs
+      description: 'Retrieve audit logs of super-admin actions. Only super-admins can view audit logs.
+
+        '
+      responses:
+        '200':
+          description: List of audit log entries
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SuperAdminAuditLog'
+                    meta:
+                      $ref: '#/components/schemas/APIMeta'
+                  required:
+                  - result
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  schemas:
+    EntityLink:
+      type: object
+      required:
+      - entity_class
+      - entity_id
+      properties:
+        entity_class:
+          $ref: '#/components/schemas/EntityClass'
+        entity_id:
+          type: string
+        identifier:
+          type: string
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    OrganizationID:
+      type: string
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    SuperAdminCreateReq:
+      type: object
+      required:
+      - person_id
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+    EntityClass:
+      type: string
+      enum:
+      - unknown
+      - identity
+      - credential
+      - policy
+      - resource
+      - application
+      - canonical_application
+      - canonical_identity
+      - sensor
+      - person
+    SuperAdmin:
+      type: object
+      required:
+      - person
+      - created_at
+      properties:
+        person:
+          $ref: '#/components/schemas/EntityLink'
+          description: Link to the person with this super-admin access
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when super-admin was created
+        created_by:
+          $ref: '#/components/schemas/EntityLink'
+          description: Link to the person who created this super-admin (if available)
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    SuperAdminAuditLog:
+      type: object
+      required:
+      - audit_id
+      - request_method
+      - request_path
+      - created_at
+      properties:
+        audit_id:
+          type: string
+          format: uuid
+          description: Unique identifier for the audit log entry
+        super_admin:
+          $ref: '#/components/schemas/EntityLink'
+          description: Super-admin who performed the action (may be null if the super-admin has been deleted)
+        request_method:
+          type: string
+          description: HTTP method of the request
+        request_path:
+          type: string
+          description: Path of the endpoint accessed
+        organization_id:
+          $ref: '#/components/schemas/OrganizationID'
+        organization_name:
+          type: string
+          description: Name of the organization where the action was performed
+        metadata:
+          type: object
+          description: Additional metadata about the request
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of the action
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+  parameters:
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

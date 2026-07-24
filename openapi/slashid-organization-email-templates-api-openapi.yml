@@ -1,0 +1,266 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Organization Email Templates API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organization Email Templates
+paths:
+  /organizations/config/templates:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetOrganizationsConfigTemplates
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Organization Email Templates
+      summary: List available templates
+      description: 'Lists the names of all available templates for communicating with users.
+
+
+        Template names can be used to retrieve the template body for your organization.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/TemplateName'
+  /organizations/config/templates/{template_name}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - in: path
+      name: template_name
+      schema:
+        $ref: '#/components/schemas/TemplateName'
+      required: true
+      description: Name of the template to retrieve or modify
+    get:
+      operationId: GetOrganizationsConfigTemplatesTemplateName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Organization Email Templates
+      summary: Get the named template
+      description: 'Retrieves the message template named in the path.
+
+
+        If a custom template was previously created, it will be returned.
+
+        Otherwise the default template is returned
+
+
+        Likewise, any template fields were left empty during creation will be set to their default values.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/MessageTemplate'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutOrganizationsConfigTemplatesTemplateName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Email Templates
+      summary: Modify the named template
+      description: "Sets the named message template for your organization. If a template already exists it will be overwritten and cannot\nbe retrieved.\n\nThe following templates are available for customization:\n  - `email_authn_challenge`: E-mail template with magic link;\n  - `text_authn_challenge`: SMS template with magic link;\n  - `text_otp_message`: SMS template with OTP code;\n  - `email_password_reset_challenge`: E-mail template with a password reset link;\n  - `text_password_reset_challenge`: SMS template with a password reset link.\n\nAll templates must conform to the [mustache template syntax](https://mustache.github.io/mustache.5.html). The following tags are available:\n  - `{{attestation_url}}`: Magic link URL (at least one of `attestation_url` and `attestation_query_string` are required on `email_authn_challenge` and `text_authn_challenge`)\n  - `{{attestation_query_string}}`: Magic link URL query string (at least one of `attestation_query_string` and `attestation_url` are required on `email_authn_challenge` and `text_authn_challenge`)\n  - `{{password_reset_url}}`: Password reset URL (required on `email_password_reset_challenge` and `text_password_reset_challenge`)\n  - `{{otp_code}}`: OTP code (Required on `text_otp_message`)\n  - `{{org_name}}`: Organization name (Optional)\n  - `{{new_user}}`: `true` for new signups, false for returning users (Optional)\n\nConstraints:\n  - Email templates:\n     - Sender name must be at most 128B in size\n     - Subject must be at most 128B in size\n     - Body must be HTML and at most 50KB in size.\n  - SMS:\n     - Body must be at most 140 bytes in size."
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        description: The new content of the named template
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageTemplate'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+  schemas:
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    TemplateName:
+      description: "Identifier for an e-mail/SMS message template\n\nThe following templates are available for customization:\n  - `email_authn_challenge`: E-mail template with magic link;\n  - `email_otp_message`: E-mail template with OTP code;\n  - `text_authn_challenge`: SMS template with magic link;\n  - `text_otp_message`: SMS template with OTP code;"
+      type: string
+      enum:
+      - email_authn_challenge
+      - email_otp_message
+      - text_authn_challenge
+      - text_otp_message
+      - email_password_reset
+      - email_password_change_notify
+      - text_password_reset
+      - text_password_change_notify
+    MessageTemplate:
+      description: Template for E-mail or SMS messages. Empty fields fall back to default value.
+      type: object
+      properties:
+        sender_name:
+          type: string
+          description: Sender name (not address). Must be empty for SMS templates.
+          example: SlashID
+        subject:
+          type: string
+          description: E-mail subject. Must be empty for SMS templates.
+          example: Confirm Your Login with SlashID
+        body:
+          type: string
+          description: Message body. Must be HTML for e-mail templates and plain text for SMS
+          example: Your security code is {{otp_code}}
+  responses:
+    NoContent:
+      description: No content
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

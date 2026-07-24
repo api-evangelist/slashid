@@ -1,0 +1,821 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Organization SSO config API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organization SSO config
+paths:
+  /organizations/sso/saml/provider-credentials:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetOrganizationsSamlProviderCredentials
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member,saml-admin
+      x-manager-rbac-allowed-groups: admin,member
+      tags:
+      - Organization SSO config
+      summary: List SAML credentials for SSO
+      description: 'Returns a list of existing SAML provider credentials for SSO for your organization.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SAMLProviderCredentialsGetResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: PostOrganizationsSamlProviderCredentials
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,saml-admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - Organization SSO config
+      summary: Create a new set of SAML provider credentials for SSO
+      description: 'Create a new set of SAML provider credentials for your organization to use with SSO.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SAMLProviderCredentialsPostRequest'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/SAMLProviderCredentialsPostResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /organizations/sso/saml/provider-credentials/{saml_provider_credentials_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/SAMLProviderCredentialsIDPathParam'
+    get:
+      operationId: GetOrganizationsSsoSamlProviderCredentialsSamlProviderCredentialsId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member,saml-admin
+      x-manager-rbac-allowed-groups: admin,member
+      tags:
+      - Organization SSO config
+      summary: Get an existing set of SAML provider credentials for SSO
+      description: 'Returns an existing set of SAML provider for SSO, specified by the provider credential ID.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/SAMLProviderCredentialsGetResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeleteOrganizationsSsoSamlProviderCredentialsSamlProviderCredentialsId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,saml-admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - Organization SSO config
+      summary: Delete an existing set of SAML provider credentials for SSO
+      description: 'Deletes an existing set of SAML provider credentials for SSO, specified by the provider credential ID.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: PatchOrganizationsSsoSamlProviderCredentialsSamlProviderCredentialsId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,saml-admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - Organization SSO config
+      summary: Modify an existing set of SAML provider credentials for SSO
+      description: Modifies an existing set of SAML provider credentials for SSO, specified by the provider credential ID.
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SAMLProviderCredentialsPatchRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/sso/oidc/provider-credentials:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetOrganizationsSsoOidcProviderCredentials
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      x-manager-rbac-allowed-groups: admin,member
+      tags:
+      - Organization SSO config
+      summary: List OIDC credentials for SSO
+      description: 'Returns a list of existing OIDC provider credentials for SSO for your organization. Optionally, a provider can be specified to return only credentials for that provider.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/OAuthProviderQueryParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/OAuthCredentialGetResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: PostOrganizationsSsoOidcProviderCredentials
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - Organization SSO config
+      summary: Create a new set of OIDC provider credentials for SSO
+      description: 'Create a new set of OIDC provider credentials for your organization to use with SSO. Includes a client ID, client secret, and the name of the provider. The client ID and client secret should be generated separately using the third-party identity provider you wish to integrate with (such as Google). Not all identity providers are currently supported.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthCredentialPostRequest'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /organizations/sso/oidc/provider-credentials/{oauth_client_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/OAuthClientIDPathParam'
+    get:
+      operationId: GetOrganizationsSsoOidcProviderCredentialsOauthClientId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      x-manager-rbac-allowed-groups: admin,member
+      tags:
+      - Organization SSO config
+      summary: Get an existing set of OIDC provider credentials for SSO
+      description: 'Returns an existing set of OIDC provider for SSO, specified by the client ID.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OAuthCredentialGetResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeleteOrganizationsSsoOidcProviderCredentialsOauthClientId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - Organization SSO config
+      summary: Delete an existing set of OIDC provider credentials for SSO
+      description: 'Deletes an existing set of OIDC provider credentials for SSO, specified by the client ID.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: PatchOrganizationsSsoOidcProviderCredentialsOauthClientId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - Organization SSO config
+      summary: Modify an existing set of OIDC provider credentials for SSO
+      description: Modifies the client secret and/or label of an existing set of OIDC provider credentials for SSO, specified by the client ID.
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthCredentialPatchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    SAMLProviderCredentialsIDPathParam:
+      name: saml_provider_credentials_id
+      description: The SAML provider credentials ID
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/SAMLProviderCredentialsID'
+    OAuthClientIDPathParam:
+      name: oauth_client_id
+      description: An OAuth client ID
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/OAuthClientID'
+    OAuthProviderQueryParam:
+      name: oauth_provider
+      in: query
+      description: The name of the OAuth provider
+      required: false
+      schema:
+        $ref: '#/components/schemas/OAuthProvider'
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+  schemas:
+    SAMLProviderCredentials:
+      type: object
+      description: A SAML provider credential
+      properties:
+        id:
+          $ref: '#/components/schemas/SAMLProviderCredentialsID'
+        label:
+          description: A friendly free-form label to help you identify this set of SAML provider credentials.
+          type: string
+        idp_metadata_url:
+          description: The SAML IdP's metadata URL.
+          type: string
+        email_claims:
+          description: The names of the claims in the SAML response containing the users' email addresses. The first match is added to the person's set of handles.
+          type: array
+          items:
+            type: string
+          maxItems: 3
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+      required:
+      - id
+      - idp_metadata_url
+    SAMLProviderCredentialsPostResponse:
+      $ref: '#/components/schemas/SAMLProviderCredentials'
+    OAuthGithubProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - read:user
+          - user:email
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [GitHub''s documentation](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps) to know more.
+
+
+            Note: scopes `read:user` and `user:email` are always requested.'
+    OAuthLineProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - openid
+          - email
+          - profile
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [Line''s documentation](https://developers.line.biz/en/docs/line-login/integrate-line-login/#scopes) to know more.
+
+
+            Note: scopes `openid`, `email`, and `profile` are always requested.'
+    OAuthProvider:
+      type: string
+      enum:
+      - google
+      - github
+      - bitbucket
+      - gitlab
+      - facebook
+      - line
+      - azuread
+      - okta
+      - apple
+    OAuthAppleProviderOptions:
+      type: object
+      description: See https://developer.apple.com/documentation/accountorganizationaldatasharing/creating-a-client-secret
+      required:
+      - private_key
+      - team_id
+      - key_id
+      - secret_lifetime
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - openid
+          - email
+          - name
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Note: scopes `openid`, `email`, `name` are always requested.'
+        private_key:
+          type: string
+          description: An ES256 private key downloaded from your Apple developer account in PKCS8 format.
+        team_id:
+          type: string
+          description: The 10-character Team ID associated with your Apple developer account. This will be used as the issuer claim in client secret JWTs.
+        key_id:
+          type: string
+          description: A 10-character key identifier generated for the Account and Organizational Data Sharing private key associated with your developer account.
+        secret_lifetime:
+          type: string
+          description: 'The lifetime of each generated client secret. The value provided should be a string that can be parsed as a [Golang `time.Duration`](https://pkg.go.dev/time#Duration); for example, "1m" (one minute), "24h" (24 hours). The lifetime may not be less than 5 minutes (300 seconds), and may not be more than 15,777,000 seconds (6 months). If not set, defaults to 30 days.
+
+            '
+    OAuthCredentialPostRequest:
+      type: object
+      required:
+      - client_id
+      - client_secret
+      - provider
+      description: Request to create a new OAuth credential
+      properties:
+        client_id:
+          $ref: '#/components/schemas/OAuthClientID'
+        client_secret:
+          type: string
+        provider:
+          $ref: '#/components/schemas/OAuthProvider'
+        label:
+          type: string
+        external_cred:
+          $ref: '#/components/schemas/ExternalCredID'
+          deprecated: true
+        external_cred_id:
+          $ref: '#/components/schemas/ExternalCredID'
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+        options:
+          $ref: '#/components/schemas/OAuthProvidersOptions'
+    OAuthProvidersOptions:
+      type: object
+      description: Options for supported third-party providers.
+      properties:
+        google:
+          $ref: '#/components/schemas/OAuthGoogleProviderOptions'
+        github:
+          $ref: '#/components/schemas/OAuthGithubProviderOptions'
+        bitbucket:
+          $ref: '#/components/schemas/OAuthBitbucketProviderOptions'
+        gitlab:
+          $ref: '#/components/schemas/OAuthGitlabProviderOptions'
+        facebook:
+          $ref: '#/components/schemas/OAuthFacebookProviderOptions'
+        line:
+          $ref: '#/components/schemas/OAuthLineProviderOptions'
+        azuread:
+          $ref: '#/components/schemas/OAuthAzureADProviderOptions'
+        okta:
+          $ref: '#/components/schemas/OAuthOktaProviderOptions'
+        apple:
+          $ref: '#/components/schemas/OAuthAppleProviderOptions'
+    OAuthGoogleProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - openid
+          - email
+          - profile
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [Google''s documentation](https://developers.google.com/identity/protocols/oauth2/scopes) to know more.
+
+
+            Note: scopes `openid`, `email`, and `profile` are always requested.'
+    OAuthCredentialPatchRequest:
+      type: object
+      description: Request to modify an existing OAuth credential
+      properties:
+        client_secret:
+          type: string
+        label:
+          type: string
+        external_cred:
+          $ref: '#/components/schemas/ExternalCredID'
+          deprecated: true
+        external_cred_id:
+          $ref: '#/components/schemas/ExternalCredID'
+        options:
+          $ref: '#/components/schemas/OAuthProvidersOptions'
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+    OAuthBitbucketProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - account
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [Bitbucket''s documentation](https://developer.atlassian.com/cloud/bitbucket/rest/intro#scopes) to know more.
+
+
+            Note: scope `account` is always requested.'
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    OAuthFacebookProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - email
+          - public_profile
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [Facebook''s documentation](https://developers.facebook.com/docs/permissions/reference) to know more.
+
+
+            Note: scopes `email` and `public_profile` are always requested.'
+    SAMLProviderCredentialsGetResponse:
+      $ref: '#/components/schemas/SAMLProviderCredentials'
+    OAuthAzureADProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - openid
+          - email
+          - profile
+          - User.Read
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [Azure AD''s documentation](https://learn.microsoft.com/en-us/graph/permissions-reference) to know more.
+
+
+            Note: scopes `openid`, `email`, `profile`, and `User.Read` are always requested.'
+        tenant:
+          type: string
+          default: common
+          description: 'The tenant ID of the Azure AD tenant (a GUID), its tenant domain, or one of the pseudo tenants: `common`, `organizations` or `consumer`.
+
+
+            Read [Azure AD''s documentation](https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-client-application-configuration#authority) to know more.'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    SAMLProviderCredentialsPostRequest:
+      type: object
+      description: Request to create a new SAML provider credential
+      properties:
+        label:
+          description: A friendly free-form label to help you identify this set of SAML provider credentials.
+          type: string
+        idp_metadata_url:
+          description: The SAML IdP's metadata URL.
+          type: string
+        email_claims:
+          description: The names of the claims in the SAML response containing the users' email addresses. The first match is added to the person's set of handles.
+          type: array
+          items:
+            type: string
+          maxItems: 3
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+      required:
+      - idp_metadata_url
+    OAuthClientID:
+      type: string
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    OAuthCredentialGetResponse:
+      type: object
+      description: Response when retrieving an OAuth credential
+      properties:
+        client_id:
+          $ref: '#/components/schemas/OAuthClientID'
+        provider:
+          $ref: '#/components/schemas/OAuthProvider'
+        label:
+          type: string
+        external_cred_id:
+          $ref: '#/components/schemas/ExternalCredID'
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+        options:
+          $ref: '#/components/schemas/OAuthProvidersOptions'
+      required:
+      - client_id
+      - provider
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    SAMLProviderCredentialsID:
+      type: string
+    OAuthOktaProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - openid
+          - email
+          - profile
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [Okta''s documentation]https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_oidc.htm) to know more.
+
+
+            Note: scopes `openid`, `email`, `profile` are always requested.'
+        organization_url:
+          type: string
+          default: ''
+          description: 'The organization URL for Okta.
+
+
+            Read [Okta''s documentation](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_oidc.htm) to know more.'
+    OAuthGitlabProviderOptions:
+      type: object
+      properties:
+        authorize_scopes:
+          type: array
+          items:
+            type: string
+          default:
+          - read_user
+          description: 'The scopes of access granted by the access_token expressed as a list of space-delimited, case-sensitive strings.
+
+
+            Read [GitLab''s documentation](https://docs.gitlab.com/ee/integration/oauth_provider.html#view-all-authorized-applications) to know more.
+
+
+            Note: scope `read_user` is always requested.'
+    SAMLProviderCredentialsPatchRequest:
+      type: object
+      description: Request to modify an existing SAML provider credential
+      properties:
+        label:
+          description: A friendly free-form label to help you identify this set of SAML provider credentials.
+          type: string
+        idp_metadata_url:
+          description: The SAML IdP's metadata URL.
+          type: string
+        email_claims:
+          description: The names of the claims in the SAML response containing the users' email addresses. The first match is added to the person's set of handles.
+          type: array
+          items:
+            type: string
+          maxItems: 3
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+    ExternalCredID:
+      description: External credential ID
+      type: string
+  responses:
+    NoContent:
+      description: No content
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

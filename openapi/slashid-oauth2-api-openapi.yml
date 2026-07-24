@@ -1,0 +1,1248 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups OAuth2 API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: OAuth2
+paths:
+  /oauth2/clients:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostOauth2Clients
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - OAuth2
+      summary: Create a new OAuth2 client
+      description: 'Create a new client ID/secret pair that can be used with the client credentials grant type.
+
+        A valid SlashID organization ID and API key must be used to authenticate and authorize the request.
+
+        The client credentials can be configured.
+
+
+        SlashID currently supports the following OAuth 2.0 grants:
+
+        - client credentials
+
+        - authorization code
+
+        - refresh token
+
+        The `grant_types` field may contain only the values `client_credentials` and `authorization_code`.
+
+        Other values will return a `400` error code.
+
+
+        The client credentials grant requires a client secret, and so all clients allowing that grant should be regarded
+
+        as confidential, as defined in the OAuth 2.0 specification (https://oauth.net/2/client-types/).
+
+
+        The response body will include the client ID and client secret.
+
+        For the client credentials grant, these can be used with the `/oauth2/tokens` endpoints to obtain an access token.
+
+        For the authorization code grant, these can be used as described in the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).
+
+        The client secret must be stored securely, and cannot be retrieved in
+
+        subsequent API calls. If you lose the client secret, a new secret can be generated using the
+
+        `PUT /oauth2/clients/{oauth_client_id}/secret` endpoint.'
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostOAuth2ClientRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OAuth2ClientWithSecret'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    get:
+      operationId: GetOauth2Clients
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - OAuth2
+      summary: Retrieve a list of OAuth2 clients
+      description: 'Retrieve a list of existing OAuth 2.0 clients for your organization.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/OAuth2Client'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /oauth2/clients/{oauth_client_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/OAuthClientIDPathParam'
+    get:
+      operationId: GetOauth2ClientsOauthClientId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - OAuth2
+      summary: Retrieve an OAuth2 client
+      description: 'Get details on the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OAuth2Client'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeleteOauth2ClientsOauthClientId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - OAuth2
+      summary: Delete an existing OAuth2 client
+      description: 'Delete the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: PatchOauth2ClientsOauthClientId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - OAuth2
+      summary: Modify an existing OAuth2 client
+      description: 'Update the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.
+
+
+        SlashID currently only supported a subset of OAuth clients, therefore we enforce that grant_types must be ["client_credentials"]. Setting this field to any other value will result in an error response with a `400` status code.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOAuth2ClientRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OAuth2Client'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /oauth2/clients/{oauth_client_id}/secret:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/OAuthClientIDPathParam'
+    put:
+      operationId: PutOauth2ClientsOauthClientIdSecret
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - OAuth2
+      summary: Generate a new client secret
+      description: 'A new client secret is created and returned. The previous secret will no longer be valid after this.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OAuth2ClientSecretResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /oauth2/clients/{oauth_client_id}/ui-configuration:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/OAuthClientIDPathParam'
+    get:
+      operationId: GetOauth2UiConfiguration
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      summary: Retrieve the configuration for the hosted UI
+      description: 'The configuration is used to theme the hosted UI.
+
+        '
+      tags:
+      - OAuth2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OAuthClientUIConfigurationGetResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutOauth2UiConfiguration
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      summary: Modify the configuration for the hosted UI
+      description: 'The configuration is used to theme the hosted UI.
+
+        '
+      tags:
+      - OAuth2
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthClientUIConfigurationPutRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OAuthClientUIConfigurationPutResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /oauth2/authorize:
+    get:
+      operationId: GetOauth2Authorize
+      summary: Request an authorization code
+      description: 'Used to initiate an authorization code flow.
+
+
+        SlashID is an OAuth 2.0 and OpenID Connect 1.0 provider.
+
+        '
+      tags:
+      - OAuth2
+      parameters:
+      - $ref: '#/components/parameters/ScopeQueryParam'
+      - $ref: '#/components/parameters/ResponseTypeQueryParam'
+      - $ref: '#/components/parameters/ClientIDQueryParam'
+      - $ref: '#/components/parameters/RedirectURIQueryParam'
+      - $ref: '#/components/parameters/StateQueryParam'
+      - $ref: '#/components/parameters/CodeChallengeQueryParam'
+      - $ref: '#/components/parameters/CodeChallengeMethodQueryParam'
+      - $ref: '#/components/parameters/ResponseModeQueryParam'
+      - $ref: '#/components/parameters/NonceQueryParam'
+      - $ref: '#/components/parameters/DisplayQueryParam'
+      - $ref: '#/components/parameters/PromptQueryParam'
+      - $ref: '#/components/parameters/MaxAgeQueryParam'
+      - $ref: '#/components/parameters/UILocalesQueryParam'
+      - $ref: '#/components/parameters/LoginHintQueryParam'
+      - $ref: '#/components/parameters/ACRValuesQueryParam'
+      - $ref: '#/components/parameters/HandleTypesQueryParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /oauth2/tokens:
+    post:
+      operationId: PostOauth2Tokens
+      tags:
+      - OAuth2
+      security:
+      - OAuth2ClientIdSecret: []
+      summary: Obtain an access token
+      description: 'Obtain a new OAuth 2.0 access token using an OAuth 2.0 client ID/secret pair.
+
+        '
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostOAuth2TokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostOAuth2TokenResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /oauth2/tokens/revoke:
+    post:
+      operationId: PostOauth2TokensRevoke
+      tags:
+      - OAuth2
+      security:
+      - OAuth2ClientIdSecret: []
+      summary: Revoke a token
+      description: 'Revoke an OAuth 2.0 token using an OAuth 2.0 client ID/secret pair.
+
+        '
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RevokeOAuth2TokenRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /oauth2/tokens/revoke-all:
+    post:
+      operationId: PostOauth2TokensRevokeAll
+      tags:
+      - OAuth2
+      security:
+      - OAuth2ClientIdSecret: []
+      summary: Revoke tokens
+      description: 'Revoke OAuth 2.0 tokens using an OAuth 2.0 client ID/secret pair.
+
+        '
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RevokeAllOAuth2TokensRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /oauth2/tokens/introspect:
+    post:
+      operationId: PostOauth2TokensIntrospect
+      tags:
+      - OAuth2
+      security:
+      - OAuth2ClientIdSecret: []
+      summary: Introspect an access token
+      description: 'Introspect an OAuth 2.0 access or refresh token using an OAuth 2.0 client ID/secret pair. Note: there is a know issue for this endpoint, whereby the expiry for refresh tokens in the response is incorrect. However, expired refresh tokens will still return a response with `active: false`.
+
+        '
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IntrospectOAuth2TokenRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntrospectOAuth2TokenResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /oauth2/tokens/mint:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostOauth2TokensMint
+      tags:
+      - OAuth2
+      security:
+      - ApiKeyAuth: []
+      summary: Mint OAuth 2.0 & OIDC tokens
+      description: "This endpoint creates a set of OAuth 2.0 tokens for a specific user.\n\nTo generate a refresh token request scope `offline_access`.\nTo generate an ID token request scope `openid`.\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - jti\n  - iat\n  - iss\n  - nbf\n  - sub\n  - prev_token_id\n  - oid\n  - org_id\n  - user_id\n  - person_id\n  - first_token\n  - authenticated_methods\n  - oidc_tokens\n  - user_token\n  - groups\n  - roles\n  - access_token\n  - refresh_token\n  - id\n  - id_token\n  - gdpr\n  - gdpr_consent\n  - gdpr_consent_level\n  - parent_user_id\n  - parent_person_id\n  - parent_org_id\n  - parent_oid\n  - attributes\n  - custom_claims\n  - slashid\n  - slashid.dev\n  - slashid.com\n  - slashid.me\n  - sid\n\n\nWith the following request body:\n\n```\n{\n    \"custom_claims\": {\n        \"foo\": \"bar\",\n        \"baz\": {\"everything\": 42}\n    }\n}\n```\n\n\nthe token in the response will have the following payload:\n\n```\n{\n  \"authenticated_methods\": [\n    \"api\"\n  ],\n  \"baz\": {\n    \"everything\": 42\n  },\n  \"exp\": <expiration time timestamp>,\n  \"first_token\": false,\n  \"foo\": \"bar\",\n  \"iat\": <issued at timestamp>,\n  \"iss\": <token issuer>,\n  \"jti\": <token ID>,\n  \"oid\": <organisation ID>,\n  \"person_id\": <person ID>\n}\n```\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MintOAuth2TokensRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  required:
+                  - result
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/MintOAuth2TokensResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /oauth2/userinfo:
+    get:
+      operationId: GetOauth2Userinfo
+      tags:
+      - OAuth2
+      summary: Retrieve a person's profile
+      description: 'Given the SlashID Access Token obtained during signin, this endpoint returns a person''s profile.
+
+
+        This endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.
+
+        '
+      security:
+      - OAuth2AccessTokenBearer: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserinfoOAuth2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: PostOauth2Userinfo
+      tags:
+      - OAuth2
+      summary: Retrieve a person's profile
+      description: 'Given the SlashID Access Token obtained during signin, this endpoint returns a person''s profile.
+
+
+        This endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.
+
+        '
+      security:
+      - OAuth2AccessTokenBearer: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserinfoOAuth2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    OK:
+      description: OK
+    NoContent:
+      description: No content
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    HandleTypesQueryParam:
+      in: query
+      name: handle_types
+      schema:
+        type: string
+      required: false
+    ClientIDQueryParam:
+      in: query
+      name: client_id
+      schema:
+        type: string
+      required: true
+    PromptQueryParam:
+      in: query
+      name: prompt
+      schema:
+        type: string
+        enum:
+        - none
+        - login
+      required: false
+    ScopeQueryParam:
+      in: query
+      name: scope
+      schema:
+        type: string
+      required: true
+    NonceQueryParam:
+      in: query
+      name: nonce
+      schema:
+        type: string
+      required: false
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    CodeChallengeQueryParam:
+      in: query
+      name: code_challenge
+      schema:
+        type: string
+      required: false
+    ResponseTypeQueryParam:
+      in: query
+      name: response_type
+      schema:
+        type: string
+      required: true
+    LoginHintQueryParam:
+      in: query
+      name: login_hint
+      schema:
+        type: string
+      required: false
+    CodeChallengeMethodQueryParam:
+      in: query
+      name: code_challenge_method
+      schema:
+        type: string
+      required: false
+    RedirectURIQueryParam:
+      in: query
+      name: redirect_uri
+      schema:
+        type: string
+      required: true
+    OAuthClientIDPathParam:
+      name: oauth_client_id
+      description: An OAuth client ID
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/OAuthClientID'
+    ResponseModeQueryParam:
+      in: query
+      name: response_mode
+      schema:
+        type: string
+      required: false
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+    DisplayQueryParam:
+      in: query
+      name: display
+      schema:
+        type: string
+        enum:
+        - page
+      required: false
+    StateQueryParam:
+      in: query
+      name: state
+      schema:
+        type: string
+      required: false
+    UILocalesQueryParam:
+      in: query
+      name: ui_locales
+      schema:
+        type: string
+      required: false
+    ACRValuesQueryParam:
+      in: query
+      name: acr_values
+      schema:
+        type: string
+      required: false
+    MaxAgeQueryParam:
+      in: query
+      name: max_age
+      schema:
+        type: integer
+        format: int32
+      required: false
+  schemas:
+    IntrospectOAuth2TokenRequest:
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          type: string
+        token_type_hint:
+          $ref: '#/components/schemas/OAuth2TokenType'
+        scope:
+          $ref: '#/components/schemas/OAuth2ScopesSpaceDelimited'
+    OAuth2Client:
+      type: object
+      required:
+      - client_id
+      - client_name
+      - grant_types
+      - response_types
+      - scopes
+      - public
+      properties:
+        client_id:
+          $ref: '#/components/schemas/OAuth2ClientID'
+        client_name:
+          $ref: '#/components/schemas/OAuth2ClientName'
+        grant_types:
+          $ref: '#/components/schemas/OAuth2ClientGrantTypes'
+        response_types:
+          $ref: '#/components/schemas/OAuth2ClientResponseTypes'
+        scopes:
+          $ref: '#/components/schemas/OAuth2ClientScopes'
+        access_token_duration:
+          $ref: '#/components/schemas/OAuth2ClientAccessTokenDuration'
+        refresh_token_duration:
+          $ref: '#/components/schemas/OAuth2ClientRefreshTokenDuration'
+        public:
+          $ref: '#/components/schemas/OAuth2ClientPublic'
+        redirect_uris:
+          $ref: '#/components/schemas/OAuth2ClientRedirectURIs'
+        created_at:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+    OAuthClientUIConfigurationPutResponse:
+      $ref: '#/components/schemas/OAuthClientUIConfiguration'
+    OAuth2ClientRedirectURIs:
+      description: The client's allowed redirect URIs.
+      type: array
+      items:
+        type: string
+        format: uri
+      example:
+      - https://example.com/redirect
+    MintOAuth2TokensRequest:
+      type: object
+      required:
+      - person_id
+      - client_id
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+        client_id:
+          $ref: '#/components/schemas/OAuth2ClientID'
+        scopes:
+          type: array
+          items:
+            type: string
+        custom_claims:
+          type: object
+          additionalProperties: true
+    PostOAuth2TokenRequestRefreshToken:
+      type: object
+      required:
+      - grant_type
+      - refresh_token
+      properties:
+        grant_type:
+          $ref: '#/components/schemas/OAuth2GrantType'
+        refresh_token:
+          type: string
+        scope:
+          $ref: '#/components/schemas/OAuth2ScopesSpaceDelimited'
+    IntrospectOAuth2TokenResponse:
+      type: object
+      required:
+      - active
+      properties:
+        active:
+          type: boolean
+          description: Whether the token is active. False for invalid and expired tokens, and tokens that are not granted the scopes specified in the request.
+        client_id:
+          type: string
+          description: The client ID used to create this token. Only included if `active` is `true`.
+        exp:
+          type: integer
+          description: The expiration timestamp of the token. Only included if `active` is `true`.
+        iat:
+          type: integer
+          description: The timestamp when the token was issued. Only included if `active` is `true`.
+        scope:
+          type: string
+          description: The scope granted to the token. Only included if `active` is `true`.
+    UserinfoOAuth2Response:
+      type: object
+      required:
+      - sub
+      - iss
+      - aud
+      - org_id
+      properties:
+        sub:
+          type: string
+          description: The subject granted to the token, as a person ID.
+        iss:
+          type: string
+          description: The access token issuer.
+        aud:
+          type: string
+          description: The audience granted to th token, that is, the OAuth2 client ID.
+        org_id:
+          type: string
+          description: The SlashID organization ID granted to the token.
+        email:
+          type: string
+          description: The email address of the person. Only present if the authorization request included scope `email`.
+        email_verified:
+          type: boolean
+          description: Is `true` if the ownership of the email address was verified. `false` otherwise.
+        phone_number:
+          type: string
+          description: The phone number of the person. Only present if the authorization request included scope `phone`.
+        phone_number_verified:
+          type: boolean
+          description: Is `true` if the ownership of the phone number was verified. `false` otherwise.
+        username:
+          type: string
+          description: The username of the person. Only present if the authorization request included scope `username`.
+    OAuth2ClientSecretResponse:
+      type: object
+      required:
+      - client_secret
+      properties:
+        client_secret:
+          $ref: '#/components/schemas/OAuth2ClientSecret'
+    OAuth2ClientScopes:
+      description: The scopes this client is allowed to request.
+      type: array
+      items:
+        $ref: '#/components/schemas/OAuth2Scope'
+      example:
+      - admin
+      - user
+    OAuth2ClientName:
+      description: Human-friendly name to identify this client.
+      type: string
+      example: My Awesome Application
+    PostOAuth2TokenResponseRefreshToken:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        id_token:
+          type: string
+        expires_in:
+          type: integer
+          description: Number of seconds until the token expires.
+        scope:
+          $ref: '#/components/schemas/OAuth2ScopesSpaceDelimited'
+        token_type:
+          $ref: '#/components/schemas/OAuth2AuthTokenType'
+    OAuthClientUIConfigurationPutRequest:
+      $ref: '#/components/schemas/OAuthClientUIConfiguration'
+    PostOAuth2TokenResponseClientCredentials:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+          description: Number of seconds until the token expires.
+        scope:
+          $ref: '#/components/schemas/OAuth2ScopesSpaceDelimited'
+        token_type:
+          $ref: '#/components/schemas/OAuth2AuthTokenType'
+    PostOAuth2TokenRequestClientCredentials:
+      type: object
+      required:
+      - grant_type
+      properties:
+        scope:
+          $ref: '#/components/schemas/OAuth2ScopesSpaceDelimited'
+        grant_type:
+          $ref: '#/components/schemas/OAuth2GrantType'
+    OAuth2TokenType:
+      type: string
+      enum:
+      - access_token
+      - refresh_token
+      - authorize_code
+      - id_token
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    RevokeOAuth2TokenRequest:
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          type: string
+        token_type_hint:
+          $ref: '#/components/schemas/OAuth2TokenType'
+    PatchOAuth2ClientRequest:
+      type: object
+      properties:
+        client_name:
+          $ref: '#/components/schemas/OAuth2ClientName'
+        grant_types:
+          $ref: '#/components/schemas/OAuth2ClientGrantTypes'
+        scopes:
+          $ref: '#/components/schemas/OAuth2ClientScopes'
+        access_token_duration:
+          $ref: '#/components/schemas/OAuth2ClientAccessTokenDuration'
+        refresh_token_duration:
+          $ref: '#/components/schemas/OAuth2ClientRefreshTokenDuration'
+        redirect_uris:
+          $ref: '#/components/schemas/OAuth2ClientRedirectURIs'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    PostOAuth2TokenRequest:
+      oneOf:
+      - $ref: '#/components/schemas/PostOAuth2TokenRequestClientCredentials'
+      - $ref: '#/components/schemas/PostOAuth2TokenRequestAuthorizationCode'
+      - $ref: '#/components/schemas/PostOAuth2TokenRequestRefreshToken'
+      discriminator:
+        propertyName: grant_type
+        mapping:
+          client_credentials: '#/components/schemas/PostOAuth2TokenRequestClientCredentials'
+          authorization_code: '#/components/schemas/PostOAuth2TokenRequestAuthorizationCode'
+          refresh_token: '#/components/schemas/PostOAuth2TokenRequestRefreshToken'
+    MintOAuth2TokensResponse:
+      type: object
+      required:
+      - access_token
+      properties:
+        id_token:
+          type: string
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+    OAuth2ClientSecret:
+      description: The client secret key.
+      type: string
+      example: LQZzYPf8h/7Tpf9I+lCSulcOYMo=
+    PostOAuth2ClientRequest:
+      type: object
+      required:
+      - client_name
+      - scopes
+      - grant_types
+      properties:
+        client_name:
+          $ref: '#/components/schemas/OAuth2ClientName'
+        scopes:
+          $ref: '#/components/schemas/OAuth2ClientScopes'
+        grant_types:
+          $ref: '#/components/schemas/OAuth2ClientGrantTypes'
+        access_token_duration:
+          $ref: '#/components/schemas/OAuth2ClientAccessTokenDuration'
+        refresh_token_duration:
+          $ref: '#/components/schemas/OAuth2ClientRefreshTokenDuration'
+        redirect_uris:
+          $ref: '#/components/schemas/OAuth2ClientRedirectURIs'
+        public:
+          $ref: '#/components/schemas/OAuth2ClientPublic'
+    OAuth2ClientAccessTokenDuration:
+      description: 'How long (in seconds) access tokens should be valid for. If unspecified, this defaults to 24 hours (86,400 seconds). For OIDC flows, this value is also used as the ID token duration.
+
+        '
+      type: integer
+      example: 3600
+    PostOAuth2TokenResponse:
+      oneOf:
+      - $ref: '#/components/schemas/PostOAuth2TokenResponseClientCredentials'
+      - $ref: '#/components/schemas/PostOAuth2TokenResponseAuthorizationCode'
+      - $ref: '#/components/schemas/PostOAuth2TokenResponseRefreshToken'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    RevokeAllOAuth2TokensRequest:
+      type: object
+      required:
+      - person_id
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+        until:
+          type: string
+          format: date-time
+    OAuth2ClientWithSecret:
+      allOf:
+      - $ref: '#/components/schemas/OAuth2Client'
+      - $ref: '#/components/schemas/OAuth2ClientSecretResponse'
+    OAuth2ClientID:
+      description: The client identifier.
+      type: string
+      example: b9a747fb-150e-44e5-b2d6-afa69e671853
+    OAuthClientUIConfigurationGetResponse:
+      $ref: '#/components/schemas/OAuthClientUIConfiguration'
+    OAuth2Scope:
+      description: OAuth2 scope
+      type: string
+      example:
+      - admin
+    OAuthClientUIConfiguration:
+      type: object
+      additionalProperties: true
+      properties:
+        dynamicFlowConfig:
+          type: object
+          description: Configuration for dynamic flow
+          additionalProperties: true
+        dynamicFlowEnabled:
+          type: boolean
+          description: Whether dynamic flow is enabled
+        handleTypes:
+          type: array
+          description: The types of handles that can be used to authenticate
+          items:
+            type: string
+        logoUrl:
+          type: string
+          description: The URL of the logo to display in the login form
+        pageBackgroundColor:
+          type: string
+          description: The background color of the page
+        showBadge:
+          type: boolean
+          description: Whether to show the SlashID badge
+        storeLastFactor:
+          type: boolean
+          description: Whether to store the last factor used for authentication
+        supportURL:
+          type: string
+          description: If set, the support link will be displayed in the error state
+        alternativeAuthURL:
+          type: string
+          description: If set, the alternative auth link will be displayed in the self-registration-not-allowed error state
+        faviconUrl:
+          type: string
+          description: The URL of the favicon to display in the browser tab
+        pageTitle:
+          type: string
+          description: The title of the page
+        themeVars:
+          type: object
+          description: The SlashID theme CSS variables
+          additionalProperties:
+            type: string
+        textOverrides:
+          type: object
+          description: Text keys and overriden values
+          additionalProperties:
+            type: string
+    OAuth2ScopesSpaceDelimited:
+      description: List of OAuth2 scopes, delimited with spaces.
+      type: string
+      example: admin user
+    PostOAuth2TokenResponseAuthorizationCode:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        id_token:
+          type: string
+        expires_in:
+          type: integer
+          description: Number of seconds until the token expires.
+        scope:
+          $ref: '#/components/schemas/OAuth2ScopesSpaceDelimited'
+        token_type:
+          $ref: '#/components/schemas/OAuth2AuthTokenType'
+    OAuthClientID:
+      type: string
+    PostOAuth2TokenRequestAuthorizationCode:
+      type: object
+      required:
+      - grant_type
+      - code
+      - redirect_uri
+      - client_id
+      properties:
+        grant_type:
+          $ref: '#/components/schemas/OAuth2GrantType'
+        code:
+          type: string
+        redirect_uri:
+          type: string
+        client_id:
+          $ref: '#/components/schemas/OAuth2ClientID'
+        client_secret:
+          $ref: '#/components/schemas/OAuth2ClientSecret'
+        code_challenge:
+          type: string
+    OAuth2ClientResponseTypes:
+      description: The client's allowed response types. All allowed combinations of response types have to be listed.
+      type: array
+      items:
+        type: array
+        items:
+          $ref: '#/components/schemas/OAuth2ResponseType'
+      example:
+      - - code
+      - - token
+      - - code
+        - token
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    OAuth2AuthTokenType:
+      type: string
+      enum:
+      - bearer
+    OAuth2ResponseType:
+      type: string
+      enum:
+      - code
+      - id_token
+      - token
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    OAuth2ClientGrantTypes:
+      description: The client's allowed grant types.
+      type: array
+      items:
+        $ref: '#/components/schemas/OAuth2GrantType'
+      example:
+      - client_credentials
+      - authorization_code
+    OAuth2ClientRefreshTokenDuration:
+      description: How long (in seconds) refresh tokens should be valid for. If unspecified, this defaults to 10 days (864,000 seconds).
+      type: integer
+      example: 36000
+    OAuth2GrantType:
+      type: string
+      enum:
+      - client_credentials
+      - authorization_code
+      - refresh_token
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+    OAuth2ClientPublic:
+      description: 'Indicates if this client is marked as public. Public clients are unable to use registered client secrets, such as applications running in a browser or on a mobile device. Defaults to false.
+
+        '
+      type: boolean
+      example: false
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

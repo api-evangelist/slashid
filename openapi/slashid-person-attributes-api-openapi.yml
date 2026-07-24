@@ -1,0 +1,511 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Person Attributes API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Person Attributes
+paths:
+  /persons/{person_id}/attributes:
+    patch:
+      operationId: PatchPersonsPersonIdAttributes
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      summary: Create or modify attributes for a person in multiple buckets
+      description: 'Create new attributes or modify existing attributes for a person in one or more attribute buckets.
+
+        The request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn''t referenced by key in the request is left untouched.
+
+        '
+      tags:
+      - Person Attributes
+      parameters:
+      - $ref: '#/components/parameters/PersonIDPathParam'
+      - $ref: '#/components/parameters/OrgIDHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchBucketedAttributesReq'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutPersonsPersonIdAttributes
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      summary: Create or modify attributes for a person in multiple buckets
+      description: 'Create new attributes or modify existing attributes for a person in one or more attribute buckets.
+
+        The request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any existing attributes that aren''t referenced by key in the request.
+
+        '
+      tags:
+      - Person Attributes
+      parameters:
+      - $ref: '#/components/parameters/PersonIDPathParam'
+      - $ref: '#/components/parameters/OrgIDHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutBucketedAttributesReq'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      operationId: GetPersonsPersonIdAttributes
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      summary: Retrieve attributes for a person from multiple buckets
+      description: 'Retrieve attributes for a person from one or more buckets. If no buckets are specified, attributes from all buckets will be retrieved.
+
+        Bucket names can be specified as a comma-separated list in the `buckets` query parameter. All buckets specified must exist, and the organization specified in the header must be able to access them. Empty bucket names are not permitted.
+
+        '
+      tags:
+      - Person Attributes
+      parameters:
+      - $ref: '#/components/parameters/PersonIDPathParam'
+      - $ref: '#/components/parameters/OrgIDHeader'
+      - $ref: '#/components/parameters/AttributeBucketsQueryParam'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GetBucketedAttributesResp'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /persons/{person_id}/attributes/{bucket_name}:
+    patch:
+      operationId: PatchPersonsPersonIdAttributesBucketName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      summary: Create or modify attributes for a person in a single bucket
+      description: 'Create new attributes or modify existing attributes for a person in a single attribute bucket.
+
+        The bucket must exist and must be accessible by the organization identified in the request header.
+
+        The request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn''t referenced by key in the request is left untouched.
+
+        '
+      tags:
+      - Person Attributes
+      parameters:
+      - $ref: '#/components/parameters/PersonIDPathParam'
+      - $ref: '#/components/parameters/OrgIDHeader'
+      - $ref: '#/components/parameters/AttributeBucketNamePathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchAttributesReq'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutPersonsPersonIdAttributesBucketName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      summary: Create or modify attributes for a person in a single bucket
+      description: 'Create new attributes or modify existing attributes for a person in a single attribute bucket.
+
+        The bucket must exist and must be accessible by the organization identified in the request header.
+
+        The request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any existing attributes that aren''t referenced by key in the request.
+
+        '
+      tags:
+      - Person Attributes
+      parameters:
+      - $ref: '#/components/parameters/PersonIDPathParam'
+      - $ref: '#/components/parameters/OrgIDHeader'
+      - $ref: '#/components/parameters/AttributeBucketNamePathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutAttributesReq'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      operationId: GetPersonsPersonIdAttributesBucketName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      summary: Retrieve attributes for a person from a single bucket
+      description: 'Retrieve attributes for a person from a single attribute bucket.
+
+        The bucket must exist and must be accessible by the organization identified in the request header. If no attribute names are specified, all attributes in the bucket will be retrieved. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted.
+
+        '
+      tags:
+      - Person Attributes
+      parameters:
+      - $ref: '#/components/parameters/PersonIDPathParam'
+      - $ref: '#/components/parameters/OrgIDHeader'
+      - $ref: '#/components/parameters/AttributeBucketNamePathParam'
+        required: true
+      - $ref: '#/components/parameters/AttributeNamesQueryParam'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GetAttributesResp'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeletePersonsPersonIdAttributesBucketName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      summary: Delete attributes for a person from a single bucket
+      description: 'Delete attributes for a person from a single attribute bucket.
+
+        The bucket must exist and must be accessible by the organization identified in the request header. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted. If no attribute names are specified, all attributes in the bucket will be deleted.
+
+        WARNING: this action is permanent and cannot be undone.
+
+        '
+      tags:
+      - Person Attributes
+      parameters:
+      - $ref: '#/components/parameters/PersonIDPathParam'
+      - $ref: '#/components/parameters/OrgIDHeader'
+      - $ref: '#/components/parameters/AttributeBucketNamePathParam'
+      - $ref: '#/components/parameters/AttributeNamesQueryParam'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/attribute-buckets:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetOrganizationsAttributeBuckets
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Person Attributes
+      summary: List organization's attribute buckets
+      description: Get a list of available attribute buckets for your organization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/AttributeBucket'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  schemas:
+    AttributePermissions:
+      type: string
+      description: The access level for end-users to attributes in this bucket.
+      enum:
+      - no_access
+      - read_only
+      - read_write
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    AttributeSharingScope:
+      type: string
+      description: The scope in which attributes in this bucket are available
+      enum:
+      - organization
+      - person_pool
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    OrganizationID:
+      type: string
+    PutAttributesReq:
+      $ref: '#/components/schemas/Attributes'
+    Attributes:
+      type: object
+      additionalProperties: true
+      description: 'Clear-text person attributes as key-value pairs. Attribute names (keys) may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB.
+
+        '
+      example:
+        attr1: value1
+        attr2: 2
+        attr3: true
+        attr_4:
+        - 1
+        - 2
+        - 3
+        - 4
+        attr_5:
+          nested: 5
+    PatchBucketedAttributesReq:
+      $ref: '#/components/schemas/BucketedAttributes'
+    GetBucketedAttributesResp:
+      $ref: '#/components/schemas/BucketedAttributes'
+    PatchAttributesReq:
+      $ref: '#/components/schemas/Attributes'
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    PutBucketedAttributesReq:
+      $ref: '#/components/schemas/BucketedAttributes'
+    BucketedAttributes:
+      type: object
+      description: 'Attributes divided into named buckets. Bucket names are top level keys; attributes are values. Attributes consist of key-value pairs. Attribute names (keys) may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB.
+
+        '
+      additionalProperties:
+        $ref: '#/components/schemas/Attributes'
+      example:
+        person_pool-end_user_read_write:
+          card_number: '1234'
+          expiry: 07/25
+        end_user_read_only:
+          address_line_1: New Street
+          city: New York
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    GetAttributesResp:
+      $ref: '#/components/schemas/Attributes'
+    AttributeBucket:
+      type: object
+      description: An attribute bucket with access settings
+      required:
+      - name
+      - sharing_scope
+      - end_user_permissions
+      properties:
+        name:
+          type: string
+          description: The name of the attribute bucket
+        sharing_scope:
+          $ref: '#/components/schemas/AttributeSharingScope'
+        owner_organization_id:
+          $ref: '#/components/schemas/OrganizationID'
+        end_user_permissions:
+          $ref: '#/components/schemas/AttributePermissions'
+  parameters:
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    AttributeBucketNamePathParam:
+      in: path
+      name: bucket_name
+      description: 'The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.
+
+        '
+      required: true
+      schema:
+        type: string
+    AttributeNamesQueryParam:
+      in: query
+      name: attributes
+      description: A comma-separated list of attribute names
+      example:
+      - address_line_1,address_line_2,city,zip_code
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+    PersonIDPathParam:
+      name: person_id
+      description: The person ID
+      example: 903c1ff9-f2cc-435c-b242-9d8a690fcf0a
+      in: path
+      required: true
+      schema:
+        type: string
+    AttributeBucketsQueryParam:
+      in: query
+      name: buckets
+      description: A comma-separated list of attribute bucket names
+      example:
+      - person_pool-end_user_read_write,person_pool-end_user_no_access
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

@@ -1,0 +1,488 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Groups
+paths:
+  /persons/{person_id}/groups:
+    parameters:
+    - $ref: '#/components/parameters/PersonIDPathParam'
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetPersonsPersonIdGroups
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member,impersonator,saml-admin,uar-certifier,uar-campaign-manager,cs-id-verifier
+      x-manager-rbac-allowed-groups: admin,member,impersonator,saml-admin,uar-certifier,uar-campaign-manager,cs-id-verifier
+      tags:
+      - Groups
+      summary: Get groups for a person
+      description: Retrieve the list of groups the specified person belongs to
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/PersonGroupsResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutPersonsPersonIdGroups
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - Groups
+      summary: Set the groups for a person
+      description: 'Add the person to the groups specified in the request body, and remove the person from any other existing groups.
+
+        All groups in the request body must already exist. Duplicate groups in the request body will be ignored. If an empty list is supplied in the request body, the person will be removed from all groups they are currently a member of, and will not be added to any others.
+
+        New groups can be created with the [POST /groups](/docs/api/post-groups) endpoint.
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPersonGroupsReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/PersonGroupsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /groups:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostGroups
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Groups
+      summary: Create a group
+      description: "This endpoint creates a new persons group with the given name.\n\nIf the group exists already, no action will be taken.\n\nThe group name must be unique within your organization; is case-sensitive; and must conform to the following:\n  - must be at least 2 characters long\n  - may be at most 100 characters long\n  - may contain only the characters `A-Z a-z 0-9 - _ .`\n  - must start and end with an alphanumeric character (`A-Z a-z 0-9`)\n\nA person can be added to a group through the [`POST /persons/:person_id/groups`](/docs/api/put-persons-person-id-groups) endpoint.\n"
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostGroupReq'
+        required: true
+      responses:
+        '201':
+          description: The group was successfully created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+    get:
+      operationId: GetGroups
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Groups
+      summary: Get a list of groups
+      description: List the names of all groups that exist for your organization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/ListGroupsResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /groups/{group_name}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/GroupNamePathParam'
+    get:
+      operationId: GetGroupsGroupName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Groups
+      summary: Get a group
+      description: Get the named group
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GetGroupResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeleteGroupsGroupName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Groups
+      summary: Delete a group
+      description: Remove all persons from a group and permanently delete the group.
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /groups/{group_name}/persons:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/GroupNamePathParam'
+    post:
+      operationId: PostGroupsGroupNamePersons
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Groups
+      summary: Add persons to a group
+      description: 'This endpoint adds one or more persons to an existing group. The group and all of the persons must exist. The persons to be added to the group must always be an array in the request body, even if only one user is being added. All persons needs to be in the same region.
+
+        A new group can be created with the [POST /groups](/docs/api/post-groups) endpoint.
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostGroupPersonsReq'
+        required: true
+      responses:
+        '201':
+          description: The persons were successfully added to the group
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      operationId: GetGroupsGroupNamePersons
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Groups
+      summary: List the persons in a group
+      description: Lists all the persons in the named group. Returns an array of person IDs.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /groups/{group_name}/persons/{person_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/GroupNamePathParam'
+    - $ref: '#/components/parameters/PersonIDPathParam'
+    delete:
+      operationId: DeleteGroupsGroupNamePersonsPersonId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Groups
+      summary: Delete a person from a group
+      description: 'Removes the identified person from the named group. Returns an error if the person is not in the group.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    GroupNamePathParam:
+      in: path
+      required: true
+      name: group_name
+      schema:
+        $ref: '#/components/schemas/GroupName'
+      description: The name of a group
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+    PersonIDPathParam:
+      name: person_id
+      description: The person ID
+      example: 903c1ff9-f2cc-435c-b242-9d8a690fcf0a
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    ListGroupsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroupName'
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    PostGroupPersonsReq:
+      type: object
+      properties:
+        persons:
+          type: array
+          description: List of person IDs to add to the group
+          items:
+            $ref: '#/components/schemas/PersonID'
+      required:
+      - persons
+    PutPersonGroupsReq:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupName'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    PostGroupReq:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/GroupName'
+        description:
+          type: string
+      required:
+      - name
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    GroupName:
+      type: string
+      pattern: ^[A-Za-z0-9]{1}[\w\.\-]*[A-Za-z0-9]$
+      maxLength: 100
+    GetGroupResponse:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/GroupName'
+        description:
+          type: string
+        members_count:
+          type: integer
+        created:
+          type: string
+          format: date-time
+      required:
+      - name
+      - members_count
+      - created
+    PersonGroupsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroupName'
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+  responses:
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    PaymentRequired:
+      description: Pricing Tier Violation - operation violated the limits specified in its pricing tier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

@@ -1,0 +1,323 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Tokens API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Tokens
+paths:
+  /token/validate:
+    parameters:
+    - $ref: '#/components/parameters/OptionalSdkVersionHeader'
+    post:
+      operationId: PostTokenValidate
+      tags:
+      - Tokens
+      summary: Validate a user token
+      description: 'This endpoint validates a SlashID user token.
+
+        The response indicates whether the token is valid and its expiration time if so. If the token is not valid, the reason is returned.
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateTokenReq'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/ValidateTokenResponse'
+  /token/revoke:
+    parameters:
+    - $ref: '#/components/parameters/OptionalSdkVersionHeader'
+    post:
+      operationId: PostTokenRevoke
+      tags:
+      - Tokens
+      summary: Revoke a user token
+      description: 'This endpoint revokes a SlashID user token.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RevokeTokenReq'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '408':
+          $ref: '#/components/responses/Timeout'
+  /persons/{person_id}/mint-token:
+    parameters:
+    - $ref: '#/components/parameters/PersonIDPathParam'
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostPersonsPersonIdMintToken
+      tags:
+      - Tokens
+      summary: Mint a token for a person
+      description: "This endpoint creates a token for a specific user.\n\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - jti\n  - iat\n  - iss\n  - nbf\n  - sub\n  - prev_token_id\n  - oid\n  - org_id\n  - user_id\n  - person_id\n  - first_token\n  - authenticated_methods\n  - oidc_tokens\n  - user_token\n  - groups\n  - roles\n  - access_token\n  - refresh_token\n  - id\n  - id_token\n  - gdpr\n  - gdpr_consent\n  - gdpr_consent_level\n  - parent_user_id\n  - parent_person_id\n  - parent_org_id\n  - parent_oid\n  - attributes\n  - custom_claims\n  - slashid\n  - slashid.dev\n  - slashid.com\n  - slashid.me\n  - sid\n\n\nWith the following request body:\n\n\n```\n{\n    \"custom_claims\": {\n        \"foo\": \"bar\",\n        \"baz\": {\"everything\": 42}\n    }\n}\n```\n\n\nthe token in the response will have the following payload:\n\n```\n{\n  \"authenticated_methods\": [\n    \"api\"\n  ],\n  \"baz\": {\n    \"everything\": 42\n  },\n  \"exp\": <expiration time timestamp>,\n  \"first_token\": false,\n  \"foo\": \"bar\",\n  \"iat\": <issued at timestamp>,\n  \"iss\": <token issuer>,\n  \"jti\": <token ID>,\n  \"oid\": <organisation ID>,\n  \"person_id\": <person ID>\n}\n```\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMintTokenRequest'
+        required: true
+      responses:
+        '201':
+          description: The result string is a newly-minted SlashID token.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/UserTokenText'
+                  required:
+                  - result
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    OptionalSdkVersionHeader:
+      name: SlashID-SdkVersion
+      in: header
+      schema:
+        type: string
+      required: false
+      description: Optional SDK version
+      example: 1.4.1
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+    PersonIDPathParam:
+      name: person_id
+      description: The person ID
+      example: 903c1ff9-f2cc-435c-b242-9d8a690fcf0a
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    TokenText:
+      description: A JWT token. Can be either a User token (`UserTokenText`) or a Token Container (`TokenContainerText`)
+      type: string
+    UserTokenText:
+      type: string
+    ValidateTokenResponse:
+      type: object
+      required:
+      - valid
+      properties:
+        valid:
+          description: True if token is genuine and has not expired yet, false otherwise.
+          type: boolean
+        invalidity_reason:
+          description: If the token is invalid, this field contains the reason.
+          type: string
+          enum:
+          - invalid_token_content
+          - expired
+          - invalid_issuer
+          - not_enough_factors
+          - person_not_active
+        expires_in_seconds:
+          description: JWT token validity. This value is not present if the token is not valid (valid field == false).
+          type: integer
+        expires_at:
+          description: Token expiration time in UTC. This value is not present if token is not valid (valid field == false) or expired.
+          type: string
+          format: date-time
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    RevokeTokenReq:
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          $ref: '#/components/schemas/TokenText'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    ValidateTokenReq:
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          $ref: '#/components/schemas/TokenText'
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    PostMintTokenRequest:
+      type: object
+      properties:
+        custom_claims:
+          description: 'Set of custom claims to be added to the JWT payload, as key-value pairs.
+
+            '
+          type: object
+          additionalProperties: true
+          example:
+            custom_attribute_1: 42
+            custom_attribute_2:
+              sub_attr: 24
+  responses:
+    Timeout:
+      description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
+
+        The operation may still be in progress, and will be completed eventually.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

@@ -1,0 +1,390 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups SSO API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: SSO
+paths:
+  /sso/oidc/tokens/revoke:
+    parameters:
+    - $ref: '#/components/parameters/SdkVersionHeader'
+    post:
+      operationId: PostSsoOidcTokensRevoke
+      deprecated: true
+      tags:
+      - SSO
+      summary: (Deprecated) Revoke an OAuth token obtained through SSO with OIDC
+      description: 'Revoke a previously obtained OAuth access or refresh token for an IdP.
+
+        This endpoint is deprecated. Please use /sso/oidc/tokens/revoke/v2 instead.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthTokenRevokeReq'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /sso/oidc/tokens/revoke/v2:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostSsoOidcTokensRevokeV2
+      x-rbac-enabled: true
+      tags:
+      - SSO
+      summary: Revoke an OAuth token obtained through SSO with OIDC
+      description: Revoke a previously obtained OAuth access or refresh token for an IdP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SsoOidcTokensRevokeV2Req'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sso/oidc/tokens:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/RequiredTokenHeader'
+    get:
+      operationId: GetSsoOidcTokens
+      x-rbac-enabled: true
+      tags:
+      - SSO
+      summary: Retrieve OIDC tokens
+      description: 'Retrieve tokens issued by an OIDC provider as part of an SSO authentication.
+
+        This endpoint expects a valid SlashID token container issued after an SSO authentication.
+
+        The response will include all of the OIDC tokens that were issued by that SSO authentication.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/SsoOidcTokensGetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sso/oidc/tokens/query:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostSsoOidcTokensQuery
+      tags:
+      - SSO
+      summary: Query tokens obtained through SSO with OIDC
+      description: Query the OIDC tokens for a person issued during SSO authentications.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SsoOidcTokensQueryReq'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/SsoOidcTokensQueryResp'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  schemas:
+    OAuthProvider:
+      type: string
+      enum:
+      - google
+      - github
+      - bitbucket
+      - gitlab
+      - facebook
+      - line
+      - azuread
+      - okta
+      - apple
+    SsoOidcTokenDetail:
+      type: object
+      properties:
+        token:
+          type: string
+          description: OIDC token value
+        token_type:
+          $ref: '#/components/schemas/OIDCTokenType'
+        expiry:
+          type: string
+          format: date-time
+          description: Token expiry date
+        provider:
+          $ref: '#/components/schemas/OAuthProvider'
+        client_id:
+          type: string
+          description: The client ID used to obtain the token
+        authentication_id:
+          type: string
+          description: Authentication ID
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+        organization_id:
+          $ref: '#/components/schemas/OrganizationID'
+        extra_callback_values:
+          description: 'Set of additional key-value pairs passed by the provider on callback, together with the authorization code.
+
+            '
+          type: object
+          additionalProperties: true
+      required:
+      - token
+      - token_type
+      - expiry
+      - provider
+      - client_id
+      - authentication_id
+      - person_id
+      - organization_id
+    OIDCTokenType:
+      type: string
+      enum:
+      - access
+      - refresh
+      - id
+    SsoOidcTokensGetResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/SsoOidcTokenDetail'
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    OrganizationID:
+      type: string
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    SsoOidcTokensRevokeV2Req:
+      required:
+      - person_id
+      - authentication_id
+      type: object
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+        authentication_id:
+          type: string
+          description: 'The ID of the SSO OIDC authentication that issued the OIDC token(s) to be revoked.
+
+            '
+        token_types:
+          type: array
+          description: 'The type of OIDC token being revoked.
+
+            If not provided, all OIDC tokens matching the provided authentication ID will be revoked.
+
+            '
+          items:
+            $ref: '#/components/schemas/OIDCTokenType'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    OAuthTokenRevokeReq:
+      required:
+      - client_id
+      - token
+      - token_type
+      type: object
+      properties:
+        client_id:
+          description: The client ID originally used to obtain the token from the IdP
+          type: string
+        token:
+          description: The token to be revoked
+          type: string
+        token_type:
+          description: The type of token being revoked, either access or refresh
+          type: string
+          enum:
+          - access_token
+          - refresh_token
+    SsoOidcTokensQueryResp:
+      type: array
+      items:
+        $ref: '#/components/schemas/SsoOidcTokenDetail'
+    SsoOidcTokensQueryReq:
+      required:
+      - person_id
+      type: object
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+        authentication_ids:
+          type: array
+          description: 'The IDs of the SSO OIDC authentications that issued the OIDC tokens.
+
+            If not provided, all OIDC tokens for this person matching the specified types will be returned.
+
+            '
+          items:
+            type: string
+        token_types:
+          type: array
+          description: 'The types of tokens to be returned.
+
+            If not provided, all OIDC tokens for this person issued during the specified authentication(s) will be returned.
+
+            '
+          items:
+            $ref: '#/components/schemas/OIDCTokenType'
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+  parameters:
+    RequiredTokenHeader:
+      name: SlashID-Token
+      in: header
+      schema:
+        type: string
+      required: true
+      description: A valid JWT issued by SlashID
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    SdkVersionHeader:
+      name: SlashID-SdkVersion
+      in: header
+      schema:
+        type: string
+      required: false
+      description: SDK version
+      example: 1.4.1
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

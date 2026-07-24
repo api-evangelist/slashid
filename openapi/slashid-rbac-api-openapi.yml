@@ -1,0 +1,1199 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups RBAC API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: RBAC
+paths:
+  /persons/{person_id}/permissions:
+    parameters:
+    - $ref: '#/components/parameters/PersonIDPathParam'
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetPersonsPersonIdPermissions
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - RBAC
+      summary: Get permissions for a person
+      description: Retrieve the list of permissions granted to the specified person. It contains both assigned permissions and permissions from roles.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/PersonPermissionsResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /persons/{person_id}/additional-permissions:
+    parameters:
+    - $ref: '#/components/parameters/PersonIDPathParam'
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetPersonsPersonIdAdditionalPermissions
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - RBAC
+      summary: Get additional permissions for a person
+      description: Retrieve the list of additional permissions assigned to person. This endpoint doesn't return permissions from roles.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/PersonPermissionsResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutPersonsPersonIdPermissions
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Set the permissions for a person
+      description: 'Grant the person the permissions specified in the request body, and revoke the person any other existing permissions.
+
+        All permissions in the request body must already exist. Duplicate permissions in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all permissions they currently have.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPersonPermissionsRequest'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+  /persons/{person_id}/roles:
+    parameters:
+    - $ref: '#/components/parameters/PersonIDPathParam'
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetPersonsPersonIdRoles
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      x-manager-rbac-allowed-groups: admin,member
+      tags:
+      - RBAC
+      summary: Get roles for a person
+      description: Retrieve the list of roles granted to the specified person
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/PersonRolesResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutPersonsPersonIdRoles
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      x-manager-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Set the roles for a person
+      description: 'Grant the person the roles specified in the request body, and revoke the person any other existing roles.
+
+        All roles in the request body must already exist. Duplicate roles in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all roles they currently have.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutPersonRolesRequest'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+  /persons:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetPersons
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member,impersonator
+      x-manager-rbac-allowed-groups: admin,member,impersonator
+      tags:
+      - RBAC
+      summary: Retrieve a list of persons
+      description: Retrieve the full list of persons in your organization.
+      parameters:
+      - $ref: '#/components/parameters/HandleQueryParam'
+      - $ref: '#/components/parameters/PersonsFilterQueryParam'
+      - $ref: '#/components/parameters/LimitQueryParam'
+      - $ref: '#/components/parameters/OffsetQueryParam'
+      - $ref: '#/components/parameters/PersonIDsQueryParam'
+      - $ref: '#/components/parameters/PersonFieldsQueryParam'
+      - in: query
+        name: all_regions
+        schema:
+          type: boolean
+          default: true
+        description: If true, users from all regions will be returned. Defaults to true.
+      - in: query
+        name: all_person_types
+        schema:
+          type: boolean
+          default: false
+        description: If true, also returns non-regular users. Defaults to false.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/PersonRet'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /rbac/permissions:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostRBACPermissions
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Create a permission
+      description: 'This endpoint creates a new permission with the given name.
+
+
+        If the permission exists already, no action will be taken.
+
+        A person can be assigned a permission through the [`POST /persons/:person_id/permissions`](/docs/api/put-persons-person-id-permissions) endpoint.
+
+        Sub-organization can create permissions only when [`inherit_rbac_pools` is disabled](/docs/api/post-organizations-suborganizations). If `inherit_rbac_pools` is enabled, the permissions from the root organization will be inherited.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostPermissionRequest'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+        '409':
+          $ref: '#/components/responses/Conflict'
+    get:
+      operationId: GetRBACPermissions
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - RBAC
+      summary: Get a list of permissions
+      description: List the names of all permissions that exist for your organization
+      responses:
+        '200':
+          description: OK
+          headers:
+            ETagHeader:
+              $ref: '#/components/headers/ETagHeader'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/ListPermissionsResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /rbac/permissions/{permission_name}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/PermissionsNamePathParam'
+    get:
+      operationId: GetRBACPermissionsPermissionName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - RBAC
+      summary: Get a permission
+      description: Get the named permission
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GetPermissionResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: PatchRBACPermissionsPermissionName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Update a permission
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      - $ref: '#/components/parameters/IfMatchHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchPermissionRequest'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeleteRBACPermissionsPermissionName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Delete a permission
+      description: 'Remove a permission and revoke it for all users. A permission cannot be deleted as long as it''s included in a role. Sub-organization can delete roles only when [`inherit_rbac_pools` is disabled](/docs/api/post-organizations-suborganizations).
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /rbac/roles:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostRBACRoles
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Create a role
+      description: 'This endpoint creates a new role with the given name.
+
+
+        If the Role exists already, no action will be taken.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostRoleRequest'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+        '409':
+          $ref: '#/components/responses/Conflict'
+    get:
+      operationId: GetRBACRoles
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - RBAC
+      summary: Get a list of roles
+      description: List the names of all roles that exist for your organization
+      responses:
+        '200':
+          description: OK
+          headers:
+            ETagHeader:
+              $ref: '#/components/headers/ETagHeader'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/ListRolesResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /rbac/roles/{role_name}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/RolesNamePathParam'
+    get:
+      operationId: GetRBACRolesRoleName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - RBAC
+      summary: Get a role
+      description: Get the named role
+      responses:
+        '200':
+          description: OK
+          headers:
+            ETagHeader:
+              $ref: '#/components/headers/ETagHeader'
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GetRoleResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: PatchRBACRolesRoleName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Update a role
+      description: Update an existing role.
+      parameters:
+      - $ref: '#/components/parameters/IfMatchHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRoleRequest'
+        required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+    delete:
+      operationId: DeleteRBACRolesRoleName
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Delete a role
+      description: Remove a role and revoke it for all users.
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /rbac/check:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostRBACCheck
+      tags:
+      - RBAC
+      summary: Check whether a person has a permission
+      description: Check whether the given person has the given permission. The service automatically takes into account permissions included in granted roles as well as permissions granted individually.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostRBACCheckRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/PostRBACCheckResp'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/config/token-template:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    put:
+      operationId: PutOrganizationsConfigTokenTemplate
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      summary: Modify the organization's token template
+      description: "Sets the token template for your organization. If a template already exists it will be overwritten and cannot\nbe retrieved.\n\nThe template must conform to the [mustache template syntax](https://mustache.github.io/mustache.5.html). The following tags are available:\n  - `{{ organization }}`: provides information on the organization. Renders to\n    ```json\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"name\": \"Your Org Name\",\n      \"ancestors\": [\n        {\n          \"id\": \"00000000-0000-0000-0000-111111111111\",\n          \"name\": \"Parent Name\"\n        },\n        ...\n      ]\n    }\n    ```\n\n    The following sub-tags are available:\n    - `{{ organization.id }}`: the ID of the organization. Renders to `00000000-0000-0000-0000-000000000000`\n    - `{{ organization.name }}`: the name of the organization. Renders to `Your Org Name`\n    - `{{ organization.ancestors }}`: the list of ancestor organizations, starting from the parent up to the root. Renders to\n      ```json\n      [{\"id\": \"00000000-0000-0000-0000-111111111111\", \"name\": \"Parent Name\"}, ...]\n      ```\n    - `{{ person.permissions }}`: provides information on the person's permissions (additional and from roles). Renders to\n      ```json\n      [\n        \"permission1\",\n        \"permission2\"\n      ]\n      ```\n"
+      requestBody:
+        description: The new content of the token template
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenTemplate'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '408':
+          $ref: '#/components/responses/Timeout'
+  /organizations/suborganizations:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostOrganizationsSuborganizations
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - RBAC
+      summary: Create a suborganization
+      description: 'Create a new organization subordinate to your organization.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuborganizationCreateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/OrganizationCreateResponse'
+        '402':
+          $ref: '#/components/responses/PaymentRequired'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+components:
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    PersonsFilterQueryParam:
+      in: query
+      name: filter
+      schema:
+        type: string
+      description: A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2).
+      examples:
+        person_id:
+          summary: Returns only the person with the specified ID
+          value: person_id eq "063e2964-ea22-76a2-ae08-3a7173964ae5"
+        handle_phone:
+          summary: Returns only the person with the phone handle '+1 201 987-6543'
+          value: handles eq "phone_number:+12019876543"
+        handle_email:
+          summary: Returns the person with the email handle 'john.smith@example.com'
+          value: handles eq "email_address:john.smith@example.com"
+        handle_username:
+          summary: Returns the person with the username handle 'john_smith'
+          value: handles eq "username:john_smith"
+        active:
+          summary: Returns only active persons
+          value: active eq true
+        admin_role:
+          summary: Returns only persons with 'admin' role
+          value: roles eq "admin"
+        source_authoritative_status:
+          summary: Returns only persons from a connection of a certain authoritative level (primary, secondary, none)
+          value: source_authoritative_status eq "primary"
+        permission_write:
+          summary: Returns only persons with 'write' permission. Permission can be assigned permission on from person's role.
+          value: permissions eq "write"
+        additional_permission_write:
+          summary: Returns only persons with 'write' permission. It works only with additionally assigned permissions.
+          value: additional_permissions eq "write"
+        groups_g1:
+          summary: Returns only persons in the 'G1' group
+          value: groups eq "G1"
+        region_us:
+          summary: Returns only persons located in the 'us-iowa' region
+          value: region eq "us-iowa"
+        region_not_us:
+          summary: Returns only persons located outside of the 'us-iowa' region
+          value: region ne "us-iowa"
+        region_us_eu:
+          summary: Returns only persons located in 'us-iowa' or 'europe-belgium' regions
+          value: region eq "us-iowa" or region eq "europe-belgium"
+        attribute_name:
+          summary: Returns only persons with the attribute 'myconfig' (in any bucket)
+          value: attributes eq "myconfig"
+        attribute_prefix:
+          summary: Returns only persons with the attribute names starting in 'myprefix'
+          value: attributes sw "myprefix"
+        attribute_bucket_and_name:
+          summary: Returns only persons with the attribute 'myconfig' in the bucket 'mybucket'
+          value: attribute_buckets[name eq "mybucket" and attributes eq "myconfig"]
+        attribute_in_ro_buckets:
+          summary: Returns only persons with any attribute in one of the user-read-only buckets
+          value: attribute_buckets[end_user_permissions eq "read_only" and attributes pr]
+        attribute_in_pool_buckets:
+          summary: Returns only persons with any attribute in one of the person-pool scoped buckets
+          value: attribute_buckets[sharing_scope eq "person_pool" and attributes pr]
+    PermissionsNamePathParam:
+      in: path
+      required: true
+      name: permission_name
+      schema:
+        $ref: '#/components/schemas/PermissionName'
+      description: 'The name of a permission. Permission name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Fperm_name`).'
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+    HandleQueryParam:
+      in: query
+      name: handle
+      schema:
+        type: string
+      description: Filter by handle in format [handle_type]:[handle]. This field should be url-encoded.
+      examples:
+        email_address:
+          $ref: '#/components/examples/emailHandleExample'
+        phone_number:
+          $ref: '#/components/examples/phoneNumberHandleExample'
+        username:
+          $ref: '#/components/examples/usernameHandleExample'
+    LimitQueryParam:
+      in: query
+      name: limit
+      schema:
+        type: integer
+        maximum: 1000
+      description: The maximum number of items to return in the result. Maximum value is 1000.
+    IfMatchHeader:
+      name: If-Match
+      in: header
+      description: 'The value of the `ETag` header from the GET response. If the value of the `ETag` header from the last response does not match the value of this header, the server will respond with a `412 Precondition Failed` status code. If-Match is not required. If omitted, the server will not check the `ETag` header.
+
+        '
+      schema:
+        type: string
+    PersonFieldsQueryParam:
+      name: fields
+      in: query
+      description: Optional fields to include in the response
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/PersonFieldName'
+      style: form
+      explode: false
+    RolesNamePathParam:
+      in: path
+      required: true
+      name: role_name
+      schema:
+        $ref: '#/components/schemas/RoleName'
+      description: 'The name of a role. Role name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Frole_name`).'
+    OffsetQueryParam:
+      in: query
+      name: offset
+      schema:
+        type: integer
+      description: The number of the first item to be returned in the result
+    PersonIDsQueryParam:
+      in: query
+      name: ids
+      description: A comma-separated list of person IDs
+      example:
+      - 064d3697-4bf6-781e-9a08-303683b8a5e6,064d3f71-475e-7ea4-9808-6b72d038a43f
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+    PersonIDPathParam:
+      name: person_id
+      description: The person ID
+      example: 903c1ff9-f2cc-435c-b242-9d8a690fcf0a
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Organization:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/OrganizationID'
+        parent_id:
+          $ref: '#/components/schemas/OrganizationID'
+        org_name:
+          type: string
+        tenant_name:
+          type: string
+      required:
+      - id
+      - org_name
+      - tenant_name
+    Bytes:
+      type: string
+    PersonHandle:
+      required:
+      - type
+      - value
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/PersonHandleType'
+        value:
+          type: string
+          example: user@user.com
+    PutPersonPermissionsRequest:
+      type: object
+      properties:
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionName'
+      required:
+      - permissions
+    PersonType:
+      type: string
+      enum:
+      - regular
+      - anonymous
+    ListRolesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/RoleName'
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    PostRoleRequest:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/RoleName'
+        description:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionName'
+      required:
+      - name
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    TokenTemplate:
+      description: Template for user tokens emitted on authentication.
+      type: object
+      properties:
+        content:
+          type: string
+          description: The token claims [mustache](https://mustache.github.io/mustache.5.html) template. Must render to a valid JSON object.
+          example: '{ "my_custom_org_name": "custom_prefix-{{ organization.name }}" }'
+      required:
+      - content
+    ListPermissionsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PermissionName'
+    RoleName:
+      type: string
+      pattern: ^[A-Za-z0-9]{1}[\w.\-:]*[A-Za-z0-9]$
+      maxLength: 100
+      description: "The Role name must be unique within your organization; is case-sensitive; and must conform to the following:\n  - must be at least 2 characters long\n  - may be at most 100 characters long\n  - may contain only the characters `A-Z a-z 0-9 - _ . :`\n  - must start and end with an alphanumeric character (`A-Z a-z 0-9`)\n\nRoles needs to have their name prefixed with `{org_id}/`.\nOrganization ID is not counted to the length limit.\n"
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7/billing-viewer
+    PostRBACCheckResp:
+      type: object
+      properties:
+        granted:
+          type: boolean
+      required:
+      - granted
+    PatchRoleRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionName'
+    PersonHandleType:
+      type: string
+      enum:
+      - email_address
+      - phone_number
+      - username
+      example: email_address
+    OrganizationCreateResponse:
+      allOf:
+      - $ref: '#/components/schemas/Organization'
+      - type: object
+        required:
+        - api_key
+        properties:
+          api_key:
+            $ref: '#/components/schemas/Bytes'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    OrganizationID:
+      type: string
+    GetRoleResponse:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/RoleName'
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PermissionName'
+      required:
+      - name
+      - created
+      - permissions
+    GetPermissionResponse:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/PermissionName'
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+      required:
+      - name
+      - created
+    PostRBACCheckRequest:
+      type: object
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+        permission_name:
+          $ref: '#/components/schemas/PermissionName'
+      required:
+      - person_id
+      - permission_name
+    Attributes:
+      type: object
+      additionalProperties: true
+      description: 'Clear-text person attributes as key-value pairs. Attribute names (keys) may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB.
+
+        '
+      example:
+        attr1: value1
+        attr2: 2
+        attr3: true
+        attr_4:
+        - 1
+        - 2
+        - 3
+        - 4
+        attr_5:
+          nested: 5
+    PersonPermissionsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PermissionName'
+    PermissionName:
+      type: string
+      pattern: ^[A-Za-z0-9]{1}[\w./\\\-:]*[A-Za-z0-9]$
+      description: "The permission name must be unique within your organization; is case-sensitive; and must conform to the following:\n  - must be at least 2 characters long\n  - may be at most 1024 characters long\n  - may contain only the characters `A-Z a-z 0-9 - _ . : / \\`\n  - must start and end with an alphanumeric character (`A-Z a-z 0-9`)\n"
+      example: billing.invoices.list
+      maxLength: 1024
+    PostPermissionRequest:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/PermissionName'
+        description:
+          type: string
+      required:
+      - name
+    PersonHandlesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PersonHandle'
+    Region:
+      type: string
+      enum:
+      - us-iowa
+      - europe-belgium
+      - asia-japan
+      - europe-england
+      - australia-sydney
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    BucketedAttributes:
+      type: object
+      description: 'Attributes divided into named buckets. Bucket names are top level keys; attributes are values. Attributes consist of key-value pairs. Attribute names (keys) may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB.
+
+        '
+      additionalProperties:
+        $ref: '#/components/schemas/Attributes'
+      example:
+        person_pool-end_user_read_write:
+          card_number: '1234'
+          expiry: 07/25
+        end_user_read_only:
+          address_line_1: New Street
+          city: New York
+    PersonFieldName:
+      type: string
+      enum:
+      - handles
+      - groups
+      - attributes
+    PatchPermissionRequest:
+      type: object
+      properties:
+        description:
+          type: string
+    GroupName:
+      type: string
+      pattern: ^[A-Za-z0-9]{1}[\w\.\-]*[A-Za-z0-9]$
+      maxLength: 100
+    PutPersonRolesRequest:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleName'
+      required:
+      - roles
+    PersonRolesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/RoleName'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    PersonGroupsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/GroupName'
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+    SuborganizationCreateRequest:
+      type: object
+      properties:
+        sub_org_name:
+          type: string
+        admins:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonHandle'
+        persons_org_id:
+          $ref: '#/components/schemas/OrganizationID'
+        groups_org_id:
+          $ref: '#/components/schemas/OrganizationID'
+        inherit_rbac_pools:
+          type: boolean
+          description: "This setting determines how permissions and roles are managed for a suborganization.\nWhen `inherit_rbac_pools` is set to false: - The suborganization has its own independent permissions and roles. - Permissions and roles can be fully customized for this suborganization.\nWhen `inherit_rbac_pools` is set to true: - Permissions:\n  - Inherited from the nearest ancestor with 'inherit_rbac_pools' set to false.\n  - Read-only for this suborganization.\n  - Cannot be modified within this suborganization.\n\n- Roles:\n  - Scoped to each organization, including this suborganization.\n  - Visible across all organizations within the inheritance pool.\n  - Roles from other organizations can be assigned to users in this suborganization.\n\nNote: - Individual role and permission assignments are not inherited. - This setting cannot be changed after the suborganization is created.\n"
+      required:
+      - sub_org_name
+      - admins
+    PersonRet:
+      type: object
+      properties:
+        active:
+          type: boolean
+          description: A flag indicating whether the person is active or not
+        person_id:
+          type: string
+          description: The ID of the person
+        person_type:
+          $ref: '#/components/schemas/PersonType'
+        region:
+          $ref: '#/components/schemas/Region'
+        handles:
+          $ref: '#/components/schemas/PersonHandlesResponse'
+        groups:
+          $ref: '#/components/schemas/PersonGroupsResponse'
+        attributes:
+          $ref: '#/components/schemas/BucketedAttributes'
+      required:
+      - active
+      - person_id
+      - person_type
+      - region
+      description: Abridged person structure
+  examples:
+    usernameHandleExample:
+      value: username:john_smith
+    emailHandleExample:
+      value: email_address:user@user.com
+    phoneNumberHandleExample:
+      value: phone_number:+13475043201
+  responses:
+    Timeout:
+      description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
+
+        The operation may still be in progress, and will be completed eventually.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    PreconditionFailed:
+      description: Precondition Failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    PaymentRequired:
+      description: Pricing Tier Violation - operation violated the limits specified in its pricing tier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  headers:
+    ETagHeader:
+      schema:
+        type: string
+      description: An ETag header. Can be passed as an If-Match header in a subsequent request to avoid lost updates.
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

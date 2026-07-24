@@ -1,0 +1,422 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Person Consents API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Person Consents
+paths:
+  /persons/{person_id}/consent/gdpr:
+    parameters:
+    - $ref: '#/components/parameters/PersonIDPathParam'
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetPersonsPersonIdConsentGdpr
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Person Consents
+      summary: Get GDPR consent
+      description: 'Takes an organization ID and a person ID and returns the GDPR consent levels and timestamp for that person, if it exists.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GDPRConsentResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: PostPersonsPersonIdConsentGdpr
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Person Consents
+      summary: Store GDPR consent
+      description: 'Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.
+
+        The consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.
+
+        '
+      requestBody:
+        description: The GDPR consent level for the person
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GDPRConsentRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GDPRConsentResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: PutPersonsPersonIdConsentGdpr
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Person Consents
+      summary: Set GDPR consent
+      description: 'Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.
+
+        The consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.
+
+        '
+      requestBody:
+        description: The GDPR consent level for the person
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GDPRConsentRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GDPRConsentResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeletePersonsPersonIdConsentGdpr
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Person Consents
+      summary: Remove GDPR consent
+      description: The function takes the organization ID and person ID and removes the specified GDPR consent, or all consents.
+      parameters:
+      - name: consent_levels
+        in: query
+        description: The names of the consent levels to remove from the person
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/GDPRConsentLevel'
+      - name: deleteAll
+        in: query
+        description: Whether to delete all GDPR consents for this person
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /consent/gdpr:
+    parameters:
+    - $ref: '#/components/parameters/SdkVersionHeader'
+    get:
+      operationId: GetConsentGdpr
+      x-rbac-enabled: false
+      tags:
+      - Person Consents
+      summary: Get GDPR consent of current user
+      description: 'Returns the GDPR consent levels and timestamp for current person, if it exists.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GDPRConsentResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: PostConsentGdpr
+      x-rbac-enabled: false
+      tags:
+      - Person Consents
+      summary: Store GDPR consent of current user
+      description: 'Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.
+
+        The consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.
+
+        '
+      requestBody:
+        description: The GDPR consent level
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GDPRConsentRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GDPRConsentResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    put:
+      operationId: PutConsentGdpr
+      x-rbac-enabled: false
+      tags:
+      - Person Consents
+      summary: Set GDPR consent of current user
+      description: 'Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.
+
+        The consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.
+
+        '
+      requestBody:
+        description: The GDPR consent level for the person
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GDPRConsentRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/GDPRConsentResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: DeleteConsentGdpr
+      x-rbac-enabled: false
+      tags:
+      - Person Consents
+      summary: Remove GDPR consent of current user
+      description: Removes the specified GDPR consent, or all consents.
+      parameters:
+      - name: consent_levels
+        in: query
+        description: The names of the consent levels to remove from the person
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/GDPRConsentLevel'
+      - name: deleteAll
+        in: query
+        description: Whether to delete all GDPR consents for this person
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    GDPRConsentResponse:
+      type: object
+      required:
+      - consents
+      properties:
+        consents:
+          type: array
+          items:
+            $ref: '#/components/schemas/GDPRConsent'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    GDPRConsentLevel:
+      type: string
+      enum:
+      - none
+      - necessary
+      - analytics
+      - marketing
+      - retargeting
+      - tracking
+    GDPRConsent:
+      type: object
+      required:
+      - consent_level
+      - created_at
+      properties:
+        consent_level:
+          $ref: '#/components/schemas/GDPRConsentLevel'
+        created_at:
+          type: string
+          format: date-time
+          description: Time when this consent was first created for this person
+    GDPRConsentRequest:
+      type: object
+      required:
+      - consent_levels
+      properties:
+        consent_levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/GDPRConsentLevel'
+  responses:
+    NoContent:
+      description: No content
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  parameters:
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    PersonIDPathParam:
+      name: person_id
+      description: The person ID
+      example: 903c1ff9-f2cc-435c-b242-9d8a690fcf0a
+      in: path
+      required: true
+      schema:
+        type: string
+    SdkVersionHeader:
+      name: SlashID-SdkVersion
+      in: header
+      schema:
+        type: string
+      required: false
+      description: SDK version
+      example: 1.4.1
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque

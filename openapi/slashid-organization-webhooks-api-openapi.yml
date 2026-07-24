@@ -1,0 +1,903 @@
+openapi: 3.0.1
+info:
+  title: SlashID Groups Organization Webhooks API
+  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  version: '1.1'
+  termsOfService: https://www.slashid.dev/terms-of-use/
+  contact:
+    name: API Support
+    email: contact@slashid.dev
+servers:
+- url: https://api.slashid.com
+  description: Production
+- url: https://api.sandbox.slashid.com
+  description: Sandbox
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organization Webhooks
+paths:
+  /organizations/webhooks:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostOrganizationsWebhooks
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Webhooks
+      summary: Create a new webhook
+      description: 'Create a new webhook for your organization. Webhooks will be called in response to triggers, and you can use
+
+        the `/organizations/webhooks/{webhook_id}/triggers` endpoint to specify which trigger(s) should call each
+
+        webhook.
+
+
+        The request body must contain the target URL for the webhook, and this must be unique for your organization
+
+        (you cannot have two webhooks with the same target URL). The target URL must use the HTTPS protocol, and must
+
+        have a host. The host cannot be `localhost` or an IP address. The target URL may have a path element, but may
+
+        not contain query parameters or fragments.
+
+
+        Additionally, you can specify custom headers that will be sent in the HTTP header of each request to your
+
+        webhook''s target URL. These are encrypted when stored, so can be used for sensitive data.
+
+
+        You can also choose the webhook''s timeout value. This will determine how long your webhook server has to respond
+
+        to a request before it is considered failed. If you do not set a value, defaults will be used: for synchronous
+
+        webhook calls, this is 2 seconds; for asynchronous calls, 10 seconds. When choosing a timeout, you should
+
+        consider how long your webhook will typically need to process a request, and how this may affect user experience
+
+        (in the case of sychronous webhooks).
+
+        The value provided should be a string that can be parsed as a [Golang `time.Duration`](https://pkg.go.dev/time#Duration);
+
+        for example, "10s", "500ms". The timeout may not be more than 20 seconds, and cannot be negative.
+
+        If you do not set a timeout, when retrieving the webhook you will see a timeout set to 0s, indicating that the
+
+        defaults will be used when the webhook is called.
+
+
+        You may also specify a name and description for the webhook.
+
+
+        The response will contain a webhook ID, which uniquely identifies the newly created webhook. This ID can
+
+        be used to modify or delete the webhook, and to add triggers for it.
+
+
+        For more information on using webhooks with SlashID, see our [dedicated guide](/docs/access/guides/webhooks).
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPostRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/WebhookPostResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      operationId: GetOrganizationsWebhooks
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      x-manager-rbac-allowed-groups: admin,member
+      tags:
+      - Organization Webhooks
+      summary: List all webhooks
+      description: Retrieve a list of all webhooks for your organization.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Webhook'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/webhooks/{webhook_id}:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/WebhookIDPathParam'
+    get:
+      operationId: GetOrganizationsWebhooksWebhookId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Organization Webhooks
+      summary: Get a webhook
+      description: Retrieve information about a specific webhook, identified by its ID.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/Webhook'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: PatchOrganizationsWebhooksWebhookId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Webhooks
+      summary: Update a webhook
+      description: 'Update an existing webhook, identified by its ID.
+
+        This endpoint can be used to modify the target URL, custom headers, name, or description of the webhook. Note that the target URL cannot be changed to a URL already in use by another webhook for your organization. Modifying the custom headers will overwrite any existing custom headers for this webhook.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPatchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/WebhookPatchResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeleteOrganizationsWebhooksWebhookId
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Webhooks
+      summary: Delete a webhook
+      description: 'Delete the specified webhook. This will also delete all triggers associated with this webhook. This action cannot be undone.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/webhooks/{webhook_id}/triggers:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    - $ref: '#/components/parameters/WebhookIDPathParam'
+    get:
+      operationId: GetOrganizationsWebhooksWebhookIdTriggers
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      x-manager-rbac-allowed-groups: admin,member
+      tags:
+      - Organization Webhooks
+      summary: List webhook triggers
+      description: List all the triggers for a specific webhook.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/WebhookTrigger'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: PostOrganizationsWebhooksWebhookIdTriggers
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Webhooks
+      summary: Create a webhook trigger
+      description: 'Create a new trigger for an existing webhook. Each webhook can have multiple triggers, and will be called
+
+        on each of them.
+
+
+        The trigger type specifies what kind of trigger will cause the webhook to be called. The trigger name specifies
+
+        the exact trigger that will cause the webhook to be called, amongst all triggers of this type. For a full list
+
+        of trigger types and names, refer to our [webhooks guide](/docs/access/guides/webhooks).
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookTriggerPostRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponseBase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: DeleteOrganizationsWebhooksWebhookIdTriggers
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Webhooks
+      summary: Delete a webhook trigger
+      description: 'Delete a trigger for a specific webhook. The webhook will no longer be called on this trigger.
+
+        Note that for a short period after the delete request has successfully returned, triggers in flight may still cause the webhook to be called.
+
+        '
+      parameters:
+      - $ref: '#/components/parameters/RequiredConsistencyHeader'
+      - $ref: '#/components/parameters/RequiredConsistencyTimeoutHeader'
+      - $ref: '#/components/parameters/WebhookTriggerTypeQueryParam'
+      - $ref: '#/components/parameters/WebhookTriggerNameQueryParam'
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /organizations/webhooks/verification-jwks:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    get:
+      operationId: GetOrganizationsWebhooksVerificationJwks
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin,member
+      tags:
+      - Organization Webhooks
+      summary: Retrieve verification JWKS for webhooks
+      description: 'Endpoint to retrieve a JSON Web Key Set (JWKS) for webhook body verification.
+
+        When SlashID calls your webhooks in response to a trigger, the body of the request is a signed and encoded JSON Web Token (JWT). The public part of the signing key can be retrieved from this endpoint and used to verify that the request body comes from SlashID, is intended for your webhook, and has not been modified.
+
+        SlashID uses the ES256 JSON Web Algorithm (JWA), which is the Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve and SHA256.
+
+        Support for JWTs and JWKS is available for many languages - [jwt.io](https://jwt.io/libraries) maintains an extensive (but not exhaustive) list of libraries for popular languages.
+
+        Note that this endpoint is rate-limited to 30 requests per minute per organization, with bursts of 60. It is therefore recommended that you cache the keyset locally in your webhook handlers.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWKS'
+  /test-events:
+    parameters:
+    - $ref: '#/components/parameters/OrgIDHeader'
+    post:
+      operationId: PostTestEvents
+      x-rbac-enabled: true
+      x-rbac-allowed-groups: admin
+      tags:
+      - Organization Webhooks
+      summary: Generate events for testing
+      description: 'Generate events for testing analytics flows, such as webhooks.
+
+        This endpoint can be used to create one or more SlashID events. The request body is a list of test event descriptions, including the type of event to generate, the number of events of that type to generate, and whether those events should be duplicates. The contents of the events will be randomly generated, and will have the `is_test_event` flag set to true, so they can be distinguished from real events.
+
+        Please refer to our [events guide](/docs/access/concepts/events) for a full list of SlashID events and their contents.
+
+        Note that this endpoint is rate-limited to 10 test events per minute, with a burst of 50. If your tests require a higher rate, please contact us.
+
+        '
+      requestBody:
+        description: The events to be generated
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestEventsPostReq'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/APIResponseBase'
+                - type: object
+                  properties:
+                    result:
+                      $ref: '#/components/schemas/TestEventsPostResponse'
+                  required:
+                  - result
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    TriggerType:
+      type: string
+      enum:
+      - event
+      - sync_hook
+    WebhookPostResponse:
+      $ref: '#/components/schemas/Webhook'
+    BaseTestSDKEvent:
+      type: object
+      properties:
+        window_location:
+          type: string
+          format: url
+    SyncHookName:
+      type: string
+      enum:
+      - token_minted
+      - identify_user
+      - threat_detection
+      - posture_detection
+    Test_PasswordChanged_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    JWKS:
+      type: object
+      additionalProperties: true
+    BaseTestEvent:
+      type: object
+      required:
+      - event_id
+      - event_name
+      - timestamp
+      - organization_id
+      properties:
+        event_id:
+          type: string
+          format: uuid
+        event_name:
+          $ref: '#/components/schemas/EventName'
+        timestamp:
+          type: string
+        organization_id:
+          $ref: '#/components/schemas/OrganizationID'
+    Test_GateRequestCredentialFound_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    Test_PersonDeleted_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - type: object
+        properties:
+          person_id:
+            $ref: '#/components/schemas/PersonID'
+    FactorMethod:
+      type: string
+      description: Allowed login factor
+      enum:
+      - webauthn
+      - email_link
+      - sms_link
+      - otp_via_sms
+      - otp_via_email
+      - totp
+      - oidc
+      - saml
+      - api
+      - direct_id
+      - password
+      - impersonate
+      - anonymous
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    Test_GateRequestHandled_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    EventName:
+      type: string
+      enum:
+      - AuthenticationSucceeded_v1
+      - AuthenticationFailed_v1
+      - PersonCreated_v1
+      - AnonymousPersonCreated_v1
+      - PersonDeleted_v1
+      - VirtualPageLoaded_v1
+      - SlashIDSDKLoaded_v1
+      - PersonIdentified_v1
+      - PersonLoggedOut_v1
+      - TokenMinted_v1
+      - AnonymousTokenMinted_v1
+      - PasswordChanged_v1
+      - GdprConsentsChanged_v1
+      - GateServerStarted_v1
+      - GateRequestHandled_v1
+      - GateRequestCredentialFound_v1
+      - PermissionCreated_InRegion_v1
+      - PermissionCreated_v1
+      - PermissionDeleted_InRegion_v1
+      - PermissionDeleted_v1
+      - RoleCreated_InRegion_v1
+      - RoleCreated_v1
+      - RoleDeleted_InRegion_v1
+      - RoleDeleted_v1
+      - RoleUpdated_InRegion_v1
+      - RoleUpdated_v1
+      - RolesSetToPerson_InRegion_v1
+      - RolesSetToPerson_v1
+      - PermissionsSetToPerson_InRegion_v1
+      - PermissionsSetToPerson_v1
+      - MitmAttackDetected_v1
+      - PermissionUpdated_InRegion_v1
+      - PermissionUpdated_v1
+      - SuborganizationCreated_InRegion_v1
+      - SuborganizationCreated_v1
+      - OAuth2ClientCreated_InRegion_v1
+      - OAuth2ClientCreated_v1
+      - AWSIAMUserCreated_v1
+      - AWSIAMRoleCreated_v1
+      - AWSIAMRoleInlinePoliciesUpdated_v1
+      - AWSIAMRoleManagedPoliciesUpdated_v1
+      - AWSIAMRoleAssumeRolePolicyUpdated_v1
+      - AWSIAMRolePermissionsBoundaryUpdated_v1
+      - AWSIAMRoleDeleted_v1
+      - GCPServiceAccountCreated_v1
+      - GCPRoleCreated_v1
+      - GCPIAMPolicyBindingUpdated_v1
+      - GCPServiceAccountDeleted_v1
+      - ActiveDirectorySPNCreated_v1
+      - ActiveDirectorySPNRoleUpdated_v1
+      - ActiveDirectorySPNDeleted_v1
+      - ActiveDirectoryUserCreated_v1
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    WebhookTrigger:
+      oneOf:
+      - $ref: '#/components/schemas/EventTrigger'
+      - $ref: '#/components/schemas/SyncHookTrigger'
+      discriminator:
+        propertyName: trigger_type
+        mapping:
+          event: '#/components/schemas/EventTrigger'
+          sync_hook: '#/components/schemas/SyncHookTrigger'
+    WebhookPatchResponse:
+      $ref: '#/components/schemas/Webhook'
+    Test_PersonIdentified_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - $ref: '#/components/schemas/BaseTestSDKEvent'
+    WebhookPatchRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Human-readable name for this webhook. This does not need to be unique, but it is recommended that you choose a name that can be used to distinguish this webhook from others.
+
+            '
+        description:
+          type: string
+          description: 'A description of this webhook. This can be used to associate additional information with this webhook for future reference.
+
+            '
+        target_url:
+          type: string
+          description: 'The target URL for this webhook. This URL must include the protocol, and the protocol must be HTTPS. A target URL can be registered at most once per organization, but each target URL can have multiple triggers.
+
+            '
+        custom_headers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: 'A set of custom HTTP headers that will be included in requests to this webhook, provided as key-value pairs. If set, will overwrite existing custom headers.
+
+            '
+        timeout:
+          type: string
+          description: The timeout that will be applied when calling this webhook.
+    Test_VirtualPageLoaded_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - $ref: '#/components/schemas/BaseTestSDKEvent'
+    Test_SlashIDSDKLoaded_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - $ref: '#/components/schemas/BaseTestSDKEvent'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    SyncHookTrigger:
+      type: object
+      properties:
+        trigger_type:
+          $ref: '#/components/schemas/TriggerType'
+        trigger_name:
+          $ref: '#/components/schemas/SyncHookName'
+      required:
+      - trigger_type
+      - trigger_name
+    OrganizationID:
+      type: string
+    WebhookTriggerPostRequest:
+      $ref: '#/components/schemas/WebhookTrigger'
+    WebhookPostRequest:
+      $ref: '#/components/schemas/WebhookConfiguration'
+    TestEventsSpecification:
+      type: object
+      required:
+      - event_name
+      properties:
+        event_name:
+          $ref: '#/components/schemas/EventName'
+        count:
+          type: integer
+          default: 1
+        duplicates:
+          type: boolean
+          default: false
+        analytics_correlation_id:
+          type: string
+          default: ''
+    Test_AuthenticationFailed_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - type: object
+        properties:
+          failed_authn_method:
+            $ref: '#/components/schemas/FactorMethod'
+          failure_reason:
+            type: string
+    Test_GdprConsentsChanged_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    EventTrigger:
+      type: object
+      properties:
+        trigger_type:
+          $ref: '#/components/schemas/TriggerType'
+        trigger_name:
+          $ref: '#/components/schemas/EventName'
+      required:
+      - trigger_type
+      - trigger_name
+    TestEventsPostResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/TestEvent'
+    TestEvent:
+      oneOf:
+      - $ref: '#/components/schemas/Test_AuthenticationSucceeded_v1'
+      - $ref: '#/components/schemas/Test_AuthenticationFailed_v1'
+      - $ref: '#/components/schemas/Test_PersonCreated_v1'
+      - $ref: '#/components/schemas/Test_AnonymousPersonCreated_v1'
+      - $ref: '#/components/schemas/Test_PersonDeleted_v1'
+      - $ref: '#/components/schemas/Test_VirtualPageLoaded_v1'
+      - $ref: '#/components/schemas/Test_SlashIDSDKLoaded_v1'
+      - $ref: '#/components/schemas/Test_PersonIdentified_v1'
+      - $ref: '#/components/schemas/Test_PersonLoggedOut_v1'
+      - $ref: '#/components/schemas/Test_TokenMinted_v1'
+      - $ref: '#/components/schemas/Test_AnonymousTokenMinted_v1'
+      - $ref: '#/components/schemas/Test_PasswordChanged_v1'
+      - $ref: '#/components/schemas/Test_GdprConsentsChanged_v1'
+      - $ref: '#/components/schemas/Test_GateServerStarted_v1'
+      - $ref: '#/components/schemas/Test_GateRequestCredentialFound_v1'
+      - $ref: '#/components/schemas/Test_GateRequestHandled_v1'
+      discriminator:
+        propertyName: event_name
+        mapping:
+          AuthenticationSucceeded_v1: '#/components/schemas/Test_AuthenticationSucceeded_v1'
+          AuthenticationFailed_v1: '#/components/schemas/Test_AuthenticationFailed_v1'
+          PersonCreated_v1: '#/components/schemas/Test_PersonCreated_v1'
+          AnonymousPersonCreated_v1: '#/components/schemas/Test_AnonymousPersonCreated_v1'
+          PersonDeleted_v1: '#/components/schemas/Test_PersonDeleted_v1'
+          VirtualPageLoaded_v1: '#/components/schemas/Test_VirtualPageLoaded_v1'
+          SlashIDSDKLoaded_v1: '#/components/schemas/Test_SlashIDSDKLoaded_v1'
+          PersonIdentified_v1: '#/components/schemas/Test_PersonIdentified_v1'
+          PersonLoggedOut_v1: '#/components/schemas/Test_PersonLoggedOut_v1'
+          TokenMinted_v1: '#/components/schemas/Test_TokenMinted_v1'
+          AnonymousTokenMinted_v1: '#/components/schemas/Test_AnonymousTokenMinted_v1'
+          PasswordChanged_v1: '#/components/schemas/Test_PasswordChanged_v1'
+          GdprConsentsChanged_v1: '#/components/schemas/Test_GdprConsentsChanged_v1'
+          GateServerStarted_v1: '#/components/schemas/Test_GateServerStarted_v1'
+          GateRequestHandled_v1: '#/components/schemas/Test_GateRequestHandled_v1'
+          GateRequestCredentialFound_v1: '#/components/schemas/Test_GateRequestCredentialFound_v1'
+    Test_PersonCreated_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - type: object
+        properties:
+          person_id:
+            $ref: '#/components/schemas/PersonID'
+    Test_AnonymousPersonCreated_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - type: object
+        properties:
+          person_id:
+            $ref: '#/components/schemas/PersonID'
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    Webhook:
+      type: object
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+        required:
+        - id
+      - $ref: '#/components/schemas/WebhookConfiguration'
+    Test_TokenMinted_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    Test_AnonymousTokenMinted_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    WebhookConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'Human-readable name for this webhook. This does not need to be unique, but it is recommended that you choose a name that can be used to distinguish this webhook from others.
+
+            '
+        description:
+          type: string
+          description: 'A description of this webhook. This can be used to associate additional information with this webhook for future reference.
+
+            '
+        target_url:
+          type: string
+          description: 'The target URL for this webhook. This URL must include the protocol, and the protocol must be HTTPS. A target URL can be registered at most once per organization, but each target URL can have multiple triggers.
+
+            '
+        custom_headers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: 'A set of custom HTTP headers that will be included in requests to this webhook, provided as key-value pairs.
+
+            '
+        timeout:
+          type: string
+          description: The timeout that will be applied when calling this webhook.
+      required:
+      - name
+      - target_url
+    TestEventsPostReq:
+      type: array
+      items:
+        $ref: '#/components/schemas/TestEventsSpecification'
+    Test_GateServerStarted_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    Test_PersonLoggedOut_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - $ref: '#/components/schemas/BaseTestSDKEvent'
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+    Test_AuthenticationSucceeded_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - type: object
+        properties:
+          person_id:
+            $ref: '#/components/schemas/PersonID'
+          authn_method:
+            $ref: '#/components/schemas/FactorMethod'
+  parameters:
+    RequiredConsistencyHeader:
+      name: SlashID-Required-Consistency
+      in: header
+      description: 'The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        Allowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: string
+        enum:
+        - local_region
+        - all_regions
+        default: local_region
+    WebhookTriggerNameQueryParam:
+      in: query
+      name: trigger_name
+      description: The webhook trigger name (for example, an event name)
+      schema:
+        type: string
+      required: true
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
+    WebhookIDPathParam:
+      in: path
+      required: true
+      name: webhook_id
+      schema:
+        type: string
+    WebhookTriggerTypeQueryParam:
+      in: query
+      name: trigger_type
+      description: The type of webhook trigger
+      example: event
+      schema:
+        $ref: '#/components/schemas/TriggerType'
+      required: true
+  responses:
+    NoContent:
+      description: No content
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  securitySchemes:
+    ApiKeyAuth:
+      description: Authorizes the request with the organization's API Key.
+      x-svc-um-api: true
+      type: apiKey
+      in: header
+      name: SlashID-API-Key
+    OAuth2ClientIdSecret:
+      description: Authorizes the request with a client ID/client secret pair
+      type: http
+      scheme: basic
+    OAuth2AccessTokenBearer:
+      description: Authorizes the request with an Access Token for the current user.
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
