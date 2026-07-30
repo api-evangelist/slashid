@@ -13,7 +13,20 @@ description: >
   The service publishes an OpenAPI 1.1 specification and offers JavaScript,
   React, and Remix SDKs alongside API-key and OAuth2/OIDC authentication.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/slashid.png
 tags:
   - Identity
   - Authentication
@@ -32,31 +45,302 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-  - aid: slashid-api
-    name: SlashID API
-    description: >
-      The SlashID REST API provides endpoints for identity management, user
-      authentication, token lifecycle, persons management, credentials,
-      groups, RBAC, organizations, webhooks, OAuth2/OIDC, and workflow
-      automation. Authentication is via API key (SlashID-API-Key header),
-      OAuth2 client credentials, or Bearer token.
-    humanURL: https://developer.slashid.dev/docs/api/slash-id-api
-    baseURL: https://api.slashid.com
-    tags:
-      - Identity
-      - Authentication
-      - User Management
-      - OAuth2
-      - OIDC
-      - RBAC
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://developer.slashid.dev/docs/intro
-      - type: OpenAPI
-        url: https://cdn.slashid.com/slashid-openapi-latest.yaml
-      - type: OpenAPI
-        url: openapi/slashid-api-openapi.yml
+- aid: slashid:slashid-groups-api
+  name: SlashID Groups API
+  description: The Groups API from SlashID — 5 operation(s) for groups.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-identity-management-api
+  name: SlashID Identity Management API
+  description: The Identity Management API from SlashID — 72 operation(s) for identity management.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Identity Management
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-identity-management-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-oauth2-api
+  name: SlashID OAuth2 API
+  description: The OAuth2 API from SlashID — 11 operation(s) for oauth2.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - OAuth2
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-oauth2-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-oidc-discovery-api
+  name: SlashID OIDC discovery API
+  description: The OIDC discovery API from SlashID — 2 operation(s) for oidc discovery.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - OIDC discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-oidc-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-allowed-domains-api
+  name: SlashID Organization Allowed Domains API
+  description: >-
+    The Organization Allowed Domains API from SlashID — 1 operation(s) for organization allowed domains.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization Allowed Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-allowed-domains-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-attributes-api
+  name: SlashID Organization Attributes API
+  description: >-
+    The Organization Attributes API from SlashID — 2 operation(s) for organization attributes.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-attributes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-email-templates-api
+  name: SlashID Organization Email Templates API
+  description: >-
+    The Organization Email Templates API from SlashID — 2 operation(s) for organization email templates.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization Email Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-email-templates-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-external-credentials-api
+  name: SlashID Organization External Credentials API
+  description: >-
+    The Organization External Credentials API from SlashID — 2 operation(s) for organization external
+    credentials.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization External Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-external-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-kyc-config-api
+  name: SlashID Organization KYC config API
+  description: >-
+    The Organization KYC config API from SlashID — 1 operation(s) for organization kyc config.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization KYC config
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-kyc-config-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-sso-config-api
+  name: SlashID Organization SSO config API
+  description: >-
+    The Organization SSO config API from SlashID — 4 operation(s) for organization sso config.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization SSO config
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-sso-config-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-token-template-api
+  name: SlashID Organization Token Template API
+  description: >-
+    The Organization Token Template API from SlashID — 1 operation(s) for organization token template.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization Token Template
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-token-template-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organization-webhooks-api
+  name: SlashID Organization Webhooks API
+  description: The Organization Webhooks API from SlashID — 5 operation(s) for organization webhooks.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organization Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organization-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-organizations-api
+  name: SlashID Organizations API
+  description: The Organizations API from SlashID — 10 operation(s) for organizations.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-person-attributes-api
+  name: SlashID Person Attributes API
+  description: The Person Attributes API from SlashID — 3 operation(s) for person attributes.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Person Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-person-attributes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-person-consents-api
+  name: SlashID Person Consents API
+  description: The Person Consents API from SlashID — 2 operation(s) for person consents.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Person Consents
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-person-consents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-person-credentials-api
+  name: SlashID Person Credentials API
+  description: The Person Credentials API from SlashID — 5 operation(s) for person credentials.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Person Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-person-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-person-handles-api
+  name: SlashID Person handles API
+  description: The Person handles API from SlashID — 2 operation(s) for person handles.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Person handles
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-person-handles-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-persons-api
+  name: SlashID Persons API
+  description: The Persons API from SlashID — 11 operation(s) for persons.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Persons
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-persons-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-persons-bulk-import-api
+  name: SlashID Persons Bulk Import API
+  description: The Persons Bulk Import API from SlashID — 1 operation(s) for persons bulk import.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Persons Bulk Import
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-persons-bulk-import-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-rbac-api
+  name: SlashID RBAC API
+  description: The RBAC API from SlashID — 11 operation(s) for rbac.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - RBAC
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-rbac-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-sso-api
+  name: SlashID SSO API
+  description: The SSO API from SlashID — 4 operation(s) for sso.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - SSO
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-sso-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-super-admin-management-api
+  name: SlashID Super Admin Management API
+  description: The Super Admin Management API from SlashID — 3 operation(s) for super admin management.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Super Admin Management
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-super-admin-management-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-tokens-api
+  name: SlashID Tokens API
+  description: The Tokens API from SlashID — 3 operation(s) for tokens.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
+- aid: slashid:slashid-workflows-api
+  name: SlashID Workflows API
+  description: The Workflows API from SlashID — 10 operation(s) for workflows.
+  humanURL: https://developer.slashid.dev/docs/api/slash-id-api
+  baseURL: https://api.slashid.com
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/slashid-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://developer.slashid.dev/docs/intro
 common:
   - type: AgenticAccess
     url: agentic-access/slashid-agentic-access.yml
