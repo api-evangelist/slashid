@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Person handles API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Person handles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get handles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/handles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of handles associated with an existing person"
+        },
+        {
+          "info": {
+            "name": "Add handles to a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/handles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add one or more handles to an existing person linked to your organization."
+        },
+        {
+          "info": {
+            "name": "Delete a handle from a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id/handles/:handle",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "path",
+                "description": "Handle in format [handle_type]:[handle]. Supported handle types are 'email_address', 'phone_number', and 'username'. This field should be URL-encoded.\n"
+              }
+            ]
+          },
+          "docs": "Remove a handle associated with an existing person"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

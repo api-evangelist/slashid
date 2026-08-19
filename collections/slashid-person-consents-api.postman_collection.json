@@ -1,0 +1,1772 @@
+{
+  "item": [
+    {
+      "id": "1ca31dc6-18dd-491a-8d7f-eb39e3688ffe",
+      "name": "Person Consents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13402a69-4507-4314-b550-0e445673bc6d",
+          "name": "Get GDPR consent",
+          "request": {
+            "name": "Get GDPR consent",
+            "description": {
+              "content": "Takes an organization ID and a person ID and returns the GDPR consent levels and timestamp for that person, if it exists.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03ad96fa-13fa-4217-b788-893aa9e18a36",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 6937,\n      \"offset\": 7114,\n      \"total_count\": 1908\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6962,\n      \"cursor\": \"string\",\n      \"total_count\": 6656\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8664,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9530,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": {\n    \"consents\": [\n      {\n        \"consent_level\": \"marketing\",\n        \"created_at\": \"1958-10-05T17:13:05.323Z\"\n      },\n      {\n        \"consent_level\": \"none\",\n        \"created_at\": \"1977-10-02T09:59:04.211Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9c381e7-5c90-41ce-9e1d-c229c55ee347",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e9b4ba5-0b3d-435b-850d-cf1293ca483e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ecc3cd5-b99a-4cd1-bcdb-3ceb8b590394",
+          "name": "Store GDPR consent",
+          "request": {
+            "name": "Store GDPR consent",
+            "description": {
+              "content": "Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd57f621-3dc6-429e-b79a-824468b3774b",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"consents\": [\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1973-11-05T08:57:13.210Z\"\n      },\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1989-10-14T10:37:46.255Z\"\n      }\n    ]\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1788,\n      \"offset\": 9511,\n      \"total_count\": 9807\n    },\n    \"cursor_pagination\": {\n      \"limit\": 601,\n      \"cursor\": \"string\",\n      \"total_count\": 7318\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8577,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8907,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68138fc6-0f2d-4aba-bc1a-d0d788a6fe89",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "237be92e-4c10-48dc-b499-83199d6abe89",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b63e1afd-a898-4113-974d-7a91b3eb6c4b",
+          "name": "Set GDPR consent",
+          "request": {
+            "name": "Set GDPR consent",
+            "description": {
+              "content": "Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16929b55-9a43-41ea-9809-399ab38fe972",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"consents\": [\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1973-11-05T08:57:13.210Z\"\n      },\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1989-10-14T10:37:46.255Z\"\n      }\n    ]\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1788,\n      \"offset\": 9511,\n      \"total_count\": 9807\n    },\n    \"cursor_pagination\": {\n      \"limit\": 601,\n      \"cursor\": \"string\",\n      \"total_count\": 7318\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8577,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8907,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d3abc32-8293-4a5f-b12a-d58d14c873f7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2db52bd-f8af-4fe6-9d7d-f0a307ef3c7b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41781561-db0a-4631-8c05-560578f23cd6",
+          "name": "Remove GDPR consent",
+          "request": {
+            "name": "Remove GDPR consent",
+            "description": {
+              "content": "The function takes the organization ID and person ID and removes the specified GDPR consent, or all consents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "consent_levels",
+                  "value": "<string>",
+                  "description": "The names of the consent levels to remove from the person"
+                },
+                {
+                  "disabled": false,
+                  "key": "consent_levels",
+                  "value": "<string>",
+                  "description": "The names of the consent levels to remove from the person"
+                },
+                {
+                  "disabled": false,
+                  "key": "deleteAll",
+                  "value": "<boolean>",
+                  "description": "Whether to delete all GDPR consents for this person"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e12d0fe-5aa8-4740-a344-26347ea76cdd",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleteAll",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fc2f1ec0-4640-4577-bedd-a220641cb4eb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleteAll",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e5c0ac3-8cac-460f-b64d-d8f965e3badd",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleteAll",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d45d99d0-68f4-4a10-8dbf-3aa9ab247769",
+          "name": "Get GDPR consent of current user",
+          "request": {
+            "name": "Get GDPR consent of current user",
+            "description": {
+              "content": "Returns the GDPR consent levels and timestamp for current person, if it exists.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "SDK version",
+                "key": "SlashID-SdkVersion",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "634ff375-ac8b-458a-aa7b-0f1facb37672",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3055,\n      \"offset\": 2757,\n      \"total_count\": 602\n    },\n    \"cursor_pagination\": {\n      \"limit\": 7190,\n      \"cursor\": \"string\",\n      \"total_count\": 6406\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5526,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2715,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": {\n    \"consents\": [\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"2022-04-21T09:30:22.687Z\"\n      },\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1958-10-28T07:56:57.163Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faa266bd-c128-4271-a882-ee657ab9f142",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45ede21a-7a44-4f6d-938a-91d3a481b0af",
+          "name": "Store GDPR consent of current user",
+          "request": {
+            "name": "Store GDPR consent of current user",
+            "description": {
+              "content": "Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "SDK version",
+                "key": "SlashID-SdkVersion",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18e4aec7-bfdc-425f-a13f-0d52d6f62657",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"consents\": [\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1973-11-05T08:57:13.210Z\"\n      },\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1989-10-14T10:37:46.255Z\"\n      }\n    ]\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1788,\n      \"offset\": 9511,\n      \"total_count\": 9807\n    },\n    \"cursor_pagination\": {\n      \"limit\": 601,\n      \"cursor\": \"string\",\n      \"total_count\": 7318\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8577,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8907,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d580300b-5e25-4dcf-9b6c-cd77058f9af9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c277e1ae-3a64-4253-bef0-b68508577270",
+          "name": "Set GDPR consent of current user",
+          "request": {
+            "name": "Set GDPR consent of current user",
+            "description": {
+              "content": "Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "SDK version",
+                "key": "SlashID-SdkVersion",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0fafbfb4-0b44-425a-8a92-004dc4f71322",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"consents\": [\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1973-11-05T08:57:13.210Z\"\n      },\n      {\n        \"consent_level\": \"<string>\",\n        \"created_at\": \"1989-10-14T10:37:46.255Z\"\n      }\n    ]\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1788,\n      \"offset\": 9511,\n      \"total_count\": 9807\n    },\n    \"cursor_pagination\": {\n      \"limit\": 601,\n      \"cursor\": \"string\",\n      \"total_count\": 7318\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8577,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8907,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c43a64dc-ef2b-4af1-baec-b03fb31f4b80",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"consent_levels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03de5e81-6d64-4f16-96be-e7e82537f155",
+          "name": "Remove GDPR consent of current user",
+          "request": {
+            "name": "Remove GDPR consent of current user",
+            "description": {
+              "content": "Removes the specified GDPR consent, or all consents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consent",
+                "gdpr"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "consent_levels",
+                  "value": "<string>",
+                  "description": "The names of the consent levels to remove from the person"
+                },
+                {
+                  "disabled": false,
+                  "key": "consent_levels",
+                  "value": "<string>",
+                  "description": "The names of the consent levels to remove from the person"
+                },
+                {
+                  "disabled": false,
+                  "key": "deleteAll",
+                  "value": "<boolean>",
+                  "description": "Whether to delete all GDPR consents for this person"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "SDK version",
+                "key": "SlashID-SdkVersion",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5d475bd-abf6-4681-babc-f084633cb523",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleteAll",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5dc81f49-758a-4daf-a986-da5d38b4e324",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consent",
+                    "gdpr"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "consent_levels",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deleteAll",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4008,\n      \"offset\": 800,\n      \"total_count\": 4401\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9576,\n      \"cursor\": \"string\",\n      \"total_count\": 6457\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6480,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9524,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "53d4e65f-643a-4977-a0a4-4116ff33199d",
+    "name": "SlashID Groups Person Consents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

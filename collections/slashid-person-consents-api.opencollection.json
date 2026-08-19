@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Person Consents API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Person Consents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Takes an organization ID and a person ID and returns the GDPR consent levels and timestamp for that person, if it exists.\n"
+        },
+        {
+          "info": {
+            "name": "Store GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Set GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Remove GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "consent_levels",
+                "value": "",
+                "type": "query",
+                "description": "The names of the consent levels to remove from the person"
+              },
+              {
+                "name": "deleteAll",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all GDPR consents for this person"
+              }
+            ]
+          },
+          "docs": "The function takes the organization ID and person ID and removes the specified GDPR consent, or all consents."
+        },
+        {
+          "info": {
+            "name": "Get GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ]
+          },
+          "docs": "Returns the GDPR consent levels and timestamp for current person, if it exists.\n"
+        },
+        {
+          "info": {
+            "name": "Store GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Set GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Remove GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "params": [
+              {
+                "name": "consent_levels",
+                "value": "",
+                "type": "query",
+                "description": "The names of the consent levels to remove from the person"
+              },
+              {
+                "name": "deleteAll",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all GDPR consents for this person"
+              }
+            ]
+          },
+          "docs": "Removes the specified GDPR consent, or all consents."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

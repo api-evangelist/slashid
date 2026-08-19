@@ -1,0 +1,414 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Workflows API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/workflows",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workflow status"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of workflows to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort parameter in format \"field:order\".\nValid fields: created_at, updated_at, name.\nValid orders: asc, desc.\nExample: \"created_at:desc\" (default)\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workflow data input type"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of workflows for the organization"
+        },
+        {
+          "info": {
+            "name": "Create a new workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new workflow for automated response actions"
+        },
+        {
+          "info": {
+            "name": "Get workflow details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/workflows/:workflow_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              },
+              {
+                "name": "include_configuration",
+                "value": "",
+                "type": "query",
+                "description": "Include latest workflow configuration in response"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific workflow.\nWhen include_configuration=true, the response also includes the latest workflow configuration\n(data_input_config, actions, version, etc.).\n"
+        },
+        {
+          "info": {
+            "name": "Update workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/workflows/:workflow_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a workflow and create a new version"
+        },
+        {
+          "info": {
+            "name": "Delete workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/workflows/:workflow_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ]
+          },
+          "docs": "Soft delete a workflow (marks as deleted)"
+        },
+        {
+          "info": {
+            "name": "List workflow versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/workflows/:workflow_id/versions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all versions of a workflow"
+        },
+        {
+          "info": {
+            "name": "Get specific workflow version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/workflows/:workflow_id/versions/:version",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Workflow version number"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific version of a workflow"
+        },
+        {
+          "info": {
+            "name": "Restore workflow version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows/:workflow_id/versions/:version",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Workflow version number"
+              }
+            ]
+          },
+          "docs": "Restore a previous version of a workflow as the latest version"
+        },
+        {
+          "info": {
+            "name": "Activate workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows/:workflow_id/activate",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ]
+          },
+          "docs": "Activate a workflow to make it operational"
+        },
+        {
+          "info": {
+            "name": "Pause workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows/:workflow_id/pause",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ]
+          },
+          "docs": "Pause an active workflow"
+        },
+        {
+          "info": {
+            "name": "Resume workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows/:workflow_id/resume",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ]
+          },
+          "docs": "Resume a paused workflow"
+        },
+        {
+          "info": {
+            "name": "Execute workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows/:workflow_id/execute",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ]
+          },
+          "docs": "Manually trigger workflow execution"
+        },
+        {
+          "info": {
+            "name": "Internal endpoint for scheduled workflow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows/:workflow_id/scheduled-execute",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow identifier"
+              }
+            ]
+          },
+          "docs": "Internal endpoint invoked by the workflow scheduler (GCP Cloud Scheduler in production, the docker-scheduler in dev) on each cron tick. Publishes a workflow execute event with trigger_source=scheduled. Not intended for external callers.\n"
+        },
+        {
+          "info": {
+            "name": "Run a read-only Cypher query and return the first 50 rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/workflows/cypher-preview",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Synchronous preview for the Query Workflows UI. Validates the query\n(same validator as scheduled runs), runs it against the caller's org\ngraph with a 10-second timeout and a hard 50-row cap. Read-only —\nwrite keywords are rejected. Not intended for batch use; use the\nscheduled-execute path for production reads.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

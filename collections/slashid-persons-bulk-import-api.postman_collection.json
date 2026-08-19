@@ -1,0 +1,539 @@
+{
+  "item": [
+    {
+      "id": "f3271cc1-18fd-408c-9563-8cf53d818d78",
+      "name": "Persons Bulk Import",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b0fe35c-331d-4e6f-92ee-4131a01ee812",
+          "name": "Fetch the import CSV template",
+          "request": {
+            "name": "Fetch the import CSV template",
+            "description": {},
+            "url": {
+              "path": [
+                "persons",
+                "bulk-import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01c5928d-3653-41d5-9d27-6b05e7e32897",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Content-Disposition",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "416b21bd-ae1c-477d-8236-aeaaa95a3b0f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2845,\n      \"offset\": 1405,\n      \"total_count\": 4166\n    },\n    \"cursor_pagination\": {\n      \"limit\": 765,\n      \"cursor\": \"string\",\n      \"total_count\": 4052\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 869,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 295,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76a6f2a5-6e65-4255-89be-8460b5a86eb3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2420,\n      \"offset\": 8727,\n      \"total_count\": 4644\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6342,\n      \"cursor\": \"string\",\n      \"total_count\": 2598\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 383,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4372,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee681237-54c0-4b99-8542-be8ce02b178e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2420,\n      \"offset\": 8727,\n      \"total_count\": 4644\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6342,\n      \"cursor\": \"string\",\n      \"total_count\": 2598\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 383,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4372,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1cbd452-3e35-4c45-af26-0d568625ffaf",
+          "name": "Bulk import persons",
+          "request": {
+            "name": "Bulk import persons",
+            "description": {
+              "content": "Bulk import persons into your organization by uploading a CSV file.\n\nThe import will take the following CSV column headers into consideration:\n\n\"slashid:emails\",\"slashid:phone_numbers\",\"slashid:usernames\",\"slashid:region\",\"slashid:groups\",\"slashid:attributes\"\n\nEach row in the CSV must contain at least one handle for the person\n(email address, phone number, or a username). Optionally, you can\nspecify a list of roles, a geographical region and attributes.\nAttributes are a JSON-encoded map from attribute bucket names to\nkey-value pairs. Email addresses, phone numbers, and usernames must be\ncomma-separated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                "bulk-import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "persons",
+                  "type": "file",
+                  "description": "(Required) File in CSV format that contains the persons to import."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f049482a-631f-434a-86d4-ffb57970e3b7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) File in CSV format that contains the persons to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "persons",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"successful_imports\": 3151,\n    \"failed_imports\": 8960,\n    \"failed_csv\": \"string\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 6191,\n      \"offset\": 9181,\n      \"total_count\": 6030\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8550,\n      \"cursor\": \"string\",\n      \"total_count\": 5502\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 3964,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7501,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c190a65-7b95-4dbc-85bd-d243bf9c0062",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) File in CSV format that contains the persons to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "persons",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2420,\n      \"offset\": 8727,\n      \"total_count\": 4644\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6342,\n      \"cursor\": \"string\",\n      \"total_count\": 2598\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 383,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4372,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a005404-1a57-4ca7-847f-e265b3ca438c",
+              "name": "Pricing Tier Violation - operation violated the limits specified in its pricing tier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) File in CSV format that contains the persons to import.",
+                        "type": "text/plain"
+                      },
+                      "key": "persons",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2420,\n      \"offset\": 8727,\n      \"total_count\": 4644\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6342,\n      \"cursor\": \"string\",\n      \"total_count\": 2598\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 383,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4372,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5ee3e15d-a0d6-4ce9-9e96-ad793d87a111",
+    "name": "SlashID Groups Persons Bulk Import API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

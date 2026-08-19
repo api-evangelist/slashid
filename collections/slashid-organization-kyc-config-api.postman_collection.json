@@ -1,0 +1,522 @@
+{
+  "item": [
+    {
+      "id": "f01b71b9-2ac7-495b-9bc3-922a8d3f5d57",
+      "name": "Organization KYC config",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "820a355d-aab8-4374-baf6-c8183a01986d",
+          "name": "Get organization KYC config",
+          "request": {
+            "name": "Get organization KYC config",
+            "description": {
+              "content": "Get the current KYC configuration for your organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "config",
+                "kyc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30e5f3b5-34f9-4f7a-aec7-0bb1db8eb180",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "config",
+                    "kyc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2130,\n      \"offset\": 3453,\n      \"total_count\": 3097\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4737,\n      \"cursor\": \"string\",\n      \"total_count\": 254\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5626,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7841,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": {\n    \"mobile_redirect_base_url\": \"https://www.example.com/mobile-upload\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0375abc-a8e9-4793-b780-e80361cb57de",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "config",
+                    "kyc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1496,\n      \"offset\": 849,\n      \"total_count\": 7311\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3499,\n      \"cursor\": \"string\",\n      \"total_count\": 6524\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1459,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 1810,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7b9ea98-e6e5-4592-94c6-493448a9b278",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "config",
+                    "kyc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1496,\n      \"offset\": 849,\n      \"total_count\": 7311\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3499,\n      \"cursor\": \"string\",\n      \"total_count\": 6524\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1459,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 1810,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bebfc410-1a57-41d3-ab61-a16e3ef381c9",
+          "name": "Update KYC organization config",
+          "request": {
+            "name": "Update KYC organization config",
+            "description": {
+              "content": "Modify the KYC configuration for your organization.\n\nThe mobile redirect base URL determines where a user will be redirected to when temporarily switching to a mobile device in order to upload/capture document pictures.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "config",
+                "kyc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mobile_redirect_base_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee7e30e3-7467-46f3-98c0-08d67f4fd0e4",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "config",
+                    "kyc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mobile_redirect_base_url\": \"https://www.example.com/mobile-upload\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "beb47760-dcd3-4e9d-902c-b69a9135a3d6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "config",
+                    "kyc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mobile_redirect_base_url\": \"https://www.example.com/mobile-upload\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1496,\n      \"offset\": 849,\n      \"total_count\": 7311\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3499,\n      \"cursor\": \"string\",\n      \"total_count\": 6524\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1459,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 1810,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dfdccd6-b96a-47a6-93d3-d64ec2d0b993",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "config",
+                    "kyc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mobile_redirect_base_url\": \"https://www.example.com/mobile-upload\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1496,\n      \"offset\": 849,\n      \"total_count\": 7311\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3499,\n      \"cursor\": \"string\",\n      \"total_count\": 6524\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1459,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 1810,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9970f313-1776-4808-a9e4-d60954b33b08",
+    "name": "SlashID Groups Organization KYC config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

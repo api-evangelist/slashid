@@ -1,0 +1,2252 @@
+{
+  "item": [
+    {
+      "id": "35f073ef-8d50-47b8-8e5d-2d9d60c4e108",
+      "name": "Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10fe009c-3070-4205-9d24-c09f1f54d7bb",
+          "name": "Get groups for a person",
+          "request": {
+            "name": "Get groups for a person",
+            "description": {
+              "content": "Retrieve the list of groups the specified person belongs to",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc770e85-c901-47c7-9a61-e110708d125d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    \"5Gl4l\",\n    \"eXa4-8V\"\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3861,\n      \"offset\": 8998,\n      \"total_count\": 3030\n    },\n    \"cursor_pagination\": {\n      \"limit\": 7438,\n      \"cursor\": \"string\",\n      \"total_count\": 8054\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 3109,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4893,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd79bd18-0c01-44d1-b3a0-2b64d62b7a0c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b630af10-cf70-43b7-9a0e-7c1cbc6f845e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14c719fa-5214-43e3-af8d-e78591a7eae9",
+          "name": "Set the groups for a person",
+          "request": {
+            "name": "Set the groups for a person",
+            "description": {
+              "content": "Add the person to the groups specified in the request body, and remove the person from any other existing groups.\nAll groups in the request body must already exist. Duplicate groups in the request body will be ignored. If an empty list is supplied in the request body, the person will be removed from all groups they are currently a member of, and will not be added to any others.\nNew groups can be created with the [POST /groups](/docs/api/post-groups) endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "afdda747-9f58-42ff-bffe-bbf9a2de5c98",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1629,\n      \"offset\": 6742,\n      \"total_count\": 4384\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2070,\n      \"cursor\": \"string\",\n      \"total_count\": 6366\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 963,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5036,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c247d8c3-43ec-44af-8a56-5fab6849cc57",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e11c6e3-a703-4c55-8a82-171fe49e4d86",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b26751b2-079f-45d1-841e-7928b8fdf308",
+          "name": "Create a group",
+          "request": {
+            "name": "Create a group",
+            "description": {
+              "content": "This endpoint creates a new persons group with the given name.\n\nIf the group exists already, no action will be taken.\n\nThe group name must be unique within your organization; is case-sensitive; and must conform to the following:\n  - must be at least 2 characters long\n  - may be at most 100 characters long\n  - may contain only the characters `A-Z a-z 0-9 - _ .`\n  - must start and end with an alphanumeric character (`A-Z a-z 0-9`)\n\nA person can be added to a group through the [`POST /persons/:person_id/groups`](/docs/api/put-persons-person-id-groups) endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e68e30d-c7be-48dc-bbfd-662620762a8d",
+              "name": "The group was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c402317e-6768-4b7e-9d5d-65abeadf00ba",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a37f198-98e3-484f-b342-073e7bb4cb4b",
+              "name": "Pricing Tier Violation - operation violated the limits specified in its pricing tier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d41377b-2416-44eb-aae2-afdbdf581d77",
+          "name": "Get a list of groups",
+          "request": {
+            "name": "Get a list of groups",
+            "description": {
+              "content": "List the names of all groups that exist for your organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60d6d900-2c89-4445-9b58-50f2748ed7a2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9325,\n      \"offset\": 7105,\n      \"total_count\": 5084\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4936,\n      \"cursor\": \"string\",\n      \"total_count\": 9141\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 7895,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9823,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25c98d58-99ee-4ef7-9278-e4bf30a11705",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "383a8245-eb08-4eed-ab96-c2704df826b9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96b48ab4-3c9c-48f4-84d1-c14a1341f819",
+          "name": "Get a group",
+          "request": {
+            "name": "Get a group",
+            "description": {
+              "content": "Get the named group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":group_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_name",
+                  "description": "(Required) The name of a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10fe509c-4062-405a-8a08-084733b0f2c3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"name\": \"<string>\",\n    \"members_count\": 433,\n    \"created\": \"2012-08-28T09:21:46.283Z\",\n    \"description\": \"string\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8515,\n      \"offset\": 5861,\n      \"total_count\": 9172\n    },\n    \"cursor_pagination\": {\n      \"limit\": 7375,\n      \"cursor\": \"string\",\n      \"total_count\": 2989\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 7145,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7993,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d690eb91-1db7-43fe-9ea7-b18825b1a14f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d332197-e470-46c2-b50f-e515a8397bf4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7a2e860-a158-48ff-8765-5d503abb01a7",
+          "name": "Delete a group",
+          "request": {
+            "name": "Delete a group",
+            "description": {
+              "content": "Remove all persons from a group and permanently delete the group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":group_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_name",
+                  "description": "(Required) The name of a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2086ea67-8485-49a7-a6e7-863dafe19c04",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d522f88e-5ff0-479f-89e4-eabf412eb6df",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15e20268-6dd1-45ba-9d33-6eee0639d50c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47617f63-04b8-4659-96eb-a66060b123c6",
+          "name": "Add persons to a group",
+          "request": {
+            "name": "Add persons to a group",
+            "description": {
+              "content": "This endpoint adds one or more persons to an existing group. The group and all of the persons must exist. The persons to be added to the group must always be an array in the request body, even if only one user is being added. All persons needs to be in the same region.\nA new group can be created with the [POST /groups](/docs/api/post-groups) endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":group_name",
+                "persons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_name",
+                  "description": "(Required) The name of a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"persons\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0299d25d-76bf-4403-aab2-67742dfbffe5",
+              "name": "The persons were successfully added to the group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"persons\": [\n    \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n    \"064b7b63-ea43-76e5-b208-1900795bc5b7\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0274609f-6506-4ed3-94cf-7bac085734da",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"persons\": [\n    \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n    \"064b7b63-ea43-76e5-b208-1900795bc5b7\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0df031c-7e3b-4b47-b840-12689397ca25",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"persons\": [\n    \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n    \"064b7b63-ea43-76e5-b208-1900795bc5b7\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d70a294b-d424-4469-8089-4cd74b63edae",
+          "name": "List the persons in a group",
+          "request": {
+            "name": "List the persons in a group",
+            "description": {
+              "content": "Lists all the persons in the named group. Returns an array of person IDs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":group_name",
+                "persons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_name",
+                  "description": "(Required) The name of a group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4038a36-25ca-4da8-a9e7-5c7f2428b9da",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    \"string\",\n    \"string\"\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1935,\n      \"offset\": 7263,\n      \"total_count\": 5455\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9183,\n      \"cursor\": \"string\",\n      \"total_count\": 1565\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 3004,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7961,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6f86087-900b-4352-9aa4-ddadd8a10a36",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8209239-9e54-47d7-961d-5d31bf499d21",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39e21f8a-a488-4f24-9d17-8e4f204f11fc",
+          "name": "Delete a person from a group",
+          "request": {
+            "name": "Delete a person from a group",
+            "description": {
+              "content": "Removes the identified person from the named group. Returns an error if the person is not in the group.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                ":group_name",
+                "persons",
+                ":person_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "group_name",
+                  "description": "(Required) The name of a group"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e7b5ed7-09de-43bd-a3b8-9314a9952b4e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78951673-a20c-4d0d-b8c4-904c64472355",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0d4d421-1425-4ff7-bd8d-099cbaeaefe3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    ":group_name",
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "group_name",
+                      "description": "(Required) The name of a group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8807,\n      \"offset\": 8464,\n      \"total_count\": 9163\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8413,\n      \"cursor\": \"string\",\n      \"total_count\": 4045\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8155,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4670,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34107aa8-de91-4234-a871-a6e788ee554a",
+    "name": "SlashID Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Organization Webhooks API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all webhooks for your organization."
+        },
+        {
+          "info": {
+            "name": "Create a new webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/webhooks",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook for your organization. Webhooks will be called in response to triggers, and you can use\nthe `/organizations/webhooks/{webhook_id}/triggers` endpoint to specify which trigger(s) should call each\nwebhook.\n\nThe request body must contain the target URL for the webhook, and this must be unique for your organization\n(you cannot have two webhooks with the same target URL). The target URL must use the HTTPS protocol, and must\nhave a host. The host cannot be `localhost` or an IP addr"
+        },
+        {
+          "info": {
+            "name": "Get a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a specific webhook, identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook, identified by its ID.\nThis endpoint can be used to modify the target URL, custom headers, name, or description of the webhook. Note that the target URL cannot be changed to a URL already in use by another webhook for your organization. Modifying the custom headers will overwrite any existing custom headers for this webhook.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete the specified webhook. This will also delete all triggers associated with this webhook. This action cannot be undone.\n"
+        },
+        {
+          "info": {
+            "name": "List webhook triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id/triggers",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all the triggers for a specific webhook."
+        },
+        {
+          "info": {
+            "name": "Create a webhook trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id/triggers",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new trigger for an existing webhook. Each webhook can have multiple triggers, and will be called\non each of them.\n\nThe trigger type specifies what kind of trigger will cause the webhook to be called. The trigger name specifies\nthe exact trigger that will cause the webhook to be called, amongst all triggers of this type. For a full list\nof trigger types and names, refer to our [webhooks guide](/docs/access/guides/webhooks).\n"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id/triggers",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "trigger_type",
+                "value": "event",
+                "type": "query",
+                "description": "The type of webhook trigger"
+              },
+              {
+                "name": "trigger_name",
+                "value": "",
+                "type": "query",
+                "description": "The webhook trigger name (for example, an event name)"
+              }
+            ]
+          },
+          "docs": "Delete a trigger for a specific webhook. The webhook will no longer be called on this trigger.\nNote that for a short period after the delete request has successfully returned, triggers in flight may still cause the webhook to be called.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve verification JWKS for webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks/verification-jwks",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Endpoint to retrieve a JSON Web Key Set (JWKS) for webhook body verification.\nWhen SlashID calls your webhooks in response to a trigger, the body of the request is a signed and encoded JSON Web Token (JWT). The public part of the signing key can be retrieved from this endpoint and used to verify that the request body comes from SlashID, is intended for your webhook, and has not been modified.\nSlashID uses the ES256 JSON Web Algorithm (JWA), which is the Elliptic Curve Digital Signature Algorithm"
+        },
+        {
+          "info": {
+            "name": "Generate events for testing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/test-events",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate events for testing analytics flows, such as webhooks.\nThis endpoint can be used to create one or more SlashID events. The request body is a list of test event descriptions, including the type of event to generate, the number of events of that type to generate, and whether those events should be duplicates. The contents of the events will be randomly generated, and will have the `is_test_event` flag set to true, so they can be distinguished from real events.\nPlease refer to our [events g"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

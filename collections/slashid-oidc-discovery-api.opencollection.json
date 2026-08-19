@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups OIDC discovery API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OIDC discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve OpenID configuration values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/.well-known/openid-configuration"
+          },
+          "docs": "Endpoint to retrieve OpenID configuration values for SlashID in JSON format, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)"
+        },
+        {
+          "info": {
+            "name": "Retrieve public key JWKS for user tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/.well-known/jwks.json"
+          },
+          "docs": "Endpoint to retrieve a JSON Web Key Set for JWT validation, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

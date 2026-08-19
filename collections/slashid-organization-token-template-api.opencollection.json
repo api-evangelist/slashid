@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Organization Token Template API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Token Template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the organization's token template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/token-template",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieves the token template for the given organization.\n\nIf a custom token template was previously created, it will be returned.\nOtherwise the default template is returned."
+        },
+        {
+          "info": {
+            "name": "Modify the organization's token template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/config/token-template",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the token template for your organization. If a template already exists it will be overwritten and cannot\nbe retrieved.\n\nThe template must conform to the [mustache template syntax](https://mustache.github.io/mustache.5.html). The following tags are available:\n  - `{{ organization }}`: provides information on the organization. Renders to\n    ```json\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"name\": \"Your Org Name\",\n      \"ancestors\": [\n        {\n          \"id\": \"00000000"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

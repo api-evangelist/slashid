@@ -1,0 +1,492 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups OAuth2 API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a list of OAuth2 clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/clients",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of existing OAuth 2.0 clients for your organization.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/clients",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new client ID/secret pair that can be used with the client credentials grant type.\nA valid SlashID organization ID and API key must be used to authenticate and authorize the request.\nThe client credentials can be configured.\n\nSlashID currently supports the following OAuth 2.0 grants:\n- client credentials\n- authorization code\n- refresh token\nThe `grant_types` field may contain only the values `client_credentials` and `authorization_code`.\nOther values will return a `400` error code.\n\nThe"
+        },
+        {
+          "info": {
+            "name": "Retrieve an OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Get details on the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n"
+        },
+        {
+          "info": {
+            "name": "Modify an existing OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n\nSlashID currently only supported a subset of OAuth clients, therefore we enforce that grant_types must be [\"client_credentials\"]. Setting this field to any other value will result in an error response with a `400` status code.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an existing OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Delete the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n"
+        },
+        {
+          "info": {
+            "name": "Generate a new client secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id/secret",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "A new client secret is created and returned. The previous secret will no longer be valid after this.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve the configuration for the hosted UI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id/ui-configuration",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "The configuration is used to theme the hosted UI.\n"
+        },
+        {
+          "info": {
+            "name": "Modify the configuration for the hosted UI",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id/ui-configuration",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The configuration is used to theme the hosted UI.\n"
+        },
+        {
+          "info": {
+            "name": "Request an authorization code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/authorize",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code_challenge",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code_challenge_method",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "display",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_age",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ui_locales",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "login_hint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "acr_values",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "handle_types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Used to initiate an authorization code flow.\n\nSlashID is an OAuth 2.0 and OpenID Connect 1.0 provider.\n"
+        },
+        {
+          "info": {
+            "name": "Obtain an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Obtain a new OAuth 2.0 access token using an OAuth 2.0 client ID/secret pair.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke a token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/revoke",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Revoke an OAuth 2.0 token using an OAuth 2.0 client ID/secret pair.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/revoke-all",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Revoke OAuth 2.0 tokens using an OAuth 2.0 client ID/secret pair.\n"
+        },
+        {
+          "info": {
+            "name": "Introspect an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/introspect",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Introspect an OAuth 2.0 access or refresh token using an OAuth 2.0 client ID/secret pair. Note: there is a know issue for this endpoint, whereby the expiry for refresh tokens in the response is incorrect. However, expired refresh tokens will still return a response with `active: false`.\n"
+        },
+        {
+          "info": {
+            "name": "Mint OAuth 2.0 & OIDC tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/mint",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SlashID-API-Key",
+              "value": "{{SlashID-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint creates a set of OAuth 2.0 tokens for a specific user.\n\nTo generate a refresh token request scope `offline_access`.\nTo generate an ID token request scope `openid`.\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - j"
+        },
+        {
+          "info": {
+            "name": "Retrieve a person's profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/userinfo",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Given the SlashID Access Token obtained during signin, this endpoint returns a person's profile.\n\nThis endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a person's profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/userinfo",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Given the SlashID Access Token obtained during signin, this endpoint returns a person's profile.\n\nThis endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2957 @@
+{
+  "item": [
+    {
+      "id": "8c5b3c3d-0a8b-49dd-86f1-017bb1e87f15",
+      "name": "Organization Attributes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1eba7025-e018-4860-81d5-11494bf5195a",
+          "name": "Create or modify attributes for the organization in multiple buckets",
+          "request": {
+            "name": "Create or modify attributes for the organization in multiple buckets",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for the organization in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn't referenced by key in the request is left untouched.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": {\n    \"key_0\": 8842,\n    \"key_1\": \"string\",\n    \"key_2\": 4817.280437131581\n  },\n  \"key_1\": {\n    \"key_0\": 2401,\n    \"key_1\": 1244\n  },\n  \"key_2\": {\n    \"key_0\": false,\n    \"key_1\": 373.31191593305556\n  },\n  \"key_3\": {\n    \"key_0\": false,\n    \"key_1\": 8065,\n    \"key_2\": 6222.711060944518\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af527d5a-90cf-4e73-8d5e-1fc3f9ed9ff3",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34c5cecc-33a3-43ee-900a-0a2fcd09c0eb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 651,\n      \"offset\": 6084,\n      \"total_count\": 7140\n    },\n    \"cursor_pagination\": {\n      \"limit\": 8439,\n      \"cursor\": \"string\",\n      \"total_count\": 4585\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2815,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 464,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34349876-fa1e-45d5-bace-58a5c559628b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a0e804b-f209-46f6-bbd6-1f6d09ba1738",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e533bd59-18f7-4033-8b84-9fb427985966",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d72c90ba-e669-45ab-8121-39294c9af7f9",
+          "name": "Create or modify attributes for the organization in multiple buckets",
+          "request": {
+            "name": "Create or modify attributes for the organization in multiple buckets",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for the organization in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any existing attributes that aren't referenced by key in the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": {\n    \"key_0\": 8842,\n    \"key_1\": \"string\",\n    \"key_2\": 4817.280437131581\n  },\n  \"key_1\": {\n    \"key_0\": 2401,\n    \"key_1\": 1244\n  },\n  \"key_2\": {\n    \"key_0\": false,\n    \"key_1\": 373.31191593305556\n  },\n  \"key_3\": {\n    \"key_0\": false,\n    \"key_1\": 8065,\n    \"key_2\": 6222.711060944518\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff57b8b5-6b12-4105-94ae-80fcede8e3ac",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "458dea81-9aaf-467b-b61a-9830223a5c59",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "912f74f6-0f87-4468-8340-53c627f32fed",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f885868-678e-4f00-809c-ee2c35f1cca7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b0426a9-2a75-4ce8-a458-44068fcb31cf",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b9f3f97-08e0-465c-bed5-601c78309243",
+          "name": "Retrieve attributes for the organization from multiple buckets",
+          "request": {
+            "name": "Retrieve attributes for the organization from multiple buckets",
+            "description": {
+              "content": "Retrieve attributes for the organization from one or more buckets. If no buckets are specified, attributes from all buckets will be retrieved.\nBucket names can be specified as a comma-separated list in the `buckets` query parameter. All buckets specified must exist, and the organization specified in the header must be able to access them. Empty bucket names are not permitted.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "buckets",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of attribute bucket names"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3572413b-863c-4d39-a41b-984c06a81004",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 7462,\n      \"offset\": 976,\n      \"total_count\": 6356\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9693,\n      \"cursor\": \"string\",\n      \"total_count\": 1025\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1294,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6471,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": {\n    \"person_pool-end_user_read_write\": {\n      \"card_number\": \"1234\",\n      \"expiry\": \"07/25\"\n    },\n    \"end_user_read_only\": {\n      \"address_line_1\": \"New Street\",\n      \"city\": \"New York\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15627156-36aa-4966-a466-29c15f8b8280",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "392ec5d1-9f23-42a6-a62b-e5c2889b50c8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1564e4b-2b6c-4980-8a31-19c6f6ab3a63",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3eb8cc0-8a71-46bb-ad8a-7bf5128b6239",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20431d96-083a-4c7a-9804-911c3e084488",
+          "name": "Create or modify attributes for the organization in a single bucket",
+          "request": {
+            "name": "Create or modify attributes for the organization in a single bucket",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for the organization in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn't referenced by key in the request is left untouched.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": true,\n  \"key_2\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4bf0071-0860-4b65-9fbf-eb86448a8e6c",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20fd9f8f-2106-4d18-9b92-230ed2a44aa0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c397e20a-ad88-434d-9375-aca67c10f363",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f86167c-1b11-4065-9832-ebff262695fb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef7aeac0-98f9-4da5-8ceb-1e900b7223e6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7784ae0c-4ad7-4144-9b09-a19b4d9aee7d",
+          "name": "Create or modify attributes for the organization in a single bucket",
+          "request": {
+            "name": "Create or modify attributes for the organization in a single bucket",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for the organization in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any existing attributes that aren't referenced by key in the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": true,\n  \"key_2\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "190d5bcd-f26e-4a2a-803d-477dbce77f40",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d22e4754-87d6-4b13-8198-bdb176114797",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72422fd9-8768-456d-9a1f-a2da71976d6e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaaacee5-8040-4e5b-a43a-cca97c7da52f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7316894a-9bcd-46e4-9b09-ed21860f4fe5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65be8153-8bec-43c0-b933-361f7c182b69",
+          "name": "Retrieve attributes for the organization from a single bucket",
+          "request": {
+            "name": "Retrieve attributes for the organization from a single bucket",
+            "description": {
+              "content": "Retrieve attributes for the organization from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. If no attribute names are specified, all attributes in the bucket will be retrieved. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of attribute names"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08635770-cd76-49ac-bdc1-4a3069d3044a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 5249,\n      \"offset\": 9638,\n      \"total_count\": 6671\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2709,\n      \"cursor\": \"string\",\n      \"total_count\": 5159\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 7966,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9770,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": {\n    \"attr1\": \"value1\",\n    \"attr2\": 2,\n    \"attr3\": true,\n    \"attr_4\": [\n      1,\n      2,\n      3,\n      4\n    ],\n    \"attr_5\": {\n      \"nested\": 5\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe4ff6b2-b9fd-49c5-9648-b1f740fbed5d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9879b1c-5daa-43e8-ab39-6b8cf2c308b9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d7487f2-ad22-40ad-8310-7158e2e4dba6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1814ce29-58f8-479c-9761-5c7100a9aeed",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0339a6d3-1056-4aa1-bd82-1a054ee5d3d0",
+          "name": "Delete attributes for the organization from a single bucket",
+          "request": {
+            "name": "Delete attributes for the organization from a single bucket",
+            "description": {
+              "content": "Delete attributes for the organization from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted. If no attribute names are specified, all attributes in the bucket will be deleted.\nWARNING: this action is permanent and cannot be undone.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of attribute names"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f0ba2f2-1a76-45ee-9643-30c3c276110e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9db266ff-8b01-4bb2-8d0b-e83ebbf195e8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a438b32-4fee-4d6b-b632-b72dc0840526",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f2c9bbe-eb02-4782-b6df-23b7eb639b69",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "218e0608-f52c-4f45-9d8e-8c20254de0a0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2823,\n      \"offset\": 9363,\n      \"total_count\": 1023\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4290,\n      \"cursor\": \"string\",\n      \"total_count\": 920\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6886,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5221,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "72c9ae8a-61a4-491d-a556-e411eda9885c",
+    "name": "SlashID Groups Organization Attributes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

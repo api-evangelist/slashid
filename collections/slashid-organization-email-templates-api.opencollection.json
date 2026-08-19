@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Organization Email Templates API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Email Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/templates",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Lists the names of all available templates for communicating with users.\n\nTemplate names can be used to retrieve the template body for your organization."
+        },
+        {
+          "info": {
+            "name": "Get the named template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/templates/:template_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "template_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the template to retrieve or modify"
+              }
+            ]
+          },
+          "docs": "Retrieves the message template named in the path.\n\nIf a custom template was previously created, it will be returned.\nOtherwise the default template is returned\n\nLikewise, any template fields were left empty during creation will be set to their default values."
+        },
+        {
+          "info": {
+            "name": "Modify the named template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/config/templates/:template_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "template_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the template to retrieve or modify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the named message template for your organization. If a template already exists it will be overwritten and cannot\nbe retrieved.\n\nThe following templates are available for customization:\n  - `email_authn_challenge`: E-mail template with magic link;\n  - `text_authn_challenge`: SMS template with magic link;\n  - `text_otp_message`: SMS template with OTP code;\n  - `email_password_reset_challenge`: E-mail template with a password reset link;\n  - `text_password_reset_challenge`: SMS template with a"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

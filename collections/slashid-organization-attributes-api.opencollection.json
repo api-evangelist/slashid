@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Organization Attributes API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve attributes for the organization from multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "buckets",
+                "value": "person_pool-end_user_read_write,person_pool-end_user_no_access",
+                "type": "query",
+                "description": "A comma-separated list of attribute bucket names"
+              }
+            ]
+          },
+          "docs": "Retrieve attributes for the organization from one or more buckets. If no buckets are specified, attributes from all buckets will be retrieved.\nBucket names can be specified as a comma-separated list in the `buckets` query parameter. All buckets specified must exist, and the organization specified in the header must be able to access them. Empty bucket names are not permitted.\n"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set o"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attri"
+        },
+        {
+          "info": {
+            "name": "Retrieve attributes for the organization from a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              },
+              {
+                "name": "attributes",
+                "value": "address_line_1,address_line_2,city,zip_code",
+                "type": "query",
+                "description": "A comma-separated list of attribute names"
+              }
+            ]
+          },
+          "docs": "Retrieve attributes for the organization from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. If no attribute names are specified, all attributes in the bucket will be retrieved. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted.\n"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn't referenced by key in the request is left untouched.\n"
+        },
+        {
+          "info": {
+            "name": "Delete attributes for the organization from a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              },
+              {
+                "name": "attributes",
+                "value": "address_line_1,address_line_2,city,zip_code",
+                "type": "query",
+                "description": "A comma-separated list of attribute names"
+              }
+            ]
+          },
+          "docs": "Delete attributes for the organization from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted. If no attribute names are specified, all attributes in the bucket will be deleted.\nWARNING: this action is permanent and cannot be undone.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

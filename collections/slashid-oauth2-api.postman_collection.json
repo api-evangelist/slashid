@@ -1,0 +1,4182 @@
+{
+  "item": [
+    {
+      "id": "e085a063-0729-4d29-bc70-6cf21a35f13e",
+      "name": "OAuth2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cdd12cd0-7355-4411-adbb-c8cb570b0659",
+          "name": "Create a new OAuth2 client",
+          "request": {
+            "name": "Create a new OAuth2 client",
+            "description": {
+              "content": "Create a new client ID/secret pair that can be used with the client credentials grant type.\nA valid SlashID organization ID and API key must be used to authenticate and authorize the request.\nThe client credentials can be configured.\n\nSlashID currently supports the following OAuth 2.0 grants:\n- client credentials\n- authorization code\n- refresh token\nThe `grant_types` field may contain only the values `client_credentials` and `authorization_code`.\nOther values will return a `400` error code.\n\nThe client credentials grant requires a client secret, and so all clients allowing that grant should be regarded\nas confidential, as defined in the OAuth 2.0 specification (https://oauth.net/2/client-types/).\n\nThe response body will include the client ID and client secret.\nFor the client credentials grant, these can be used with the `/oauth2/tokens` endpoints to obtain an access token.\nFor the authorization code grant, these can be used as described in the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc6749).\nThe client secret must be stored securely, and cannot be retrieved in\nsubsequent API calls. If you lose the client secret, a new secret can be generated using the\n`PUT /oauth2/clients/{oauth_client_id}/secret` endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_name\": \"<string>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"access_token_duration\": \"<integer>\",\n  \"refresh_token_duration\": \"<integer>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"public\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82b8e675-3b2a-4599-8475-a4e4f7711f89",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"My Awesome Application\",\n  \"scopes\": [\n    \"admin\",\n    \"user\"\n  ],\n  \"grant_types\": [\n    \"client_credentials\",\n    \"authorization_code\"\n  ],\n  \"access_token_duration\": 3600,\n  \"refresh_token_duration\": 36000,\n  \"redirect_uris\": [\n    \"https://example.com/redirect\"\n  ],\n  \"public\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"client_id\": \"b9a747fb-150e-44e5-b2d6-afa69e671853\",\n    \"client_name\": \"My Awesome Application\",\n    \"client_secret\": \"LQZzYPf8h/7Tpf9I+lCSulcOYMo=\",\n    \"grant_types\": [\n      \"client_credentials\",\n      \"authorization_code\"\n    ],\n    \"public\": false,\n    \"response_types\": [\n      [\n        \"code\"\n      ],\n      [\n        \"token\"\n      ],\n      [\n        \"code\",\n        \"token\"\n      ]\n    ],\n    \"scopes\": [\n      \"admin\",\n      \"user\"\n    ],\n    \"access_token_duration\": 3600,\n    \"refresh_token_duration\": 36000,\n    \"redirect_uris\": [\n      \"https://example.com/redirect\"\n    ],\n    \"created_at\": \"1979-10-29T11:15:38.155Z\",\n    \"last_used\": \"1949-10-05T09:26:31.205Z\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9759,\n      \"offset\": 7438,\n      \"total_count\": 6205\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4608,\n      \"cursor\": \"string\",\n      \"total_count\": 8826\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1365,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4270,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82f81494-aa1f-43de-bb0d-71370cab76b3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"My Awesome Application\",\n  \"scopes\": [\n    \"admin\",\n    \"user\"\n  ],\n  \"grant_types\": [\n    \"client_credentials\",\n    \"authorization_code\"\n  ],\n  \"access_token_duration\": 3600,\n  \"refresh_token_duration\": 36000,\n  \"redirect_uris\": [\n    \"https://example.com/redirect\"\n  ],\n  \"public\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bc3f825-776d-48ac-8afa-3c1e5345ba06",
+          "name": "Retrieve a list of OAuth2 clients",
+          "request": {
+            "name": "Retrieve a list of OAuth2 clients",
+            "description": {
+              "content": "Retrieve a list of existing OAuth 2.0 clients for your organization.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed2e76cf-9356-4d45-ac0f-97b5d2ebc5c9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"client_id\": \"b9a747fb-150e-44e5-b2d6-afa69e671853\",\n      \"client_name\": \"My Awesome Application\",\n      \"grant_types\": [\n        \"client_credentials\",\n        \"authorization_code\"\n      ],\n      \"response_types\": [\n        [\n          \"token\",\n          \"id_token\"\n        ],\n        [\n          \"code\",\n          \"code\"\n        ]\n      ],\n      \"scopes\": [\n        \"admin\",\n        \"user\"\n      ],\n      \"public\": false,\n      \"access_token_duration\": 3600,\n      \"refresh_token_duration\": 36000,\n      \"redirect_uris\": [\n        \"https://example.com/redirect\"\n      ],\n      \"created_at\": \"1996-10-18T00:37:07.327Z\",\n      \"last_used\": \"2002-08-28T22:39:14.101Z\"\n    },\n    {\n      \"client_id\": \"b9a747fb-150e-44e5-b2d6-afa69e671853\",\n      \"client_name\": \"My Awesome Application\",\n      \"grant_types\": [\n        \"client_credentials\",\n        \"authorization_code\"\n      ],\n      \"response_types\": [\n        [\n          \"token\",\n          \"id_token\"\n        ],\n        [\n          \"id_token\",\n          \"code\"\n        ]\n      ],\n      \"scopes\": [\n        \"admin\",\n        \"user\"\n      ],\n      \"public\": false,\n      \"access_token_duration\": 3600,\n      \"refresh_token_duration\": 36000,\n      \"redirect_uris\": [\n        \"https://example.com/redirect\"\n      ],\n      \"created_at\": \"1970-06-20T16:16:41.256Z\",\n      \"last_used\": \"1961-01-16T00:26:44.990Z\"\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4640,\n      \"offset\": 3401,\n      \"total_count\": 9853\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6545,\n      \"cursor\": \"string\",\n      \"total_count\": 2540\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 570,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4402,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a44c05b4-b1a0-4e10-b900-bbfd1c22502e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "070dcdd6-ecda-44b1-82f0-9c82ed427df6",
+          "name": "Retrieve an OAuth2 client",
+          "request": {
+            "name": "Retrieve an OAuth2 client",
+            "description": {
+              "content": "Get details on the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients",
+                ":oauth_client_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "oauth_client_id",
+                  "description": "(Required) An OAuth client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30b35bf9-2f3d-42d4-86b8-3da1e955c7e0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"client_id\": \"b9a747fb-150e-44e5-b2d6-afa69e671853\",\n    \"client_name\": \"My Awesome Application\",\n    \"grant_types\": [\n      \"client_credentials\",\n      \"authorization_code\"\n    ],\n    \"response_types\": [\n      [\n        \"token\",\n        \"token\"\n      ],\n      [\n        \"token\",\n        \"code\"\n      ]\n    ],\n    \"scopes\": [\n      \"admin\",\n      \"user\"\n    ],\n    \"public\": false,\n    \"access_token_duration\": 3600,\n    \"refresh_token_duration\": 36000,\n    \"redirect_uris\": [\n      \"https://example.com/redirect\"\n    ],\n    \"created_at\": \"2018-04-30T18:15:33.575Z\",\n    \"last_used\": \"2002-09-29T04:43:42.521Z\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3670,\n      \"offset\": 5727,\n      \"total_count\": 7048\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1810,\n      \"cursor\": \"string\",\n      \"total_count\": 884\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8885,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9107,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07ea49d9-f298-44d8-8967-3e2b7286bede",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1c03699-e3c0-4b6b-8234-d8fdb38d5ef3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b782ac95-0f9d-4b8b-b14b-ebc363de1cd7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd720890-b787-4adc-9fd4-29df5beac061",
+          "name": "Delete an existing OAuth2 client",
+          "request": {
+            "name": "Delete an existing OAuth2 client",
+            "description": {
+              "content": "Delete the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients",
+                ":oauth_client_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "oauth_client_id",
+                  "description": "(Required) An OAuth client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "396e94c3-c89f-4549-ba87-96aaf61bb86f",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8c4d8f6-1b38-46e7-8942-78599e8ab849",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c598cbbe-b3ac-4e77-a1ad-297f837a1773",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bc96490-4a98-4d95-8e2b-eb441da4f516",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f832b2a8-2f05-45f4-b2ca-b438bb7050fc",
+          "name": "Modify an existing OAuth2 client",
+          "request": {
+            "name": "Modify an existing OAuth2 client",
+            "description": {
+              "content": "Update the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n\nSlashID currently only supported a subset of OAuth clients, therefore we enforce that grant_types must be [\"client_credentials\"]. Setting this field to any other value will result in an error response with a `400` status code.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients",
+                ":oauth_client_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "oauth_client_id",
+                  "description": "(Required) An OAuth client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_name\": \"<string>\",\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"access_token_duration\": \"<integer>\",\n  \"refresh_token_duration\": \"<integer>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e9f9ae02-ace0-41a8-b927-180e3ebe627d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"My Awesome Application\",\n  \"grant_types\": [\n    \"client_credentials\",\n    \"authorization_code\"\n  ],\n  \"scopes\": [\n    \"admin\",\n    \"user\"\n  ],\n  \"access_token_duration\": 3600,\n  \"refresh_token_duration\": 36000,\n  \"redirect_uris\": [\n    \"https://example.com/redirect\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"client_id\": \"b9a747fb-150e-44e5-b2d6-afa69e671853\",\n    \"client_name\": \"My Awesome Application\",\n    \"grant_types\": [\n      \"client_credentials\",\n      \"authorization_code\"\n    ],\n    \"response_types\": [\n      [\n        \"token\",\n        \"token\"\n      ],\n      [\n        \"token\",\n        \"code\"\n      ]\n    ],\n    \"scopes\": [\n      \"admin\",\n      \"user\"\n    ],\n    \"public\": false,\n    \"access_token_duration\": 3600,\n    \"refresh_token_duration\": 36000,\n    \"redirect_uris\": [\n      \"https://example.com/redirect\"\n    ],\n    \"created_at\": \"2018-04-30T18:15:33.575Z\",\n    \"last_used\": \"2002-09-29T04:43:42.521Z\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3670,\n      \"offset\": 5727,\n      \"total_count\": 7048\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1810,\n      \"cursor\": \"string\",\n      \"total_count\": 884\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8885,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 9107,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ed80ce0-12a2-4eed-ad40-eca236c8dc6f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"My Awesome Application\",\n  \"grant_types\": [\n    \"client_credentials\",\n    \"authorization_code\"\n  ],\n  \"scopes\": [\n    \"admin\",\n    \"user\"\n  ],\n  \"access_token_duration\": 3600,\n  \"refresh_token_duration\": 36000,\n  \"redirect_uris\": [\n    \"https://example.com/redirect\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83f7cab6-6eb9-4441-b85c-06290926a640",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"My Awesome Application\",\n  \"grant_types\": [\n    \"client_credentials\",\n    \"authorization_code\"\n  ],\n  \"scopes\": [\n    \"admin\",\n    \"user\"\n  ],\n  \"access_token_duration\": 3600,\n  \"refresh_token_duration\": 36000,\n  \"redirect_uris\": [\n    \"https://example.com/redirect\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7edde9b-09a9-41d4-99d9-50fce9a1beff",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"My Awesome Application\",\n  \"grant_types\": [\n    \"client_credentials\",\n    \"authorization_code\"\n  ],\n  \"scopes\": [\n    \"admin\",\n    \"user\"\n  ],\n  \"access_token_duration\": 3600,\n  \"refresh_token_duration\": 36000,\n  \"redirect_uris\": [\n    \"https://example.com/redirect\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ecc2fd58-f94e-4a49-b90d-3d1d3545b072",
+          "name": "Generate a new client secret",
+          "request": {
+            "name": "Generate a new client secret",
+            "description": {
+              "content": "A new client secret is created and returned. The previous secret will no longer be valid after this.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients",
+                ":oauth_client_id",
+                "secret"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "oauth_client_id",
+                  "description": "(Required) An OAuth client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d980e81-0c11-4755-a518-a7e0ab0c3026",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"client_secret\": \"LQZzYPf8h/7Tpf9I+lCSulcOYMo=\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9798,\n      \"offset\": 9408,\n      \"total_count\": 9089\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3978,\n      \"cursor\": \"string\",\n      \"total_count\": 8866\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1339,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6881,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b9cd34d-f348-45b7-9d85-bc7a2929dad3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7473c47-82e0-430b-afed-89a6d83e8797",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "351463eb-34ff-4717-9407-0ff125542ef8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "secret"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5255b73c-6755-4e5e-882b-6f7c5a28d2a3",
+          "name": "Retrieve the configuration for the hosted UI",
+          "request": {
+            "name": "Retrieve the configuration for the hosted UI",
+            "description": {
+              "content": "The configuration is used to theme the hosted UI.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients",
+                ":oauth_client_id",
+                "ui-configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "oauth_client_id",
+                  "description": "(Required) An OAuth client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22e1feed-bdbc-41d8-bb8f-98595b9393ba",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "ui-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"dynamicFlowConfig\": {\n      \"key_0\": true\n    },\n    \"dynamicFlowEnabled\": true,\n    \"handleTypes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"logoUrl\": \"string\",\n    \"pageBackgroundColor\": \"string\",\n    \"showBadge\": false,\n    \"storeLastFactor\": false,\n    \"supportURL\": \"string\",\n    \"alternativeAuthURL\": \"string\",\n    \"faviconUrl\": \"string\",\n    \"pageTitle\": \"string\",\n    \"themeVars\": {\n      \"key_0\": \"string\"\n    },\n    \"textOverrides\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4156,\n      \"offset\": 3451,\n      \"total_count\": 8836\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2553,\n      \"cursor\": \"string\",\n      \"total_count\": 6596\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 7609,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2307,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9d4320f-2ead-4a6a-a38a-f8ae8b41ec27",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "ui-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee3fe5a0-f395-4be7-b089-bc9a2ea5861b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "ui-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "677671c7-ed06-4d35-aed1-76e497132c51",
+          "name": "Modify the configuration for the hosted UI",
+          "request": {
+            "name": "Modify the configuration for the hosted UI",
+            "description": {
+              "content": "The configuration is used to theme the hosted UI.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "clients",
+                ":oauth_client_id",
+                "ui-configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "oauth_client_id",
+                  "description": "(Required) An OAuth client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency",
+                "value": "local_region"
+              },
+              {
+                "disabled": false,
+                "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                "key": "SlashID-Required-Consistency-Timeout",
+                "value": "30"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dynamicFlowConfig\": {\n    \"key_0\": 9951.566621628874\n  },\n  \"dynamicFlowEnabled\": \"<boolean>\",\n  \"handleTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"logoUrl\": \"<string>\",\n  \"pageBackgroundColor\": \"<string>\",\n  \"showBadge\": \"<boolean>\",\n  \"storeLastFactor\": \"<boolean>\",\n  \"supportURL\": \"<string>\",\n  \"alternativeAuthURL\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"pageTitle\": \"<string>\",\n  \"themeVars\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"textOverrides\": {\n    \"key_0\": \"<string>\"\n  },\n  \"key_0\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "625c2f97-8956-4334-8610-c5ebd9d958fc",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "ui-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicFlowConfig\": {\n    \"key_0\": 9992\n  },\n  \"dynamicFlowEnabled\": \"<boolean>\",\n  \"handleTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"logoUrl\": \"<string>\",\n  \"pageBackgroundColor\": \"<string>\",\n  \"showBadge\": \"<boolean>\",\n  \"storeLastFactor\": \"<boolean>\",\n  \"supportURL\": \"<string>\",\n  \"alternativeAuthURL\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"pageTitle\": \"<string>\",\n  \"themeVars\": {\n    \"key_0\": \"<string>\"\n  },\n  \"textOverrides\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"dynamicFlowConfig\": {\n      \"key_0\": 5207\n    },\n    \"dynamicFlowEnabled\": \"<boolean>\",\n    \"handleTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"logoUrl\": \"<string>\",\n    \"pageBackgroundColor\": \"<string>\",\n    \"showBadge\": \"<boolean>\",\n    \"storeLastFactor\": \"<boolean>\",\n    \"supportURL\": \"<string>\",\n    \"alternativeAuthURL\": \"<string>\",\n    \"faviconUrl\": \"<string>\",\n    \"pageTitle\": \"<string>\",\n    \"themeVars\": {\n      \"key_0\": \"<string>\"\n    },\n    \"textOverrides\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"key_0\": 8044.110517715039,\n    \"key_1\": \"string\",\n    \"key_2\": 5672\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 7793,\n      \"offset\": 1038,\n      \"total_count\": 978\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5524,\n      \"cursor\": \"string\",\n      \"total_count\": 4299\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 9057,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7084,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "945c5627-69e0-407e-85c6-be74673ef3bc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "ui-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicFlowConfig\": {\n    \"key_0\": 9992\n  },\n  \"dynamicFlowEnabled\": \"<boolean>\",\n  \"handleTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"logoUrl\": \"<string>\",\n  \"pageBackgroundColor\": \"<string>\",\n  \"showBadge\": \"<boolean>\",\n  \"storeLastFactor\": \"<boolean>\",\n  \"supportURL\": \"<string>\",\n  \"alternativeAuthURL\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"pageTitle\": \"<string>\",\n  \"themeVars\": {\n    \"key_0\": \"<string>\"\n  },\n  \"textOverrides\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23216204-b553-4b78-bf2f-2989b31cf192",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "clients",
+                    ":oauth_client_id",
+                    "ui-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "oauth_client_id",
+                      "description": "(Required) An OAuth client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The consistency level required for this request. If the consistency level is not achieved within the timeout, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nAllowed values: * `local_region`: Wait while the request executes in the local region. * `all_regions`: Wait while the request executes across all regions.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency",
+                    "value": "local_region"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.\n408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.\nYou can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.\n",
+                    "key": "SlashID-Required-Consistency-Timeout",
+                    "value": "30"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dynamicFlowConfig\": {\n    \"key_0\": 9992\n  },\n  \"dynamicFlowEnabled\": \"<boolean>\",\n  \"handleTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"logoUrl\": \"<string>\",\n  \"pageBackgroundColor\": \"<string>\",\n  \"showBadge\": \"<boolean>\",\n  \"storeLastFactor\": \"<boolean>\",\n  \"supportURL\": \"<string>\",\n  \"alternativeAuthURL\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"pageTitle\": \"<string>\",\n  \"themeVars\": {\n    \"key_0\": \"<string>\"\n  },\n  \"textOverrides\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f9e3d1f-dc67-4618-94c2-f9e0b3851083",
+          "name": "Request an authorization code",
+          "request": {
+            "name": "Request an authorization code",
+            "description": {
+              "content": "Used to initiate an authorization code flow.\n\nSlashID is an OAuth 2.0 and OpenID Connect 1.0 provider.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "code_challenge",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "code_challenge_method",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "response_mode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nonce",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "display",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_age",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ui_locales",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "login_hint",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "acr_values",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "handle_types",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9139ee8-0dd0-4ae9-b528-a0fa3039a6b4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_age",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ui_locales",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acr_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "handle_types",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47aebcfd-b323-4e32-b3cd-240d53391aff",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_age",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ui_locales",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acr_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "handle_types",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8af1094d-015f-4639-b0d3-25e272fbcd47",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_age",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ui_locales",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acr_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "handle_types",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "262542da-0fe9-4675-bd8c-42d3482cdc06",
+          "name": "Obtain an access token",
+          "request": {
+            "name": "Obtain an access token",
+            "description": {
+              "content": "Obtain a new OAuth 2.0 access token using an OAuth 2.0 client ID/secret pair.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "193acd25-ec05-4187-a516-44170aa7ea4a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "admin user"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"bearer\",\n  \"expires_in\": 4550,\n  \"scope\": \"admin user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91c2678c-a661-4c5f-a1ad-5b33b41d8667",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "admin user"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78efc205-3b56-486c-9a17-b3d52fcfc8bd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "admin user"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9663b96f-21df-4c1a-96c2-eb29fb09308d",
+          "name": "Revoke a token",
+          "request": {
+            "name": "Revoke a token",
+            "description": {
+              "content": "Revoke an OAuth 2.0 token using an OAuth 2.0 client ID/secret pair.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "tokens",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "token_type_hint",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4f1ef3b1-09b9-4a89-ac55-3c8ce254845f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "token_type_hint",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ded32314-3221-48b8-b803-dd1a812c43c8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "token_type_hint",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75907bab-59a7-40de-936f-5e9fa87373c2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "token_type_hint",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "383639bd-8773-47b1-9f25-0ca31afbb981",
+          "name": "Revoke tokens",
+          "request": {
+            "name": "Revoke tokens",
+            "description": {
+              "content": "Revoke OAuth 2.0 tokens using an OAuth 2.0 client ID/secret pair.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "tokens",
+                "revoke-all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "person_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "until",
+                  "value": "<dateTime>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8ee74195-d132-49d1-bce6-c065455c7135",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "revoke-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "person_id",
+                      "value": "064b7b63-ea43-76e5-b208-1900795bc5b7"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "until",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d873dd7d-d500-40e8-bed5-a76bde24e7cd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "revoke-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "person_id",
+                      "value": "064b7b63-ea43-76e5-b208-1900795bc5b7"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "until",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90765bfc-0d00-4000-8682-e9de351f53da",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "revoke-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "person_id",
+                      "value": "064b7b63-ea43-76e5-b208-1900795bc5b7"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "until",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e35a152-186d-406a-91b6-821396d8ed5c",
+          "name": "Introspect an access token",
+          "request": {
+            "name": "Introspect an access token",
+            "description": {
+              "content": "Introspect an OAuth 2.0 access or refresh token using an OAuth 2.0 client ID/secret pair. Note: there is a know issue for this endpoint, whereby the expiry for refresh tokens in the response is incorrect. However, expired refresh tokens will still return a response with `active: false`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "tokens",
+                "introspect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "token_type_hint",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5c687481-1d3d-4668-ae67-75f6070a1ef0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "introspect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "token_type_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "admin user"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"active\": true,\n  \"client_id\": \"string\",\n  \"exp\": 6756,\n  \"iat\": 7697,\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2c0b264-e01c-45c8-92b4-622b3cd12b38",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "introspect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "token_type_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "admin user"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c9fb538-5b81-41b6-a375-01c357f207f9",
+          "name": "Mint OAuth 2.0 & OIDC tokens",
+          "request": {
+            "name": "Mint OAuth 2.0 & OIDC tokens",
+            "description": {
+              "content": "This endpoint creates a set of OAuth 2.0 tokens for a specific user.\n\nTo generate a refresh token request scope `offline_access`.\nTo generate an ID token request scope `openid`.\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - jti\n  - iat\n  - iss\n  - nbf\n  - sub\n  - prev_token_id\n  - oid\n  - org_id\n  - user_id\n  - person_id\n  - first_token\n  - authenticated_methods\n  - oidc_tokens\n  - user_token\n  - groups\n  - roles\n  - access_token\n  - refresh_token\n  - id\n  - id_token\n  - gdpr\n  - gdpr_consent\n  - gdpr_consent_level\n  - parent_user_id\n  - parent_person_id\n  - parent_org_id\n  - parent_oid\n  - attributes\n  - custom_claims\n  - slashid\n  - slashid.dev\n  - slashid.com\n  - slashid.me\n  - sid\n\n\nWith the following request body:\n\n```\n{\n    \"custom_claims\": {\n        \"foo\": \"bar\",\n        \"baz\": {\"everything\": 42}\n    }\n}\n```\n\n\nthe token in the response will have the following payload:\n\n```\n{\n  \"authenticated_methods\": [\n    \"api\"\n  ],\n  \"baz\": {\n    \"everything\": 42\n  },\n  \"exp\": <expiration time timestamp>,\n  \"first_token\": false,\n  \"foo\": \"bar\",\n  \"iat\": <issued at timestamp>,\n  \"iss\": <token issuer>,\n  \"jti\": <token ID>,\n  \"oid\": <organisation ID>,\n  \"person_id\": <person ID>\n}\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "tokens",
+                "mint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "SlashID-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person_id\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_claims\": {\n    \"key_0\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb299201-9cb3-4eb9-bef1-7390f27a7638",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "mint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n  \"client_id\": \"b9a747fb-150e-44e5-b2d6-afa69e671853\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_claims\": {\n    \"key_0\": 6813.334001613185,\n    \"key_1\": 4535.191451943538\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"access_token\": \"string\",\n    \"id_token\": \"string\",\n    \"refresh_token\": \"string\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8077,\n      \"offset\": 6110,\n      \"total_count\": 3191\n    },\n    \"cursor_pagination\": {\n      \"limit\": 4316,\n      \"cursor\": \"string\",\n      \"total_count\": 6287\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 9542,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7097,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96b3c343-6ed4-4fdb-b67e-5b610d98927b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "tokens",
+                    "mint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n  \"client_id\": \"b9a747fb-150e-44e5-b2d6-afa69e671853\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_claims\": {\n    \"key_0\": 6813.334001613185,\n    \"key_1\": 4535.191451943538\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cb353a9-c0b2-4511-9ca9-74a1039b1bcd",
+          "name": "Retrieve a person's profile",
+          "request": {
+            "name": "Retrieve a person's profile",
+            "description": {
+              "content": "Given the SlashID Access Token obtained during signin, this endpoint returns a person's profile.\n\nThis endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "userinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3122d994-a970-40f4-a7be-4ba1dc2c4255",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sub\": \"string\",\n  \"iss\": \"string\",\n  \"aud\": \"string\",\n  \"org_id\": \"string\",\n  \"email\": \"string\",\n  \"email_verified\": true,\n  \"phone_number\": \"string\",\n  \"phone_number_verified\": false,\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ee05a7f-7303-4f7f-9a70-cd6f216ba18f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26ac8c21-3391-4528-81f5-f08fdc88b0d8",
+          "name": "Retrieve a person's profile",
+          "request": {
+            "name": "Retrieve a person's profile",
+            "description": {
+              "content": "Given the SlashID Access Token obtained during signin, this endpoint returns a person's profile.\n\nThis endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "userinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "582529f8-59b8-4cea-ac0d-a49df3e12e37",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sub\": \"string\",\n  \"iss\": \"string\",\n  \"aud\": \"string\",\n  \"org_id\": \"string\",\n  \"email\": \"string\",\n  \"email_verified\": true,\n  \"phone_number\": \"string\",\n  \"phone_number_verified\": false,\n  \"username\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb10516d-a147-4883-bb5b-107afff14174",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 353,\n      \"offset\": 9961,\n      \"total_count\": 8727\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1699,\n      \"cursor\": \"string\",\n      \"total_count\": 4006\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 5099,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6384,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1e565e98-5677-4307-a5fa-c4748049cee0",
+    "name": "SlashID Groups OAuth2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

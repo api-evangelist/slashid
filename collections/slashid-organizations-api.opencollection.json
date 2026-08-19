@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Organizations API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a person from an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Remove the person, specified by its ID, from the organization.\n\nNote that access to all the attributes associated with this person will be permanently revoked."
+        },
+        {
+          "info": {
+            "name": "Retrieve the list of person's organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/organizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              }
+            ]
+          },
+          "docs": "Retrieve details of all the organizations a person belongs to, including:\n - The organization of the request: the person must be a member of the organization you authenticate\n   with for you to be allowed to retrieve this list\n - Any sub- and super-organizations that share the person pool with the organization of the request:\n   A hierarchy of organizations can be created using [this API endpoint](/docs/api/post-organizations-suborganizations).\n   When organizations are configured to share a per"
+        },
+        {
+          "info": {
+            "name": "Retrieve information about an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieve information about which other organizations the given shares persons and groups with.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "delete_suborganizations",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "confirmation_timestamp",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete a non-root, leaf organization, including all its persons memberships and their groups memberships and attributes.\n"
+        },
+        {
+          "info": {
+            "name": "List suborganizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/suborganizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all descendant organizations.\n"
+        },
+        {
+          "info": {
+            "name": "Create a suborganization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/suborganizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new organization subordinate to your organization.\n"
+        },
+        {
+          "info": {
+            "name": "Generate a new API key for the specified organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/api-keys",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "A new API key is created and returned. The previous API key will no longer be valid after this."
+        },
+        {
+          "info": {
+            "name": "Get organization config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Get the current configuration for your organization"
+        },
+        {
+          "info": {
+            "name": "Update organization config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/config",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify the configuration for your organization.\n\nThe token duration determines the number of seconds a token issued by SlashID will be valid for. If not set, or set to 0, the default duration of 24 hours will be used for all tokens.\n\nThe groups claim name determines the name of the claim in the token payload where a user's groups are found. If not set, or set to the empty string, the default claim name `groups` will be used for all tokens.\n"
+        },
+        {
+          "info": {
+            "name": "Get current pricing tier details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/quota/current-tier",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "This returns the quotas associated with your organization's current pricing tier."
+        },
+        {
+          "info": {
+            "name": "Get details on all pricing tiers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/quota/all-tiers"
+          },
+          "docs": "This returns the quotas for each available pricing tier."
+        },
+        {
+          "info": {
+            "name": "Get resource usage for the organization hierarchy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/quota/usage",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "This returns the resources used by your organization and its suborganizations. This can be used to evaluate the need for a tier upgrade."
+        },
+        {
+          "info": {
+            "name": "List organization's attribute buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/attribute-buckets",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Get a list of available attribute buckets for your organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

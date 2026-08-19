@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Tokens API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a user token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/token/validate",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint validates a SlashID user token.\nThe response indicates whether the token is valid and its expiration time if so. If the token is not valid, the reason is returned.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke a user token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/token/revoke",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint revokes a SlashID user token.\n"
+        },
+        {
+          "info": {
+            "name": "Mint a token for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/mint-token",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a token for a specific user.\n\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - jti\n  - iat\n  - iss\n  - nbf\n  - sub\n  - prev_token_id\n  - oid\n  - org_id\n  - user_id\n  - person_id\n  - first_token\n  - authenti"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

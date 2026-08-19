@@ -1,0 +1,316 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Organization SSO config API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization SSO config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List SAML credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Returns a list of existing SAML provider credentials for SSO for your organization.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new set of SAML provider credentials for your organization to use with SSO.\n"
+        },
+        {
+          "info": {
+            "name": "Get an existing set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials/:saml_provider_credentials_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "saml_provider_credentials_id",
+                "value": "",
+                "type": "path",
+                "description": "The SAML provider credentials ID"
+              }
+            ]
+          },
+          "docs": "Returns an existing set of SAML provider for SSO, specified by the provider credential ID.\n"
+        },
+        {
+          "info": {
+            "name": "Modify an existing set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials/:saml_provider_credentials_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "saml_provider_credentials_id",
+                "value": "",
+                "type": "path",
+                "description": "The SAML provider credentials ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an existing set of SAML provider credentials for SSO, specified by the provider credential ID."
+        },
+        {
+          "info": {
+            "name": "Delete an existing set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials/:saml_provider_credentials_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "saml_provider_credentials_id",
+                "value": "",
+                "type": "path",
+                "description": "The SAML provider credentials ID"
+              }
+            ]
+          },
+          "docs": "Deletes an existing set of SAML provider credentials for SSO, specified by the provider credential ID.\n"
+        },
+        {
+          "info": {
+            "name": "List OIDC credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_provider",
+                "value": "",
+                "type": "query",
+                "description": "The name of the OAuth provider"
+              }
+            ]
+          },
+          "docs": "Returns a list of existing OIDC provider credentials for SSO for your organization. Optionally, a provider can be specified to return only credentials for that provider.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new set of OIDC provider credentials for your organization to use with SSO. Includes a client ID, client secret, and the name of the provider. The client ID and client secret should be generated separately using the third-party identity provider you wish to integrate with (such as Google). Not all identity providers are currently supported.\n"
+        },
+        {
+          "info": {
+            "name": "Get an existing set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Returns an existing set of OIDC provider for SSO, specified by the client ID.\n"
+        },
+        {
+          "info": {
+            "name": "Modify an existing set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies the client secret and/or label of an existing set of OIDC provider credentials for SSO, specified by the client ID."
+        },
+        {
+          "info": {
+            "name": "Delete an existing set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Deletes an existing set of OIDC provider credentials for SSO, specified by the client ID.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

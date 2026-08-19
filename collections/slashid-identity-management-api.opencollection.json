@@ -1,0 +1,3807 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Identity Management API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a user token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/token/validate",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint validates a SlashID user token.\nThe response indicates whether the token is valid and its expiration time if so. If the token is not valid, the reason is returned.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke a user token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/token/revoke",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint revokes a SlashID user token.\n"
+        },
+        {
+          "info": {
+            "name": "List SAML credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Returns a list of existing SAML provider credentials for SSO for your organization.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new set of SAML provider credentials for your organization to use with SSO.\n"
+        },
+        {
+          "info": {
+            "name": "Get an existing set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials/:saml_provider_credentials_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "saml_provider_credentials_id",
+                "value": "",
+                "type": "path",
+                "description": "The SAML provider credentials ID"
+              }
+            ]
+          },
+          "docs": "Returns an existing set of SAML provider for SSO, specified by the provider credential ID.\n"
+        },
+        {
+          "info": {
+            "name": "Modify an existing set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials/:saml_provider_credentials_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "saml_provider_credentials_id",
+                "value": "",
+                "type": "path",
+                "description": "The SAML provider credentials ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an existing set of SAML provider credentials for SSO, specified by the provider credential ID."
+        },
+        {
+          "info": {
+            "name": "Delete an existing set of SAML provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/sso/saml/provider-credentials/:saml_provider_credentials_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "saml_provider_credentials_id",
+                "value": "",
+                "type": "path",
+                "description": "The SAML provider credentials ID"
+              }
+            ]
+          },
+          "docs": "Deletes an existing set of SAML provider credentials for SSO, specified by the provider credential ID.\n"
+        },
+        {
+          "info": {
+            "name": "(Deprecated) Revoke an OAuth token obtained through SSO with OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/sso/oidc/tokens/revoke",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a previously obtained OAuth access or refresh token for an IdP.\nThis endpoint is deprecated. Please use /sso/oidc/tokens/revoke/v2 instead.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke an OAuth token obtained through SSO with OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/sso/oidc/tokens/revoke/v2",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a previously obtained OAuth access or refresh token for an IdP"
+        },
+        {
+          "info": {
+            "name": "Retrieve OIDC tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/sso/oidc/tokens",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Token",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve tokens issued by an OIDC provider as part of an SSO authentication.\nThis endpoint expects a valid SlashID token container issued after an SSO authentication.\nThe response will include all of the OIDC tokens that were issued by that SSO authentication.\n"
+        },
+        {
+          "info": {
+            "name": "Query tokens obtained through SSO with OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/sso/oidc/tokens/query",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query the OIDC tokens for a person issued during SSO authentications."
+        },
+        {
+          "info": {
+            "name": "Get Direct-ID value for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/direct-id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a one-time Direct-ID for a specific user. The returned Direct-ID string can embedded in a URL in the `challenges` query parameter to let your users land on a target page already authenticated.\n"
+        },
+        {
+          "info": {
+            "name": "Mint a token for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/mint-token",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a token for a specific user.\n\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - jti\n  - iat\n  - iss\n  - nbf\n  - sub\n  - prev_token_id\n  - oid\n  - org_id\n  - user_id\n  - person_id\n  - first_token\n  - authenti"
+        },
+        {
+          "info": {
+            "name": "Retrieve a person's credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieves credentials linked to the specified person in your organization.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new credential linked to the specified person in your organization. This credential will then be available for use in future authentication challenges.\n"
+        },
+        {
+          "info": {
+            "name": "Delete all credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id/credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Deletes all credentials from a person. Note that deletion is irreversible and the credentials will no longer be usable for authentication.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a credential object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id/credentials/:credential_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "credential_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person's credential ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified credential from a person,organization pair. Note that deletion is irreversible and the credential will no longer be usable for authentication.\n"
+        },
+        {
+          "info": {
+            "name": "Create or overwrite a password credential.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/credentials/password",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or overwrites the password credential linked to the specified person in your organization. This credential will then be available for use in future authentication challenges.\n"
+        },
+        {
+          "info": {
+            "name": "Trigger a password reset flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/credentials/password-reset",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers a password reset flow for the specified person and credential. The specified person must then take action to complete the flow and set a new password. Optionally, you can specify which of the person's handles will be used to send the password reset link.\n"
+        },
+        {
+          "info": {
+            "name": "Rotate a person's password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/credentials/password-rotate",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Rotates a person's password. The specified person does not need to have an existing password credential. A new password credential will be created regardless and returned in the response.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve attributes for a person from multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "buckets",
+                "value": "person_pool-end_user_read_write,person_pool-end_user_no_access",
+                "type": "query",
+                "description": "A comma-separated list of attribute bucket names"
+              }
+            ]
+          },
+          "docs": "Retrieve attributes for a person from one or more buckets. If no buckets are specified, attributes from all buckets will be retrieved.\nBucket names can be specified as a comma-separated list in the `buckets` query parameter. All buckets specified must exist, and the organization specified in the header must be able to access them. Empty bucket names are not permitted.\n"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for a person in multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for a person in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existi"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for a person in multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/persons/:person_id/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for a person in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute tha"
+        },
+        {
+          "info": {
+            "name": "Retrieve attributes for a person from a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              },
+              {
+                "name": "attributes",
+                "value": "address_line_1,address_line_2,city,zip_code",
+                "type": "query",
+                "description": "A comma-separated list of attribute names"
+              }
+            ]
+          },
+          "docs": "Retrieve attributes for a person from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. If no attribute names are specified, all attributes in the bucket will be retrieved. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted.\n"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for a person in a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for a person in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any existin"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for a person in a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/persons/:person_id/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for a person in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn't referenced by key in the request is left untouched.\n"
+        },
+        {
+          "info": {
+            "name": "Delete attributes for a person from a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              },
+              {
+                "name": "attributes",
+                "value": "address_line_1,address_line_2,city,zip_code",
+                "type": "query",
+                "description": "A comma-separated list of attribute names"
+              }
+            ]
+          },
+          "docs": "Delete attributes for a person from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted. If no attribute names are specified, all attributes in the bucket will be deleted.\nWARNING: this action is permanent and cannot be undone.\n"
+        },
+        {
+          "info": {
+            "name": "Get GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Takes an organization ID and a person ID and returns the GDPR consent levels and timestamp for that person, if it exists.\n"
+        },
+        {
+          "info": {
+            "name": "Store GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Set GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Takes the organization ID, the person ID, and GDPR consent levels, and stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Remove GDPR consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "consent_levels",
+                "value": "",
+                "type": "query",
+                "description": "The names of the consent levels to remove from the person"
+              },
+              {
+                "name": "deleteAll",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all GDPR consents for this person"
+              }
+            ]
+          },
+          "docs": "The function takes the organization ID and person ID and removes the specified GDPR consent, or all consents."
+        },
+        {
+          "info": {
+            "name": "Get GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ]
+          },
+          "docs": "Returns the GDPR consent levels and timestamp for current person, if it exists.\n"
+        },
+        {
+          "info": {
+            "name": "Store GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Set GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stores the GDPR consent levels and timestamp. Returns the consent levels and the timestamp at which the consent information was received. This will overwrite existing GDPR consent levels for the specified person.\nThe consent levels indicate the types of data classes the person has allowed during their use of your services, in accordance with GDPR.\n"
+        },
+        {
+          "info": {
+            "name": "Remove GDPR consent of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/consent/gdpr",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "params": [
+              {
+                "name": "consent_levels",
+                "value": "",
+                "type": "query",
+                "description": "The names of the consent levels to remove from the person"
+              },
+              {
+                "name": "deleteAll",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all GDPR consents for this person"
+              }
+            ]
+          },
+          "docs": "Removes the specified GDPR consent, or all consents."
+        },
+        {
+          "info": {
+            "name": "Retrieve a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Optional fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Get a person object by its ID. The function returns the decrypted, abridged person record.\n\nPlease use the Attributes API to retrieve custom person attributes."
+        },
+        {
+          "info": {
+            "name": "Modify an existing person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify configuration for an existing specific person associated with your organization. This includes the list of roles for the person and whether the person is active or not.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a person from an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Remove the person, specified by its ID, from the organization.\n\nNote that access to all the attributes associated with this person will be permanently revoked."
+        },
+        {
+          "info": {
+            "name": "Get handles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/handles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of handles associated with an existing person"
+        },
+        {
+          "info": {
+            "name": "Add handles to a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/handles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add one or more handles to an existing person linked to your organization."
+        },
+        {
+          "info": {
+            "name": "Delete a handle from a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id/handles/:handle",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "handle",
+                "value": "",
+                "type": "path",
+                "description": "Handle in format [handle_type]:[handle]. Supported handle types are 'email_address', 'phone_number', and 'username'. This field should be URL-encoded.\n"
+              }
+            ]
+          },
+          "docs": "Remove a handle associated with an existing person"
+        },
+        {
+          "info": {
+            "name": "Get groups for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/groups",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of groups the specified person belongs to"
+        },
+        {
+          "info": {
+            "name": "Set the groups for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/groups",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add the person to the groups specified in the request body, and remove the person from any other existing groups.\nAll groups in the request body must already exist. Duplicate groups in the request body will be ignored. If an empty list is supplied in the request body, the person will be removed from all groups they are currently a member of, and will not be added to any others.\nNew groups can be created with the [POST /groups](/docs/api/post-groups) endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Get permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of permissions granted to the specified person. It contains both assigned permissions and permissions from roles."
+        },
+        {
+          "info": {
+            "name": "Get additional permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/additional-permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of additional permissions assigned to person. This endpoint doesn't return permissions from roles."
+        },
+        {
+          "info": {
+            "name": "Set the permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/additional-permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant the person the permissions specified in the request body, and revoke the person any other existing permissions.\nAll permissions in the request body must already exist. Duplicate permissions in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all permissions they currently have.\n"
+        },
+        {
+          "info": {
+            "name": "Get roles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of roles granted to the specified person"
+        },
+        {
+          "info": {
+            "name": "Set the roles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant the person the roles specified in the request body, and revoke the person any other existing roles.\nAll roles in the request body must already exist. Duplicate roles in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all roles they currently have.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve the list of person's organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/organizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              }
+            ]
+          },
+          "docs": "Retrieve details of all the organizations a person belongs to, including:\n - The organization of the request: the person must be a member of the organization you authenticate\n   with for you to be allowed to retrieve this list\n - Any sub- and super-organizations that share the person pool with the organization of the request:\n   A hierarchy of organizations can be created using [this API endpoint](/docs/api/post-organizations-suborganizations).\n   When organizations are configured to share a per"
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by handle in format [handle_type]:[handle]. This field should be url-encoded."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return in the result. Maximum value is 1000."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of the first item to be returned in the result"
+              },
+              {
+                "name": "ids",
+                "value": "064d3697-4bf6-781e-9a08-303683b8a5e6,064d3f71-475e-7ea4-9808-6b72d038a43f",
+                "type": "query",
+                "description": "A comma-separated list of person IDs"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Optional fields to include in the response"
+              },
+              {
+                "name": "all_regions",
+                "value": "",
+                "type": "query",
+                "description": "If true, users from all regions will be returned. Defaults to true."
+              },
+              {
+                "name": "all_person_types",
+                "value": "",
+                "type": "query",
+                "description": "If true, also returns non-regular users. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Retrieve the full list of persons in your organization."
+        },
+        {
+          "info": {
+            "name": "Create new person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new person linked to your organization.\nThe request must contain at least one handle for the person (email address, phone number, or username). Optionally, you can specify a list of roles, a geographical region and attributes. Attributes are a map from attribute bucket names to key-value pairs.\nIf a person with the specified handles already exists, an error will be returned.\nIf the region is not specified, the person will be created in the region closest to the region of your backend.\nI"
+        },
+        {
+          "info": {
+            "name": "Create or update a person (idempotent)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint works as the [`POST /persons`](/docs/api/post-persons) endpoint, except that it is idempotent. If the person already exists, it will be updated with the new data and 200 status code will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Fetch the import CSV template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/bulk-import",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Fetch the import CSV template"
+        },
+        {
+          "info": {
+            "name": "Bulk import persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/bulk-import",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Bulk import persons into your organization by uploading a CSV file.\n\nThe import will take the following CSV column headers into consideration:\n\n\"slashid:emails\",\"slashid:phone_numbers\",\"slashid:usernames\",\"slashid:region\",\"slashid:groups\",\"slashid:attributes\"\n\nEach row in the CSV must contain at least one handle for the person\n(email address, phone number, or a username). Optionally, you can\nspecify a list of roles, a geographical region and attributes.\nAttributes are a JSON-encoded map from att"
+        },
+        {
+          "info": {
+            "name": "Get a list of groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/groups",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "List the names of all groups that exist for your organization"
+        },
+        {
+          "info": {
+            "name": "Create a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/groups",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new persons group with the given name.\n\nIf the group exists already, no action will be taken.\n\nThe group name must be unique within your organization; is case-sensitive; and must conform to the following:\n  - must be at least 2 characters long\n  - may be at most 100 characters long\n  - may contain only the characters `A-Z a-z 0-9 - _ .`\n  - must start and end with an alphanumeric character (`A-Z a-z 0-9`)\n\nA person can be added to a group through the [`POST /persons/:pers"
+        },
+        {
+          "info": {
+            "name": "Get a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/groups/:group_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              }
+            ]
+          },
+          "docs": "Get the named group"
+        },
+        {
+          "info": {
+            "name": "Delete a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/groups/:group_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              }
+            ]
+          },
+          "docs": "Remove all persons from a group and permanently delete the group."
+        },
+        {
+          "info": {
+            "name": "List the persons in a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/groups/:group_name/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              }
+            ]
+          },
+          "docs": "Lists all the persons in the named group. Returns an array of person IDs."
+        },
+        {
+          "info": {
+            "name": "Add persons to a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/groups/:group_name/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds one or more persons to an existing group. The group and all of the persons must exist. The persons to be added to the group must always be an array in the request body, even if only one user is being added. All persons needs to be in the same region.\nA new group can be created with the [POST /groups](/docs/api/post-groups) endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a person from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/groups/:group_name/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              },
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Removes the identified person from the named group. Returns an error if the person is not in the group.\n"
+        },
+        {
+          "info": {
+            "name": "Get a list of permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "List the names of all permissions that exist for your organization"
+        },
+        {
+          "info": {
+            "name": "Create a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/rbac/permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new permission with the given name.\n\nIf the permission exists already, no action will be taken.\nA person can be assigned a permission through the [`POST /persons/:person_id/permissions`](/docs/api/put-persons-person-id-permissions) endpoint.\nSub-organization can create permissions only when [`inherit_rbac_pools` is disabled](/docs/api/post-organizations-suborganizations). If `inherit_rbac_pools` is enabled, the permissions from the root organization will be inherited.\n"
+        },
+        {
+          "info": {
+            "name": "Get a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/permissions/:permission_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "permission_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a permission. Permission name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Fperm_name`)."
+              }
+            ]
+          },
+          "docs": "Get the named permission"
+        },
+        {
+          "info": {
+            "name": "Update a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/rbac/permissions/:permission_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "permission_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a permission. Permission name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Fperm_name`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a permission"
+        },
+        {
+          "info": {
+            "name": "Delete a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/rbac/permissions/:permission_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "permission_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a permission. Permission name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Fperm_name`)."
+              }
+            ]
+          },
+          "docs": "Remove a permission and revoke it for all users. A permission cannot be deleted as long as it's included in a role. Sub-organization can delete roles only when [`inherit_rbac_pools` is disabled](/docs/api/post-organizations-suborganizations).\n"
+        },
+        {
+          "info": {
+            "name": "Get a list of roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "List the names of all roles that exist for your organization"
+        },
+        {
+          "info": {
+            "name": "Create a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/rbac/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new role with the given name.\n\nIf the Role exists already, no action will be taken.\n"
+        },
+        {
+          "info": {
+            "name": "Get a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/roles/:role_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "role_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a role. Role name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Frole_name`)."
+              }
+            ]
+          },
+          "docs": "Get the named role"
+        },
+        {
+          "info": {
+            "name": "Update a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/rbac/roles/:role_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "role_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a role. Role name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Frole_name`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing role."
+        },
+        {
+          "info": {
+            "name": "Delete a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/rbac/roles/:role_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "role_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a role. Role name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Frole_name`)."
+              }
+            ]
+          },
+          "docs": "Remove a role and revoke it for all users."
+        },
+        {
+          "info": {
+            "name": "Check whether a person has a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/rbac/check",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check whether the given person has the given permission. The service automatically takes into account permissions included in granted roles as well as permissions granted individually."
+        },
+        {
+          "info": {
+            "name": "List available external credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/external-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Lists the all available external credentials for third party services. The call doesn't return any key material, credential IDs can be used to retrieve the credential.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new set of external credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/config/external-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new set of credentials for your organization to use with third party services. Includes a provider name and a content whose body is a key value pair of the data needed to authenticate with the third party service - currently only API Key, API ID/API Key, Client Credentials, Access Token and username/password combinations are supported.\n"
+        },
+        {
+          "info": {
+            "name": "Remove an external credential by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/config/external-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "credentialId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the credential to delete"
+              },
+              {
+                "name": "deleteAll",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all credentials"
+              }
+            ]
+          },
+          "docs": "Remove the specified external credential by id or delete all external credentials. If a credential id is specified, it takes precedence over the deleteAll parameter, so a request with a credentialId specified and deleteAll=true will delete only the specified credential from the list of external credentials. If the specified credential id does not exist in the list of allowed origin credentials, no action will be taken, and a 200 status code will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Get the specified credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/external-credentials/:cred_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "cred_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the credential to retrieve, modify or delete"
+              }
+            ]
+          },
+          "docs": "Returns the credential specified by the ID. The returned object contains the name of the provider, the credential type and an object which contains the credential material necessary to access a third-party provider (API Key, API ID/API Key, Client Credentials, Access Token and username/password)\n"
+        },
+        {
+          "info": {
+            "name": "Modify the selected credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/config/external-credentials/:cred_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "cred_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the credential to retrieve, modify or delete"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the content of the selected credential to be the request body. If the content or name for this\ncredential had previously been created for your organization, it will be overwritten and cannot\nbe retrieved. Otherwise, the new content will be set."
+        },
+        {
+          "info": {
+            "name": "List available templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/templates",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Lists the names of all available templates for communicating with users.\n\nTemplate names can be used to retrieve the template body for your organization."
+        },
+        {
+          "info": {
+            "name": "Get the named template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/templates/:template_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "template_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the template to retrieve or modify"
+              }
+            ]
+          },
+          "docs": "Retrieves the message template named in the path.\n\nIf a custom template was previously created, it will be returned.\nOtherwise the default template is returned\n\nLikewise, any template fields were left empty during creation will be set to their default values."
+        },
+        {
+          "info": {
+            "name": "Modify the named template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/config/templates/:template_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "template_name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the template to retrieve or modify"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the named message template for your organization. If a template already exists it will be overwritten and cannot\nbe retrieved.\n\nThe following templates are available for customization:\n  - `email_authn_challenge`: E-mail template with magic link;\n  - `text_authn_challenge`: SMS template with magic link;\n  - `text_otp_message`: SMS template with OTP code;\n  - `email_password_reset_challenge`: E-mail template with a password reset link;\n  - `text_password_reset_challenge`: SMS template with a"
+        },
+        {
+          "info": {
+            "name": "List the allowed domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/domains",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Returns a list of the allowed origin domains for your organization."
+        },
+        {
+          "info": {
+            "name": "Add allowed domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/config/domains",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "If true, the current list of domains will be replaced with the provided list"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add the specified domain patterns to the list of allowed origin domains, or overwrite the existing list.\n\nDomains may be specified exactly, or as patterns using asterisk wildcards '*'.\nThe '*' wildcard will match zero or more characters.\nIf a pattern is used, any origin domain matching the pattern will be treated as an allowed domain.\nOtherwise, the origin domain must match the allowed domain exactly. Matching is case-insensitive.\nFor example, to specify that domain 'xyz.com' and all of its subd"
+        },
+        {
+          "info": {
+            "name": "Remove allowed domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/config/domains",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "The name of the domain to delete"
+              },
+              {
+                "name": "deleteAll",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all domains"
+              }
+            ]
+          },
+          "docs": "Remove the specified domain from the list of allowed origin domains, or delete all domains. origin domains. If the specified domain does not exist in the list of allowed origin domains, no action will be taken, and a 200 status code will be returned.\nIf both domain and deleteAll query parameters are specified, API will return 400 (Bad Request) status code.\n"
+        },
+        {
+          "info": {
+            "name": "Get the organization's token template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/token-template",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieves the token template for the given organization.\n\nIf a custom token template was previously created, it will be returned.\nOtherwise the default template is returned."
+        },
+        {
+          "info": {
+            "name": "Modify the organization's token template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/config/token-template",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the token template for your organization. If a template already exists it will be overwritten and cannot\nbe retrieved.\n\nThe template must conform to the [mustache template syntax](https://mustache.github.io/mustache.5.html). The following tags are available:\n  - `{{ organization }}`: provides information on the organization. Renders to\n    ```json\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"name\": \"Your Org Name\",\n      \"ancestors\": [\n        {\n          \"id\": \"00000000"
+        },
+        {
+          "info": {
+            "name": "List OIDC credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_provider",
+                "value": "",
+                "type": "query",
+                "description": "The name of the OAuth provider"
+              }
+            ]
+          },
+          "docs": "Returns a list of existing OIDC provider credentials for SSO for your organization. Optionally, a provider can be specified to return only credentials for that provider.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new set of OIDC provider credentials for your organization to use with SSO. Includes a client ID, client secret, and the name of the provider. The client ID and client secret should be generated separately using the third-party identity provider you wish to integrate with (such as Google). Not all identity providers are currently supported.\n"
+        },
+        {
+          "info": {
+            "name": "Get an existing set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Returns an existing set of OIDC provider for SSO, specified by the client ID.\n"
+        },
+        {
+          "info": {
+            "name": "Modify an existing set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies the client secret and/or label of an existing set of OIDC provider credentials for SSO, specified by the client ID."
+        },
+        {
+          "info": {
+            "name": "Delete an existing set of OIDC provider credentials for SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/sso/oidc/provider-credentials/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Deletes an existing set of OIDC provider credentials for SSO, specified by the client ID.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve information about an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieve information about which other organizations the given shares persons and groups with.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "delete_suborganizations",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "confirmation_timestamp",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete a non-root, leaf organization, including all its persons memberships and their groups memberships and attributes.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve attributes for the organization from multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "buckets",
+                "value": "person_pool-end_user_read_write,person_pool-end_user_no_access",
+                "type": "query",
+                "description": "A comma-separated list of attribute bucket names"
+              }
+            ]
+          },
+          "docs": "Retrieve attributes for the organization from one or more buckets. If no buckets are specified, attributes from all buckets will be retrieved.\nBucket names can be specified as a comma-separated list in the `buckets` query parameter. All buckets specified must exist, and the organization specified in the header must be able to access them. Empty bucket names are not permitted.\n"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set o"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in multiple buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/attributes",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attri"
+        },
+        {
+          "info": {
+            "name": "Retrieve attributes for the organization from a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              },
+              {
+                "name": "attributes",
+                "value": "address_line_1,address_line_2,city,zip_code",
+                "type": "query",
+                "description": "A comma-separated list of attribute names"
+              }
+            ]
+          },
+          "docs": "Retrieve attributes for the organization from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. If no attribute names are specified, all attributes in the bucket will be retrieved. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted.\n"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any"
+        },
+        {
+          "info": {
+            "name": "Create or modify attributes for the organization in a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new attributes or modify existing attributes for the organization in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn't referenced by key in the request is left untouched.\n"
+        },
+        {
+          "info": {
+            "name": "Delete attributes for the organization from a single bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/attributes/:bucket_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bucket_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+              },
+              {
+                "name": "attributes",
+                "value": "address_line_1,address_line_2,city,zip_code",
+                "type": "query",
+                "description": "A comma-separated list of attribute names"
+              }
+            ]
+          },
+          "docs": "Delete attributes for the organization from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted. If no attribute names are specified, all attributes in the bucket will be deleted.\nWARNING: this action is permanent and cannot be undone.\n"
+        },
+        {
+          "info": {
+            "name": "List suborganizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/suborganizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all descendant organizations.\n"
+        },
+        {
+          "info": {
+            "name": "Create a suborganization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/suborganizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new organization subordinate to your organization.\n"
+        },
+        {
+          "info": {
+            "name": "Generate a new API key for the specified organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/api-keys",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "A new API key is created and returned. The previous API key will no longer be valid after this."
+        },
+        {
+          "info": {
+            "name": "Get organization config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Get the current configuration for your organization"
+        },
+        {
+          "info": {
+            "name": "Update organization config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/config",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify the configuration for your organization.\n\nThe token duration determines the number of seconds a token issued by SlashID will be valid for. If not set, or set to 0, the default duration of 24 hours will be used for all tokens.\n\nThe groups claim name determines the name of the claim in the token payload where a user's groups are found. If not set, or set to the empty string, the default claim name `groups` will be used for all tokens.\n"
+        },
+        {
+          "info": {
+            "name": "Get current pricing tier details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/quota/current-tier",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "This returns the quotas associated with your organization's current pricing tier."
+        },
+        {
+          "info": {
+            "name": "Get details on all pricing tiers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/quota/all-tiers"
+          },
+          "docs": "This returns the quotas for each available pricing tier."
+        },
+        {
+          "info": {
+            "name": "Get resource usage for the organization hierarchy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/quota/usage",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "This returns the resources used by your organization and its suborganizations. This can be used to evaluate the need for a tier upgrade."
+        },
+        {
+          "info": {
+            "name": "List organization's attribute buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/attribute-buckets",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Get a list of available attribute buckets for your organization"
+        },
+        {
+          "info": {
+            "name": "Get organization KYC config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/kyc",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Get the current KYC configuration for your organization"
+        },
+        {
+          "info": {
+            "name": "Update KYC organization config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/config/kyc",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify the KYC configuration for your organization.\n\nThe mobile redirect base URL determines where a user will be redirected to when temporarily switching to a mobile device in order to upload/capture document pictures.\n"
+        },
+        {
+          "info": {
+            "name": "List all webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all webhooks for your organization."
+        },
+        {
+          "info": {
+            "name": "Create a new webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/webhooks",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook for your organization. Webhooks will be called in response to triggers, and you can use\nthe `/organizations/webhooks/{webhook_id}/triggers` endpoint to specify which trigger(s) should call each\nwebhook.\n\nThe request body must contain the target URL for the webhook, and this must be unique for your organization\n(you cannot have two webhooks with the same target URL). The target URL must use the HTTPS protocol, and must\nhave a host. The host cannot be `localhost` or an IP addr"
+        },
+        {
+          "info": {
+            "name": "Get a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a specific webhook, identified by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing webhook, identified by its ID.\nThis endpoint can be used to modify the target URL, custom headers, name, or description of the webhook. Note that the target URL cannot be changed to a URL already in use by another webhook for your organization. Modifying the custom headers will overwrite any existing custom headers for this webhook.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete the specified webhook. This will also delete all triggers associated with this webhook. This action cannot be undone.\n"
+        },
+        {
+          "info": {
+            "name": "List webhook triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id/triggers",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all the triggers for a specific webhook."
+        },
+        {
+          "info": {
+            "name": "Create a webhook trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id/triggers",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new trigger for an existing webhook. Each webhook can have multiple triggers, and will be called\non each of them.\n\nThe trigger type specifies what kind of trigger will cause the webhook to be called. The trigger name specifies\nthe exact trigger that will cause the webhook to be called, amongst all triggers of this type. For a full list\nof trigger types and names, refer to our [webhooks guide](/docs/access/guides/webhooks).\n"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/webhooks/:webhook_id/triggers",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "trigger_type",
+                "value": "event",
+                "type": "query",
+                "description": "The type of webhook trigger"
+              },
+              {
+                "name": "trigger_name",
+                "value": "",
+                "type": "query",
+                "description": "The webhook trigger name (for example, an event name)"
+              }
+            ]
+          },
+          "docs": "Delete a trigger for a specific webhook. The webhook will no longer be called on this trigger.\nNote that for a short period after the delete request has successfully returned, triggers in flight may still cause the webhook to be called.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve verification JWKS for webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/webhooks/verification-jwks",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Endpoint to retrieve a JSON Web Key Set (JWKS) for webhook body verification.\nWhen SlashID calls your webhooks in response to a trigger, the body of the request is a signed and encoded JSON Web Token (JWT). The public part of the signing key can be retrieved from this endpoint and used to verify that the request body comes from SlashID, is intended for your webhook, and has not been modified.\nSlashID uses the ES256 JSON Web Algorithm (JWA), which is the Elliptic Curve Digital Signature Algorithm"
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of OAuth2 clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/clients",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of existing OAuth 2.0 clients for your organization.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/clients",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new client ID/secret pair that can be used with the client credentials grant type.\nA valid SlashID organization ID and API key must be used to authenticate and authorize the request.\nThe client credentials can be configured.\n\nSlashID currently supports the following OAuth 2.0 grants:\n- client credentials\n- authorization code\n- refresh token\nThe `grant_types` field may contain only the values `client_credentials` and `authorization_code`.\nOther values will return a `400` error code.\n\nThe"
+        },
+        {
+          "info": {
+            "name": "Retrieve an OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Get details on the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n"
+        },
+        {
+          "info": {
+            "name": "Modify an existing OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n\nSlashID currently only supported a subset of OAuth clients, therefore we enforce that grant_types must be [\"client_credentials\"]. Setting this field to any other value will result in an error response with a `400` status code.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an existing OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "Delete the identified client. Authenticated with a SlashID organization ID and API key; the organization ID must match or be a parent of the client owner.\n"
+        },
+        {
+          "info": {
+            "name": "Generate a new client secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id/secret",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "A new client secret is created and returned. The previous secret will no longer be valid after this.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve the configuration for the hosted UI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id/ui-configuration",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ]
+          },
+          "docs": "The configuration is used to theme the hosted UI.\n"
+        },
+        {
+          "info": {
+            "name": "Modify the configuration for the hosted UI",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/oauth2/clients/:oauth_client_id/ui-configuration",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "oauth_client_id",
+                "value": "",
+                "type": "path",
+                "description": "An OAuth client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The configuration is used to theme the hosted UI.\n"
+        },
+        {
+          "info": {
+            "name": "Request an authorization code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/authorize",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code_challenge",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "code_challenge_method",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "display",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_age",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ui_locales",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "login_hint",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "acr_values",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "handle_types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Used to initiate an authorization code flow.\n\nSlashID is an OAuth 2.0 and OpenID Connect 1.0 provider.\n"
+        },
+        {
+          "info": {
+            "name": "Obtain an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Obtain a new OAuth 2.0 access token using an OAuth 2.0 client ID/secret pair.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke a token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/revoke",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Revoke an OAuth 2.0 token using an OAuth 2.0 client ID/secret pair.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/revoke-all",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Revoke OAuth 2.0 tokens using an OAuth 2.0 client ID/secret pair.\n"
+        },
+        {
+          "info": {
+            "name": "Introspect an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/introspect",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Introspect an OAuth 2.0 access or refresh token using an OAuth 2.0 client ID/secret pair. Note: there is a know issue for this endpoint, whereby the expiry for refresh tokens in the response is incorrect. However, expired refresh tokens will still return a response with `active: false`.\n"
+        },
+        {
+          "info": {
+            "name": "Mint OAuth 2.0 & OIDC tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/tokens/mint",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "SlashID-API-Key",
+              "value": "{{SlashID-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "This endpoint creates a set of OAuth 2.0 tokens for a specific user.\n\nTo generate a refresh token request scope `offline_access`.\nTo generate an ID token request scope `openid`.\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - j"
+        },
+        {
+          "info": {
+            "name": "Retrieve a person's profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/oauth2/userinfo",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Given the SlashID Access Token obtained during signin, this endpoint returns a person's profile.\n\nThis endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a person's profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/oauth2/userinfo",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Given the SlashID Access Token obtained during signin, this endpoint returns a person's profile.\n\nThis endpoint will work only if `openid` was granted as a scope for the Access Token. The information included in the response depends on the scopes requested. For example, a scope of just `openid` may return less information than a scope of `openid profile email`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

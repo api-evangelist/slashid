@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Organization Allowed Domains API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Allowed Domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the allowed domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/organizations/config/domains",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Returns a list of the allowed origin domains for your organization."
+        },
+        {
+          "info": {
+            "name": "Add allowed domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/config/domains",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "If true, the current list of domains will be replaced with the provided list"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add the specified domain patterns to the list of allowed origin domains, or overwrite the existing list.\n\nDomains may be specified exactly, or as patterns using asterisk wildcards '*'.\nThe '*' wildcard will match zero or more characters.\nIf a pattern is used, any origin domain matching the pattern will be treated as an allowed domain.\nOtherwise, the origin domain must match the allowed domain exactly. Matching is case-insensitive.\nFor example, to specify that domain 'xyz.com' and all of its subd"
+        },
+        {
+          "info": {
+            "name": "Remove allowed domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/organizations/config/domains",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "The name of the domain to delete"
+              },
+              {
+                "name": "deleteAll",
+                "value": "",
+                "type": "query",
+                "description": "Whether to delete all domains"
+              }
+            ]
+          },
+          "docs": "Remove the specified domain from the list of allowed origin domains, or delete all domains. origin domains. If the specified domain does not exist in the list of allowed origin domains, no action will be taken, and a 200 status code will be returned.\nIf both domain and deleteAll query parameters are specified, API will return 400 (Bad Request) status code.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

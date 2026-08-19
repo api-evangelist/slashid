@@ -1,0 +1,605 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Persons API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Persons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Direct-ID value for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/direct-id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a one-time Direct-ID for a specific user. The returned Direct-ID string can embedded in a URL in the `challenges` query parameter to let your users land on a target page already authenticated.\n"
+        },
+        {
+          "info": {
+            "name": "Mint a token for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/:person_id/mint-token",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a token for a specific user.\n\n\nCustom claims can be specified in the request body which will be added to the token's payload.\nCustom claims are added to the token's payload.\n\nTokens created with this endpoint will have an `authenticated_methods` claim equal to [\"api\"].\n\n\nThe following claims are reserved and cannot be specified:\n  - aud\n  - exp\n  - jti\n  - iat\n  - iss\n  - nbf\n  - sub\n  - prev_token_id\n  - oid\n  - org_id\n  - user_id\n  - person_id\n  - first_token\n  - authenti"
+        },
+        {
+          "info": {
+            "name": "Retrieve a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Optional fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Get a person object by its ID. The function returns the decrypted, abridged person record.\n\nPlease use the Attributes API to retrieve custom person attributes."
+        },
+        {
+          "info": {
+            "name": "Modify an existing person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify configuration for an existing specific person associated with your organization. This includes the list of roles for the person and whether the person is active or not.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a person from an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Remove the person, specified by its ID, from the organization.\n\nNote that access to all the attributes associated with this person will be permanently revoked."
+        },
+        {
+          "info": {
+            "name": "Get groups for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/groups",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of groups the specified person belongs to"
+        },
+        {
+          "info": {
+            "name": "Set the groups for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/groups",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add the person to the groups specified in the request body, and remove the person from any other existing groups.\nAll groups in the request body must already exist. Duplicate groups in the request body will be ignored. If an empty list is supplied in the request body, the person will be removed from all groups they are currently a member of, and will not be added to any others.\nNew groups can be created with the [POST /groups](/docs/api/post-groups) endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Get permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of permissions granted to the specified person. It contains both assigned permissions and permissions from roles."
+        },
+        {
+          "info": {
+            "name": "Get additional permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/additional-permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of additional permissions assigned to person. This endpoint doesn't return permissions from roles."
+        },
+        {
+          "info": {
+            "name": "Set the permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/additional-permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant the person the permissions specified in the request body, and revoke the person any other existing permissions.\nAll permissions in the request body must already exist. Duplicate permissions in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all permissions they currently have.\n"
+        },
+        {
+          "info": {
+            "name": "Get roles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of roles granted to the specified person"
+        },
+        {
+          "info": {
+            "name": "Set the roles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant the person the roles specified in the request body, and revoke the person any other existing roles.\nAll roles in the request body must already exist. Duplicate roles in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all roles they currently have.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve the list of person's organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/organizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              }
+            ]
+          },
+          "docs": "Retrieve details of all the organizations a person belongs to, including:\n - The organization of the request: the person must be a member of the organization you authenticate\n   with for you to be allowed to retrieve this list\n - Any sub- and super-organizations that share the person pool with the organization of the request:\n   A hierarchy of organizations can be created using [this API endpoint](/docs/api/post-organizations-suborganizations).\n   When organizations are configured to share a per"
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by handle in format [handle_type]:[handle]. This field should be url-encoded."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return in the result. Maximum value is 1000."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of the first item to be returned in the result"
+              },
+              {
+                "name": "ids",
+                "value": "064d3697-4bf6-781e-9a08-303683b8a5e6,064d3f71-475e-7ea4-9808-6b72d038a43f",
+                "type": "query",
+                "description": "A comma-separated list of person IDs"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Optional fields to include in the response"
+              },
+              {
+                "name": "all_regions",
+                "value": "",
+                "type": "query",
+                "description": "If true, users from all regions will be returned. Defaults to true."
+              },
+              {
+                "name": "all_person_types",
+                "value": "",
+                "type": "query",
+                "description": "If true, also returns non-regular users. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Retrieve the full list of persons in your organization."
+        },
+        {
+          "info": {
+            "name": "Create new person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new person linked to your organization.\nThe request must contain at least one handle for the person (email address, phone number, or username). Optionally, you can specify a list of roles, a geographical region and attributes. Attributes are a map from attribute bucket names to key-value pairs.\nIf a person with the specified handles already exists, an error will be returned.\nIf the region is not specified, the person will be created in the region closest to the region of your backend.\nI"
+        },
+        {
+          "info": {
+            "name": "Create or update a person (idempotent)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint works as the [`POST /persons`](/docs/api/post-persons) endpoint, except that it is idempotent. If the person already exists, it will be updated with the new data and 200 status code will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "List the persons in a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/groups/:group_name/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              }
+            ]
+          },
+          "docs": "Lists all the persons in the named group. Returns an array of person IDs."
+        },
+        {
+          "info": {
+            "name": "Add persons to a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/groups/:group_name/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint adds one or more persons to an existing group. The group and all of the persons must exist. The persons to be added to the group must always be an array in the request body, even if only one user is being added. All persons needs to be in the same region.\nA new group can be created with the [POST /groups](/docs/api/post-groups) endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a person from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/groups/:group_name/persons/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a group"
+              },
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Removes the identified person from the named group. Returns an error if the person is not in the group.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

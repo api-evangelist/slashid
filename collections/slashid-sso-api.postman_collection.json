@@ -1,0 +1,970 @@
+{
+  "item": [
+    {
+      "id": "9be42d2a-b5b2-410f-bece-344c80c3851a",
+      "name": "SSO",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b653e3d1-4a91-41fe-ae16-4ef1f9d0a5c9",
+          "name": "(Deprecated) Revoke an OAuth token obtained through SSO with OIDC",
+          "request": {
+            "name": "(Deprecated) Revoke an OAuth token obtained through SSO with OIDC",
+            "description": {
+              "content": "Revoke a previously obtained OAuth access or refresh token for an IdP.\nThis endpoint is deprecated. Please use /sso/oidc/tokens/revoke/v2 instead.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "oidc",
+                "tokens",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "SDK version",
+                "key": "SlashID-SdkVersion",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"token\": \"<string>\",\n  \"token_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "316c94b0-9b28-4a8a-af3f-160bcd07a5ed",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"token\": \"<string>\",\n  \"token_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "13b2987d-4f6f-47ec-8500-a96cc8244358",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SDK version",
+                    "key": "SlashID-SdkVersion",
+                    "value": "1.4.1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"token\": \"<string>\",\n  \"token_type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1115,\n      \"offset\": 9737,\n      \"total_count\": 301\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5118,\n      \"cursor\": \"string\",\n      \"total_count\": 1985\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 578,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 3906,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9697f88-446d-4c6d-a284-8bd08182ab8a",
+          "name": "Revoke an OAuth token obtained through SSO with OIDC",
+          "request": {
+            "name": "Revoke an OAuth token obtained through SSO with OIDC",
+            "description": {
+              "content": "Revoke a previously obtained OAuth access or refresh token for an IdP",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "oidc",
+                "tokens",
+                "revoke",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person_id\": \"<string>\",\n  \"authentication_id\": \"<string>\",\n  \"token_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "747bf743-19d7-4449-9653-6d3caef43437",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens",
+                    "revoke",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n  \"authentication_id\": \"<string>\",\n  \"token_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bee0f204-563b-43a0-9304-a935bee4d2de",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens",
+                    "revoke",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n  \"authentication_id\": \"<string>\",\n  \"token_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3902,\n      \"offset\": 6600,\n      \"total_count\": 3286\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3315,\n      \"cursor\": \"string\",\n      \"total_count\": 5883\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2681,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8841,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffa0339a-2579-41b0-93d1-5b4e3733da3d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens",
+                    "revoke",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n  \"authentication_id\": \"<string>\",\n  \"token_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3902,\n      \"offset\": 6600,\n      \"total_count\": 3286\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3315,\n      \"cursor\": \"string\",\n      \"total_count\": 5883\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2681,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8841,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06862c28-18ca-4a96-b678-865afc76295d",
+          "name": "Retrieve OIDC tokens",
+          "request": {
+            "name": "Retrieve OIDC tokens",
+            "description": {
+              "content": "Retrieve tokens issued by an OIDC provider as part of an SSO authentication.\nThis endpoint expects a valid SlashID token container issued after an SSO authentication.\nThe response will include all of the OIDC tokens that were issued by that SSO authentication.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "oidc",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) A valid JWT issued by SlashID",
+                "key": "SlashID-Token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3b9811f-0acd-4a88-8491-57d715ec4d43",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A valid JWT issued by SlashID",
+                    "key": "SlashID-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1373,\n      \"offset\": 997,\n      \"total_count\": 4451\n    },\n    \"cursor_pagination\": {\n      \"limit\": 977,\n      \"cursor\": \"string\",\n      \"total_count\": 907\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6821,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 497,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": [\n    {\n      \"token\": \"string\",\n      \"token_type\": \"<string>\",\n      \"expiry\": \"1993-06-21T12:16:04.389Z\",\n      \"provider\": \"google\",\n      \"client_id\": \"string\",\n      \"authentication_id\": \"string\",\n      \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n      \"organization_id\": \"string\",\n      \"extra_callback_values\": {\n        \"key_0\": 9730,\n        \"key_1\": 2966\n      }\n    },\n    {\n      \"token\": \"string\",\n      \"token_type\": \"<string>\",\n      \"expiry\": \"1996-01-19T06:04:39.311Z\",\n      \"provider\": \"gitlab\",\n      \"client_id\": \"string\",\n      \"authentication_id\": \"string\",\n      \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n      \"organization_id\": \"string\",\n      \"extra_callback_values\": {\n        \"key_0\": 6166\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d75b59ed-ad8c-4604-b7c1-72f85fb8d38d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A valid JWT issued by SlashID",
+                    "key": "SlashID-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3902,\n      \"offset\": 6600,\n      \"total_count\": 3286\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3315,\n      \"cursor\": \"string\",\n      \"total_count\": 5883\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2681,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8841,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db0819ff-d49b-4b33-a8bf-e29bb687dbe9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A valid JWT issued by SlashID",
+                    "key": "SlashID-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3902,\n      \"offset\": 6600,\n      \"total_count\": 3286\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3315,\n      \"cursor\": \"string\",\n      \"total_count\": 5883\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2681,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8841,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "708c4075-9f8d-4a86-ac37-74477768b93e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A valid JWT issued by SlashID",
+                    "key": "SlashID-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3902,\n      \"offset\": 6600,\n      \"total_count\": 3286\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3315,\n      \"cursor\": \"string\",\n      \"total_count\": 5883\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2681,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8841,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d74af17f-4e16-4169-9663-480548416d9d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A valid JWT issued by SlashID",
+                    "key": "SlashID-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3902,\n      \"offset\": 6600,\n      \"total_count\": 3286\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3315,\n      \"cursor\": \"string\",\n      \"total_count\": 5883\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2681,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8841,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85581add-21d0-45e1-ad10-27ac09f6ca3e",
+          "name": "Query tokens obtained through SSO with OIDC",
+          "request": {
+            "name": "Query tokens obtained through SSO with OIDC",
+            "description": {
+              "content": "Query the OIDC tokens for a person issued during SSO authentications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "oidc",
+                "tokens",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person_id\": \"<string>\",\n  \"authentication_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"token_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c0f4d65-2a99-4a0f-9163-9efa60bf175d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n  \"authentication_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"token_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1373,\n      \"offset\": 997,\n      \"total_count\": 4451\n    },\n    \"cursor_pagination\": {\n      \"limit\": 977,\n      \"cursor\": \"string\",\n      \"total_count\": 907\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6821,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 497,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": [\n    {\n      \"token\": \"string\",\n      \"token_type\": \"<string>\",\n      \"expiry\": \"1993-06-21T12:16:04.389Z\",\n      \"provider\": \"google\",\n      \"client_id\": \"string\",\n      \"authentication_id\": \"string\",\n      \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n      \"organization_id\": \"string\",\n      \"extra_callback_values\": {\n        \"key_0\": 9730,\n        \"key_1\": 2966\n      }\n    },\n    {\n      \"token\": \"string\",\n      \"token_type\": \"<string>\",\n      \"expiry\": \"1996-01-19T06:04:39.311Z\",\n      \"provider\": \"gitlab\",\n      \"client_id\": \"string\",\n      \"authentication_id\": \"string\",\n      \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n      \"organization_id\": \"string\",\n      \"extra_callback_values\": {\n        \"key_0\": 6166\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c131e72a-d242-41f6-9438-863209d2cc10",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "oidc",
+                    "tokens",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\",\n  \"authentication_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"token_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 3902,\n      \"offset\": 6600,\n      \"total_count\": 3286\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3315,\n      \"cursor\": \"string\",\n      \"total_count\": 5883\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2681,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8841,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a13f852-e079-4a3c-8738-00fec7b936c3",
+    "name": "SlashID Groups SSO API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

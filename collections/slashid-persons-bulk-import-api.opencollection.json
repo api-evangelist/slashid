@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Persons Bulk Import API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Persons Bulk Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the import CSV template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/bulk-import",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Fetch the import CSV template"
+        },
+        {
+          "info": {
+            "name": "Bulk import persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/persons/bulk-import",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Bulk import persons into your organization by uploading a CSV file.\n\nThe import will take the following CSV column headers into consideration:\n\n\"slashid:emails\",\"slashid:phone_numbers\",\"slashid:usernames\",\"slashid:region\",\"slashid:groups\",\"slashid:attributes\"\n\nEach row in the CSV must contain at least one handle for the person\n(email address, phone number, or a username). Optionally, you can\nspecify a list of roles, a geographical region and attributes.\nAttributes are a JSON-encoded map from att"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

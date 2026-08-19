@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups SSO API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSO",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "(Deprecated) Revoke an OAuth token obtained through SSO with OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/sso/oidc/tokens/revoke",
+            "headers": [
+              {
+                "name": "SlashID-SdkVersion",
+                "value": "1.4.1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a previously obtained OAuth access or refresh token for an IdP.\nThis endpoint is deprecated. Please use /sso/oidc/tokens/revoke/v2 instead.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke an OAuth token obtained through SSO with OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/sso/oidc/tokens/revoke/v2",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a previously obtained OAuth access or refresh token for an IdP"
+        },
+        {
+          "info": {
+            "name": "Retrieve OIDC tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/sso/oidc/tokens",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Token",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieve tokens issued by an OIDC provider as part of an SSO authentication.\nThis endpoint expects a valid SlashID token container issued after an SSO authentication.\nThe response will include all of the OIDC tokens that were issued by that SSO authentication.\n"
+        },
+        {
+          "info": {
+            "name": "Query tokens obtained through SSO with OIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/sso/oidc/tokens/query",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query the OIDC tokens for a person issued during SSO authentications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

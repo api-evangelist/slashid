@@ -1,0 +1,3093 @@
+{
+  "item": [
+    {
+      "id": "a2b2ed12-dcf7-4da0-bde9-cc2b0fe3bb46",
+      "name": "Person Attributes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c3767092-f7d4-44dd-b6e2-d1d8fb0b1ddc",
+          "name": "Create or modify attributes for a person in multiple buckets",
+          "request": {
+            "name": "Create or modify attributes for a person in multiple buckets",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for a person in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn't referenced by key in the request is left untouched.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2748,\n    \"key_2\": false\n  },\n  \"key_1\": {\n    \"key_0\": 4363.675770262255,\n    \"key_1\": 1902.71339765545,\n    \"key_2\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7083885-8be1-4750-9521-50fc54dbc2e6",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a1d97ef-ed45-472f-b78b-9aefdb33242a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1313,\n      \"offset\": 1616,\n      \"total_count\": 5639\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2426,\n      \"cursor\": \"string\",\n      \"total_count\": 3684\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 6812,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4907,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20792a8b-18b2-493f-ad54-99a5d134c366",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "177f4608-cd2d-4853-9dc1-dda2c9aa36d1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b899b4e-5eaa-49e2-a96c-d66b82bb22f3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ed5d817-e331-4669-947e-26a160268dc7",
+          "name": "Create or modify attributes for a person in multiple buckets",
+          "request": {
+            "name": "Create or modify attributes for a person in multiple buckets",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for a person in one or more attribute buckets.\nThe request body should be a nested object, with bucket names as top-level keys, and key-value pair attributes as values, as shown in the example request body. The buckets must exist and must be accessible by the organization identified in the request header. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any existing attributes that aren't referenced by key in the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2748,\n    \"key_2\": false\n  },\n  \"key_1\": {\n    \"key_0\": 4363.675770262255,\n    \"key_1\": 1902.71339765545,\n    \"key_2\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b6bdfb6-5ac1-437a-8411-ebd815646b01",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "915668f3-6be0-4b74-bc78-266d5fdba1da",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad6c7be3-f9f8-43a4-aff1-31809ac8f83b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ff386e7-178f-4254-94e0-2e654749317e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1547afdd-beb4-4723-963a-328c318a2803",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_pool-end_user_read_write\": {\n    \"card_number\": \"1234\",\n    \"expiry\": \"07/25\"\n  },\n  \"end_user_read_only\": {\n    \"address_line_1\": \"New Street\",\n    \"city\": \"New York\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cf43244-aded-4de9-b990-a768b843ab71",
+          "name": "Retrieve attributes for a person from multiple buckets",
+          "request": {
+            "name": "Retrieve attributes for a person from multiple buckets",
+            "description": {
+              "content": "Retrieve attributes for a person from one or more buckets. If no buckets are specified, attributes from all buckets will be retrieved.\nBucket names can be specified as a comma-separated list in the `buckets` query parameter. All buckets specified must exist, and the organization specified in the header must be able to access them. Empty bucket names are not permitted.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "buckets",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of attribute bucket names"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc7be618-415a-4f57-bff5-1ed2017230b5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 4485,\n      \"offset\": 2250,\n      \"total_count\": 4761\n    },\n    \"cursor_pagination\": {\n      \"limit\": 7248,\n      \"cursor\": \"string\",\n      \"total_count\": 2313\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 9585,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 1949,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": {\n    \"person_pool-end_user_read_write\": {\n      \"card_number\": \"1234\",\n      \"expiry\": \"07/25\"\n    },\n    \"end_user_read_only\": {\n      \"address_line_1\": \"New Street\",\n      \"city\": \"New York\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5253d1b-5119-4704-b09e-627f2bc6752c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "895ed9e9-8d70-4404-8173-5973b4473aa2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6fe9bf9-5646-4b7d-a781-aef9c8ab8ca6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41a3d096-b07c-4819-a9bb-e145df27df0f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buckets",
+                      "value": "person_pool-end_user_read_write,person_pool-end_user_no_access"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a527bb0e-c7bd-44d4-b565-4d662febec53",
+          "name": "Create or modify attributes for a person in a single bucket",
+          "request": {
+            "name": "Create or modify attributes for a person in a single bucket",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for a person in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Any existing attribute that isn't referenced by key in the request is left untouched.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 9209,\n  \"key_1\": 3599\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "030eb792-9111-4b80-aa2f-94bea0fb8b5b",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9842a45-cd08-42ca-b161-163984baf080",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbbc8d44-a732-42f8-a215-98d094c1027e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29acb5c9-fa60-479f-bf67-601729682bf5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6af6f64d-82e9-4deb-aa00-712c57510622",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "676e1e7f-08a8-4acf-b9a4-215aa8765017",
+          "name": "Create or modify attributes for a person in a single bucket",
+          "request": {
+            "name": "Create or modify attributes for a person in a single bucket",
+            "description": {
+              "content": "Create new attributes or modify existing attributes for a person in a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header.\nThe request body should be an object consisting of key-value pair attributes. Attribute names may be at most 70 bytes long. Attribute values must be JSON-serializable and are limited to 64KiB. Replaces the set of existing attributes with those present in the request. In other words, it deletes any existing attributes that aren't referenced by key in the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 9209,\n  \"key_1\": 3599\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9247a51e-c8fb-4e90-a100-3aa8f0a14f6b",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ec017be-5bf1-47cd-aba6-6503f078cf7d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c52ed34a-6064-4746-a9b6-1d8b02b85995",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f0655d0-d565-4b9d-b122-95b06734a283",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b138ddd-b72d-49d0-9f98-4c0e3b0e4911",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attr1\": \"value1\",\n  \"attr2\": 2,\n  \"attr3\": true,\n  \"attr_4\": [\n    1,\n    2,\n    3,\n    4\n  ],\n  \"attr_5\": {\n    \"nested\": 5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a67d73db-030b-41bd-b68c-553b9d74ad5e",
+          "name": "Retrieve attributes for a person from a single bucket",
+          "request": {
+            "name": "Retrieve attributes for a person from a single bucket",
+            "description": {
+              "content": "Retrieve attributes for a person from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. If no attribute names are specified, all attributes in the bucket will be retrieved. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of attribute names"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc984368-b3d6-47dc-9543-cfd61c000523",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 5995,\n      \"offset\": 1386,\n      \"total_count\": 7991\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1301,\n      \"cursor\": \"string\",\n      \"total_count\": 232\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1397,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 858,\n      \"message\": \"string\"\n    }\n  ],\n  \"result\": {\n    \"attr1\": \"value1\",\n    \"attr2\": 2,\n    \"attr3\": true,\n    \"attr_4\": [\n      1,\n      2,\n      3,\n      4\n    ],\n    \"attr_5\": {\n      \"nested\": 5\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb2d9a49-8d4e-47f3-94a5-befa3ba88e68",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67e0b477-dc6f-46ad-8d49-53312eac3cea",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c3fd2e5-0cf4-481d-8587-c8b643af5d43",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bb335d7-1bb8-40bd-8144-d2114d08dde3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6637a753-ef4b-43a4-b64e-2325706b1d0a",
+          "name": "Delete attributes for a person from a single bucket",
+          "request": {
+            "name": "Delete attributes for a person from a single bucket",
+            "description": {
+              "content": "Delete attributes for a person from a single attribute bucket.\nThe bucket must exist and must be accessible by the organization identified in the request header. Attribute names can be provided as a comma-separated list in the `attributes` query parameter. Empty attribute names are not permitted. If no attribute names are specified, all attributes in the bucket will be deleted.\nWARNING: this action is permanent and cannot be undone.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "attributes",
+                ":bucket_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attributes",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of attribute names"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "person_id",
+                  "description": "(Required) The person ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucket_name",
+                  "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "acf02385-d30a-4996-ad35-b9aad81ca1f4",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6134052-e251-4501-82bf-6c6754dac0bd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ae2b242-d919-4ed6-9c9b-eb5b2bcdcba6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8efd937c-b9b2-4ff9-8ab6-34c1db6b90ff",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b11b0b9-4565-4c9c-bbb9-56a07c0eda88",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "attributes",
+                    ":bucket_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attributes",
+                      "value": "address_line_1,address_line_2,city,zip_code"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "person_id",
+                      "description": "(Required) The person ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucket_name",
+                      "description": "(Required) The name of an attribute bucket. The bucket `end_user_read_write` exists for all organizations and is suitable for many common use cases. Please refer to our documentation for more information on attribute buckets.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34449831-4977-4e88-8ab8-7510ac017ea6",
+          "name": "List organization's attribute buckets",
+          "request": {
+            "name": "List organization's attribute buckets",
+            "description": {
+              "content": "Get a list of available attribute buckets for your organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "attribute-buckets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "222e1b0d-cb71-4682-9d65-cefd53997d7d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attribute-buckets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"name\": \"string\",\n      \"sharing_scope\": \"organization\",\n      \"end_user_permissions\": \"read_only\",\n      \"owner_organization_id\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"sharing_scope\": \"organization\",\n      \"end_user_permissions\": \"read_only\",\n      \"owner_organization_id\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2963,\n      \"offset\": 638,\n      \"total_count\": 6835\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1259,\n      \"cursor\": \"string\",\n      \"total_count\": 4169\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8815,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7969,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36954001-e715-4012-8675-7a789799ef97",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "attribute-buckets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9575,\n      \"offset\": 7976,\n      \"total_count\": 1423\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6061,\n      \"cursor\": \"string\",\n      \"total_count\": 7778\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 8819,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 2188,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7503cbf5-3294-4586-8f07-d31434e1a072",
+    "name": "SlashID Groups Person Attributes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

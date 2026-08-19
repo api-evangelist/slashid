@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "b6eedfe3-fcbf-47d4-a74d-2819c22d4958",
+      "name": "OIDC discovery",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e21e1fa1-0394-4207-a8d1-b7828459bff5",
+          "name": "Retrieve OpenID configuration values",
+          "request": {
+            "name": "Retrieve OpenID configuration values",
+            "description": {
+              "content": "Endpoint to retrieve OpenID configuration values for SlashID in JSON format, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "openid-configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89dafdef-3f21-44f1-add1-1a44ec8ff587",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuer\": \"string\",\n  \"authorization_endpoint\": \"string\",\n  \"token_endpoint\": \"string\",\n  \"jwks_uri\": \"string\",\n  \"response_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"subject_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id_token_signing_alg_values_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"userinfo_endpoint\": \"string\",\n  \"registration_endpoint\": \"string\",\n  \"scopes_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"grant_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"acr_values_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"token_endpoint_auth_methods_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"claims_supported\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6a91bf6-8255-4e9d-a76b-9c308ab2249b",
+          "name": "Retrieve public key JWKS for user tokens",
+          "request": {
+            "name": "Retrieve public key JWKS for user tokens",
+            "description": {
+              "content": "Endpoint to retrieve a JSON Web Key Set for JWT validation, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "jwks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eab6be28-6f56-40a0-a9df-df9bfad4b857",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "jwks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\",\n  \"key_1\": true,\n  \"key_2\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "12986795-8b92-450f-806b-5d255fc4b65e",
+    "name": "SlashID Groups OIDC discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

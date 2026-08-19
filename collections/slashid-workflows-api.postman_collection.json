@@ -1,0 +1,3000 @@
+{
+  "item": [
+    {
+      "id": "679b1cd5-dba4-4e01-bfc4-9356f3c457df",
+      "name": "Workflows",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "890e06ea-892f-4780-a395-a0203bf9b17c",
+          "name": "Create a new workflow",
+          "request": {
+            "name": "Create a new workflow",
+            "description": {
+              "content": "Creates a new workflow for automated response actions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "700cb625-14df-40f5-a422-76e2b75fccd6",
+              "name": "Workflow created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Critical Detection Response\",\n  \"description\": \"Automated response workflow for critical severity detections\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"kind\": \"workflow_with_configuration\",\n    \"id\": \"string\",\n    \"org_id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"draft\",\n    \"created_by\": \"string\",\n    \"created_at\": \"1979-03-01T22:35:05.910Z\",\n    \"updated_by\": \"string\",\n    \"updated_at\": \"2014-12-22T05:55:20.849Z\",\n    \"execution_count\": 964,\n    \"success_count\": 2489,\n    \"failure_count\": 471,\n    \"latest_configuration_version\": 6644,\n    \"description\": \"string\",\n    \"activated_at\": \"2000-08-24T06:44:08.681Z\",\n    \"paused_at\": \"1956-06-20T20:09:47.277Z\",\n    \"last_executed_at\": \"1964-11-24T07:22:51.055Z\",\n    \"latest_configuration_id\": \"string\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9268,\n      \"offset\": 8662,\n      \"total_count\": 4292\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2052,\n      \"cursor\": \"string\",\n      \"total_count\": 1627\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 4457,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5212,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46b6deaa-1c88-43fd-b49b-7cac08337edb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Critical Detection Response\",\n  \"description\": \"Automated response workflow for critical severity detections\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43f8fb2a-c45d-48df-9445-bc356685cb23",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Critical Detection Response\",\n  \"description\": \"Automated response workflow for critical severity detections\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38a8bdee-ff48-458a-be5c-ef3bfb9a72c0",
+          "name": "List workflows",
+          "request": {
+            "name": "List workflows",
+            "description": {
+              "content": "Retrieve a list of workflows for the organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by workflow status"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of workflows to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort parameter in format \"field:order\".\nValid fields: created_at, updated_at, name.\nValid orders: asc, desc.\nExample: \"created_at:desc\" (default)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by workflow data input type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "353a2d59-0ac9-4802-92f3-c2d5a9a59940",
+              "name": "List of workflows",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"workflows\": [\n      {\n        \"kind\": \"workflow\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"<string>\",\n        \"created_by\": \"string\",\n        \"created_at\": \"1965-04-21T18:37:56.901Z\",\n        \"updated_by\": \"string\",\n        \"updated_at\": \"2012-09-23T14:16:40.840Z\",\n        \"execution_count\": 2197,\n        \"success_count\": 3353,\n        \"failure_count\": 1402,\n        \"latest_configuration_version\": 7182,\n        \"description\": \"string\",\n        \"activated_at\": \"2015-10-14T23:13:40.239Z\",\n        \"paused_at\": \"1957-10-24T13:42:23.227Z\",\n        \"last_executed_at\": \"1965-11-22T15:14:32.247Z\",\n        \"latest_configuration_id\": \"string\"\n      },\n      {\n        \"kind\": \"workflow_with_configuration\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"<string>\",\n        \"created_by\": \"string\",\n        \"created_at\": \"1961-07-03T07:08:27.797Z\",\n        \"updated_by\": \"string\",\n        \"updated_at\": \"2024-11-24T01:33:59.547Z\",\n        \"execution_count\": 602,\n        \"success_count\": 9109,\n        \"failure_count\": 8480,\n        \"latest_configuration_version\": 1296,\n        \"description\": \"string\",\n        \"activated_at\": \"1951-10-19T04:42:01.161Z\",\n        \"paused_at\": \"2022-09-16T23:44:32.548Z\",\n        \"last_executed_at\": \"2021-01-02T03:54:46.745Z\",\n        \"latest_configuration_id\": \"string\"\n      }\n    ]\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 9623,\n      \"offset\": 450,\n      \"total_count\": 469\n    },\n    \"cursor_pagination\": {\n      \"limit\": 797,\n      \"cursor\": \"string\",\n      \"total_count\": 3880\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 3029,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 3826,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3a80793-4cdc-4982-9890-0e35648fdc61",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17afa4ee-8934-41a9-88d1-ca3f01520b28",
+          "name": "Get workflow details",
+          "request": {
+            "name": "Get workflow details",
+            "description": {
+              "content": "Retrieve details of a specific workflow.\nWhen include_configuration=true, the response also includes the latest workflow configuration\n(data_input_config, actions, version, etc.).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_configuration",
+                  "value": "false",
+                  "description": "Include latest workflow configuration in response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "966227e7-c893-4d25-a706-70350f74269f",
+              "name": "Workflow details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_configuration",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"kind\": \"workflow_with_configuration\",\n    \"id\": \"string\",\n    \"org_id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"<string>\",\n    \"created_by\": \"string\",\n    \"created_at\": \"1987-11-06T14:14:33.873Z\",\n    \"updated_by\": \"string\",\n    \"updated_at\": \"2022-10-07T01:41:01.165Z\",\n    \"execution_count\": 4994,\n    \"success_count\": 8289,\n    \"failure_count\": 7945,\n    \"latest_configuration_version\": 8427,\n    \"description\": \"string\",\n    \"activated_at\": \"1965-10-06T16:09:54.230Z\",\n    \"paused_at\": \"2006-08-10T17:39:25.021Z\",\n    \"last_executed_at\": \"2007-04-06T07:03:49.147Z\",\n    \"latest_configuration_id\": \"string\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 520,\n      \"offset\": 126,\n      \"total_count\": 2407\n    },\n    \"cursor_pagination\": {\n      \"limit\": 1411,\n      \"cursor\": \"string\",\n      \"total_count\": 2676\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 349,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 1897,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "158ff676-de65-444a-b06f-5c2b76e5490d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_configuration",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0af3008-7f08-4c3c-a35d-2a5d88abfb2f",
+          "name": "Update workflow",
+          "request": {
+            "name": "Update workflow",
+            "description": {
+              "content": "Update a workflow and create a new version",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"data_input_config\": {\n    \"type\": \"<string>\",\n    \"scim_filter\": \"<string>\",\n    \"limit\": 0,\n    \"sorting\": [\n      {\n        \"field\": \"<string>\",\n        \"direction\": \"desc\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"direction\": \"desc\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"key_0\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9009\n      },\n      \"dry_run\": false\n    },\n    \"key_1\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": \"string\",\n        \"key_1\": 8517\n      },\n      \"dry_run\": false\n    },\n    \"key_2\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 6566.157600442246,\n        \"key_1\": 3622\n      },\n      \"dry_run\": false\n    },\n    \"key_3\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 4788,\n        \"key_1\": false,\n        \"key_2\": true\n      },\n      \"dry_run\": false\n    }\n  },\n  \"starting_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e42aeff0-d4dd-4917-a7c0-50ab3241c698",
+              "name": "Workflow updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"data_input_config\": {\n    \"type\": \"<string>\",\n    \"scim_filter\": \"severity eq \\\"critical\\\"\",\n    \"limit\": 0,\n    \"sorting\": [\n      {\n        \"field\": \"created_at\",\n        \"direction\": \"desc\"\n      },\n      {\n        \"field\": \"created_at\",\n        \"direction\": \"desc\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"key_0\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_1\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_2\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_3\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    }\n  },\n  \"starting_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"actions\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"created_at\": \"1950-11-02T23:38:11.497Z\",\n    \"created_by\": \"string\",\n    \"data_input_config\": {\n      \"type\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"scim_filter\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"limit\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"sorting\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"execution_count\": 9690,\n    \"failure_count\": 3513,\n    \"id\": \"string\",\n    \"is_latest\": true,\n    \"kind\": \"workflow\",\n    \"latest_configuration_version\": 1441,\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"status\": \"<string>\",\n    \"success_count\": 3633,\n    \"updated_at\": \"2005-09-06T05:32:40.388Z\",\n    \"updated_by\": \"string\",\n    \"version\": 1745,\n    \"workflow_id\": \"string\",\n    \"description\": \"string\",\n    \"activated_at\": \"1951-08-06T01:40:03.277Z\",\n    \"paused_at\": \"1967-02-28T18:47:33.227Z\",\n    \"last_executed_at\": \"1952-03-29T21:16:17.642Z\",\n    \"latest_configuration_id\": \"string\",\n    \"starting_actions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"schedule\": \"0 9 * * *\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1102,\n      \"offset\": 2861,\n      \"total_count\": 8633\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9580,\n      \"cursor\": \"string\",\n      \"total_count\": 1037\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 9440,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 7416,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "967d69ae-81b6-4828-8980-c1be4a4d2ae3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"data_input_config\": {\n    \"type\": \"<string>\",\n    \"scim_filter\": \"severity eq \\\"critical\\\"\",\n    \"limit\": 0,\n    \"sorting\": [\n      {\n        \"field\": \"created_at\",\n        \"direction\": \"desc\"\n      },\n      {\n        \"field\": \"created_at\",\n        \"direction\": \"desc\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"key_0\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_1\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_2\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_3\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    }\n  },\n  \"starting_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f1634a5-ccba-484a-9a35-cc3b82b308b7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"data_input_config\": {\n    \"type\": \"<string>\",\n    \"scim_filter\": \"severity eq \\\"critical\\\"\",\n    \"limit\": 0,\n    \"sorting\": [\n      {\n        \"field\": \"created_at\",\n        \"direction\": \"desc\"\n      },\n      {\n        \"field\": \"created_at\",\n        \"direction\": \"desc\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"key_0\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_1\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_2\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    },\n    \"key_3\": {\n      \"action\": \"<string>\",\n      \"enabled\": true,\n      \"id\": \"<string>\",\n      \"target_type\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"integration_id\": \"<string>\",\n      \"parameters\": {\n        \"group_name\": \"suspended_users\",\n        \"reason\": \"Suspicious activity detected\"\n      },\n      \"dry_run\": false\n    }\n  },\n  \"starting_actions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d96f95a-5e16-4e57-a6c6-5e7328c6f163",
+          "name": "Delete workflow",
+          "request": {
+            "name": "Delete workflow",
+            "description": {
+              "content": "Soft delete a workflow (marks as deleted)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d3fd0f6-3ea5-4720-af65-e69354952d6e",
+              "name": "No content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4b203558-3f44-4146-a10d-81e4569bb19b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8ac8aaa-3eef-4499-a90f-d4becc22dac8",
+          "name": "List workflow versions",
+          "request": {
+            "name": "List workflow versions",
+            "description": {
+              "content": "Retrieve all versions of a workflow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58c43daa-ebb3-43a3-ad28-13858b72630f",
+              "name": "List of workflow versions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"versions\": [\n      {\n        \"id\": \"string\",\n        \"workflow_id\": \"string\",\n        \"org_id\": \"string\",\n        \"version\": 3121,\n        \"data_input_config\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"scim_filter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"limit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sorting\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"actions\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"created_by\": \"string\",\n        \"created_at\": \"1964-09-14T00:40:55.771Z\",\n        \"is_latest\": true,\n        \"starting_actions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"schedule\": \"0 9 * * *\"\n      },\n      {\n        \"id\": \"string\",\n        \"workflow_id\": \"string\",\n        \"org_id\": \"string\",\n        \"version\": 3883,\n        \"data_input_config\": {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"scim_filter\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"limit\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sorting\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"actions\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"created_by\": \"string\",\n        \"created_at\": \"1969-10-09T14:55:17.369Z\",\n        \"is_latest\": false,\n        \"starting_actions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"schedule\": \"0 9 * * *\"\n      }\n    ]\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 5098,\n      \"offset\": 9088,\n      \"total_count\": 4188\n    },\n    \"cursor_pagination\": {\n      \"limit\": 7311,\n      \"cursor\": \"string\",\n      \"total_count\": 2431\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1713,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8745,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe027d5f-1f16-4bc2-8717-8862d0fdf321",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0437649e-78a8-420c-8222-305581bed62f",
+          "name": "Get specific workflow version",
+          "request": {
+            "name": "Get specific workflow version",
+            "description": {
+              "content": "Retrieve a specific version of a workflow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "versions",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) Workflow version number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ff49371-51db-47be-a8c4-af03c9cf9f2a",
+              "name": "Workflow version details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "versions",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) Workflow version number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"id\": \"string\",\n    \"workflow_id\": \"string\",\n    \"org_id\": \"string\",\n    \"version\": 4280,\n    \"data_input_config\": {\n      \"type\": \"<string>\",\n      \"scim_filter\": \"severity eq \\\"critical\\\"\",\n      \"limit\": 0,\n      \"sorting\": [\n        {\n          \"field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"direction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"direction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"actions\": {\n      \"key_0\": {\n        \"action\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parameters\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dry_run\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"created_by\": \"string\",\n    \"created_at\": \"1994-03-15T17:32:42.898Z\",\n    \"is_latest\": true,\n    \"starting_actions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"schedule\": \"0 9 * * *\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 6894,\n      \"offset\": 9386,\n      \"total_count\": 402\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3921,\n      \"cursor\": \"string\",\n      \"total_count\": 8723\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 237,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8303,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0c79612-b412-4f1d-bffe-51d808baf187",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "versions",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) Workflow version number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed2520af-73db-4ce4-806f-4751db9bb9bd",
+          "name": "Restore workflow version",
+          "request": {
+            "name": "Restore workflow version",
+            "description": {
+              "content": "Restore a previous version of a workflow as the latest version",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "versions",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "version",
+                  "description": "(Required) Workflow version number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d4305c8-b85b-42c7-ac7b-842bbc052a58",
+              "name": "Workflow version restored successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "versions",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) Workflow version number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"id\": \"string\",\n    \"workflow_id\": \"string\",\n    \"org_id\": \"string\",\n    \"version\": 4280,\n    \"data_input_config\": {\n      \"type\": \"<string>\",\n      \"scim_filter\": \"severity eq \\\"critical\\\"\",\n      \"limit\": 0,\n      \"sorting\": [\n        {\n          \"field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"direction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"field\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"direction\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"actions\": {\n      \"key_0\": {\n        \"action\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"parameters\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"dry_run\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"created_by\": \"string\",\n    \"created_at\": \"1994-03-15T17:32:42.898Z\",\n    \"is_latest\": true,\n    \"starting_actions\": [\n      \"string\",\n      \"string\"\n    ],\n    \"schedule\": \"0 9 * * *\"\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 6894,\n      \"offset\": 9386,\n      \"total_count\": 402\n    },\n    \"cursor_pagination\": {\n      \"limit\": 3921,\n      \"cursor\": \"string\",\n      \"total_count\": 8723\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 237,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8303,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b80db27-d93c-4d2c-8a55-862f46bb105e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "versions",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "version",
+                      "description": "(Required) Workflow version number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb73a848-de9d-409a-a6a1-7c7a520ab878",
+          "name": "Activate workflow",
+          "request": {
+            "name": "Activate workflow",
+            "description": {
+              "content": "Activate a workflow to make it operational",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74970f20-be2c-43a9-893b-317c8e46eef1",
+              "name": "Workflow activated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba74a529-1b41-408b-bac2-cae5f2f7e3cf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a6eaa94-76f2-400b-abd5-a1336a5e3312",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a9e1047-aea4-4889-8f39-e5aed0ffc218",
+          "name": "Pause workflow",
+          "request": {
+            "name": "Pause workflow",
+            "description": {
+              "content": "Pause an active workflow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e471429-1568-40bc-8e47-63029e4ac554",
+              "name": "Workflow paused successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d4a0c94-7d2d-47a3-8e53-425a80daf7e0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ea9307d-93d1-4957-acc9-00ba4d25cc5b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e1c7cbc-1224-4501-bb42-b6975b3bec31",
+          "name": "Resume workflow",
+          "request": {
+            "name": "Resume workflow",
+            "description": {
+              "content": "Resume a paused workflow",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9baf4b3-bca8-4fae-b3e4-ab04dfe8b665",
+              "name": "Workflow resumed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2d7dd39-7c8b-4396-acd3-5f4f86c588ec",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac59a3e7-193d-49ee-88fe-1b51d3a76840",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef522164-0a47-4194-bdfd-953c9cd47def",
+          "name": "Execute workflow",
+          "request": {
+            "name": "Execute workflow",
+            "description": {
+              "content": "Manually trigger workflow execution",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95afc79f-05f5-43f6-ab99-55eeb16dba16",
+              "name": "Workflow execution triggered successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07cfe3f3-8679-4323-b53f-a7919de2a37e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc165f27-1d4f-4af3-8b29-52954a9c029a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6541d8dc-3f00-4e98-bbc3-ff7753eaa27a",
+          "name": "Internal endpoint for scheduled workflow execution",
+          "request": {
+            "name": "Internal endpoint for scheduled workflow execution",
+            "description": {
+              "content": "Internal endpoint invoked by the workflow scheduler (GCP Cloud Scheduler in production, the docker-scheduler in dev) on each cron tick. Publishes a workflow execute event with trigger_source=scheduled. Not intended for external callers.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                ":workflow_id",
+                "scheduled-execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) Workflow identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0eb9bcff-a375-4a0c-86f2-89bae7100bca",
+              "name": "Tick accepted (or skipped if the workflow is not active)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "scheduled-execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"skipped\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4fc49d1-b1f4-47e5-a3a9-a62ca13b6109",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "scheduled-execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "334c3e7f-a894-4d01-87e9-2559fd8147e6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    ":workflow_id",
+                    "scheduled-execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) Workflow identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 1442,\n      \"offset\": 2907,\n      \"total_count\": 2308\n    },\n    \"cursor_pagination\": {\n      \"limit\": 2752,\n      \"cursor\": \"string\",\n      \"total_count\": 8199\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 118,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 195,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6181d71a-4159-4274-b705-cfa8df22f183",
+          "name": "Run a read-only Cypher query and return the first 50 rows",
+          "request": {
+            "name": "Run a read-only Cypher query and return the first 50 rows",
+            "description": {
+              "content": "Synchronous preview for the Query Workflows UI. Validates the query\n(same validator as scheduled runs), runs it against the caller's org\ngraph with a 10-second timeout and a hard 50-row cap. Read-only —\nwrite keywords are rejected. Not intended for batch use; use the\nscheduled-execute path for production reads.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflows",
+                "cypher-preview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"parameters\": {\n    \"key_0\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "768945f0-ef1f-4e65-b2ed-83614c3e59f2",
+              "name": "Preview results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    "cypher-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"MATCH (u:User) WHERE u.active = true RETURN u.id, u.email\",\n  \"parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2837.9531446714736,\n    \"key_2\": 3597.232349635684\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"columns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rows\": [\n    [],\n    []\n  ],\n  \"duration_ms\": 6122,\n  \"truncated\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4c9415a-d7db-4b07-a5d8-2c597772552c",
+              "name": "Validation error (query empty, missing MATCH/RETURN, write keyword, etc.).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    "cypher-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"MATCH (u:User) WHERE u.active = true RETURN u.id, u.email\",\n  \"parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2837.9531446714736,\n    \"key_2\": 3597.232349635684\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"cypher_write_keyword\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e9c20cd-2041-463c-a166-7e88ae124a83",
+              "name": "Query exceeded the 10-second preview timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows",
+                    "cypher-preview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"MATCH (u:User) WHERE u.active = true RETURN u.id, u.email\",\n  \"parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2837.9531446714736,\n    \"key_2\": 3597.232349635684\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"cypher_write_keyword\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slashid.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "SlashID-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "56c688f5-5a37-43a6-b117-addcb3ccf45e",
+    "name": "SlashID Groups Workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,619 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups RBAC API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RBAC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of permissions granted to the specified person. It contains both assigned permissions and permissions from roles."
+        },
+        {
+          "info": {
+            "name": "Get additional permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/additional-permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of additional permissions assigned to person. This endpoint doesn't return permissions from roles."
+        },
+        {
+          "info": {
+            "name": "Set the permissions for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/additional-permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant the person the permissions specified in the request body, and revoke the person any other existing permissions.\nAll permissions in the request body must already exist. Duplicate permissions in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all permissions they currently have.\n"
+        },
+        {
+          "info": {
+            "name": "Get roles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons/:person_id/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of roles granted to the specified person"
+        },
+        {
+          "info": {
+            "name": "Set the roles for a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/persons/:person_id/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "903c1ff9-f2cc-435c-b242-9d8a690fcf0a",
+                "type": "path",
+                "description": "The person ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant the person the roles specified in the request body, and revoke the person any other existing roles.\nAll roles in the request body must already exist. Duplicate roles in the request body will be ignored. If an empty list is supplied in the request body, the person will be revoked all roles they currently have.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/persons",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "handle",
+                "value": "",
+                "type": "query",
+                "description": "Filter by handle in format [handle_type]:[handle]. This field should be url-encoded."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "A filter to be applied to the result list, using the [SCIM 2.0 Filter syntax](https://www.rfc-editor.org/rfc/rfc7644#section-3.4.2.2)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return in the result. Maximum value is 1000."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of the first item to be returned in the result"
+              },
+              {
+                "name": "ids",
+                "value": "064d3697-4bf6-781e-9a08-303683b8a5e6,064d3f71-475e-7ea4-9808-6b72d038a43f",
+                "type": "query",
+                "description": "A comma-separated list of person IDs"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Optional fields to include in the response"
+              },
+              {
+                "name": "all_regions",
+                "value": "",
+                "type": "query",
+                "description": "If true, users from all regions will be returned. Defaults to true."
+              },
+              {
+                "name": "all_person_types",
+                "value": "",
+                "type": "query",
+                "description": "If true, also returns non-regular users. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Retrieve the full list of persons in your organization."
+        },
+        {
+          "info": {
+            "name": "Get a list of permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "List the names of all permissions that exist for your organization"
+        },
+        {
+          "info": {
+            "name": "Create a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/rbac/permissions",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new permission with the given name.\n\nIf the permission exists already, no action will be taken.\nA person can be assigned a permission through the [`POST /persons/:person_id/permissions`](/docs/api/put-persons-person-id-permissions) endpoint.\nSub-organization can create permissions only when [`inherit_rbac_pools` is disabled](/docs/api/post-organizations-suborganizations). If `inherit_rbac_pools` is enabled, the permissions from the root organization will be inherited.\n"
+        },
+        {
+          "info": {
+            "name": "Get a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/permissions/:permission_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "permission_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a permission. Permission name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Fperm_name`)."
+              }
+            ]
+          },
+          "docs": "Get the named permission"
+        },
+        {
+          "info": {
+            "name": "Update a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/rbac/permissions/:permission_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "permission_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a permission. Permission name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Fperm_name`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a permission"
+        },
+        {
+          "info": {
+            "name": "Delete a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/rbac/permissions/:permission_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "permission_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a permission. Permission name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Fperm_name`)."
+              }
+            ]
+          },
+          "docs": "Remove a permission and revoke it for all users. A permission cannot be deleted as long as it's included in a role. Sub-organization can delete roles only when [`inherit_rbac_pools` is disabled](/docs/api/post-organizations-suborganizations).\n"
+        },
+        {
+          "info": {
+            "name": "Get a list of roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "List the names of all roles that exist for your organization"
+        },
+        {
+          "info": {
+            "name": "Create a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/rbac/roles",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint creates a new role with the given name.\n\nIf the Role exists already, no action will be taken.\n"
+        },
+        {
+          "info": {
+            "name": "Get a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/rbac/roles/:role_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "role_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a role. Role name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Frole_name`)."
+              }
+            ]
+          },
+          "docs": "Get the named role"
+        },
+        {
+          "info": {
+            "name": "Update a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slashid.com/rbac/roles/:role_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "role_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a role. Role name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Frole_name`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing role."
+        },
+        {
+          "info": {
+            "name": "Delete a role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/rbac/roles/:role_name",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "role_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of a role. Role name should be URL encoded (so for example: `3b0a8f7e-f26e-4a08-8dae-4d5360a72003%2Frole_name`)."
+              }
+            ]
+          },
+          "docs": "Remove a role and revoke it for all users."
+        },
+        {
+          "info": {
+            "name": "Check whether a person has a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/rbac/check",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check whether the given person has the given permission. The service automatically takes into account permissions included in granted roles as well as permissions granted individually."
+        },
+        {
+          "info": {
+            "name": "Modify the organization's token template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slashid.com/organizations/config/token-template",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the token template for your organization. If a template already exists it will be overwritten and cannot\nbe retrieved.\n\nThe template must conform to the [mustache template syntax](https://mustache.github.io/mustache.5.html). The following tags are available:\n  - `{{ organization }}`: provides information on the organization. Renders to\n    ```json\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"name\": \"Your Org Name\",\n      \"ancestors\": [\n        {\n          \"id\": \"00000000"
+        },
+        {
+          "info": {
+            "name": "Create a suborganization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/organizations/suborganizations",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              },
+              {
+                "name": "SlashID-Required-Consistency",
+                "value": ""
+              },
+              {
+                "name": "SlashID-Required-Consistency-Timeout",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new organization subordinate to your organization.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

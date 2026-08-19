@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SlashID Groups Super Admin Management API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "SlashID-API-Key",
+      "value": "{{SlashID-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Super Admin Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all super-admins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/super-admins",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all super-admins in the system. Only super-admins can view this list"
+        },
+        {
+          "info": {
+            "name": "Create a super-admin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slashid.com/super-admins",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a person to the super-admins table. Only existing super-admins can create new super-admins. The person must already exist in the system.\n"
+        },
+        {
+          "info": {
+            "name": "Remove super-admin access",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.slashid.com/super-admins/:person_id",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "path",
+                "description": "External person ID (UUID)"
+              }
+            ]
+          },
+          "docs": "Remove a person from the super-admins table by their external person ID. Only existing super-admins can revoke super-admin access.\n"
+        },
+        {
+          "info": {
+            "name": "Get super-admin audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slashid.com/super-admins/audit-logs",
+            "headers": [
+              {
+                "name": "SlashID-OrgID",
+                "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of audit log entries to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of audit log entries to skip"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by super-admin person ID"
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization ID"
+              }
+            ]
+          },
+          "docs": "Retrieve audit logs of super-admin actions. Only super-admins can view audit logs.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
