@@ -43,7 +43,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/slashid/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: slashid:slashid-groups-api
   name: SlashID Groups API
