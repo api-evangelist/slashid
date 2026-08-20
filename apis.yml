@@ -35,6 +35,18 @@ tags:
   - Passkeys
   - User Management
   - CIAM
+  - OIDC
+  - SSO
+  - RBAC
+  - Security
+tags_raw:
+  - Identity
+  - Authentication
+  - Passwordless
+  - MFA
+  - Passkeys
+  - User Management
+  - CIAM
   - OAuth2
   - OIDC
   - SSO
@@ -51,6 +63,8 @@ apis:
   humanURL: https://developer.slashid.dev/docs/api/slash-id-api
   baseURL: https://api.slashid.com
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -75,6 +89,8 @@ apis:
   humanURL: https://developer.slashid.dev/docs/api/slash-id-api
   baseURL: https://api.slashid.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth2
   properties:
   - type: OpenAPI
@@ -87,6 +103,8 @@ apis:
   humanURL: https://developer.slashid.dev/docs/api/slash-id-api
   baseURL: https://api.slashid.com
   tags:
+  - OIDC Discovery
+  tags_raw:
   - OIDC discovery
   properties:
   - type: OpenAPI
@@ -203,6 +221,8 @@ apis:
   humanURL: https://developer.slashid.dev/docs/api/slash-id-api
   baseURL: https://api.slashid.com
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
