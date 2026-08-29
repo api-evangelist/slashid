@@ -13,6 +13,18 @@ description: >
   The service publishes an OpenAPI 1.1 specification and offers JavaScript,
   React, and Remix SDKs alongside API-key and OAuth2/OIDC authentication.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
