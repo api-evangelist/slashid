@@ -87,7 +87,7 @@ apis:
   humanURL: https://developer.slashid.dev/docs/api/slash-id-api
   baseURL: https://api.slashid.com
   tags:
-  - OIDC Discovery
+  - OIDC discovery
   tags_raw:
   - OIDC discovery
   properties:
