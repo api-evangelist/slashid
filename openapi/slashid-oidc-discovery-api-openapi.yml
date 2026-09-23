@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: SlashID Groups OIDC discovery API
-  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  title: SlashID OIDC discovery API
+  description: This is the OpenAPI specification for communicating with the SlashID service.
   version: '1.1'
   termsOfService: https://www.slashid.dev/terms-of-use/
   contact:
@@ -15,15 +15,15 @@ servers:
 security:
 - ApiKeyAuth: []
 tags:
-- name: OIDC discovery
+- name: OIDC Discovery
 paths:
   /.well-known/openid-configuration:
     get:
       operationId: GetWellKnownOpenidConfiguration
       tags:
-      - OIDC discovery
+      - OIDC Discovery
       summary: Retrieve OpenID configuration values
-      description: Endpoint to retrieve OpenID configuration values for SlashID in JSON format, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+      description: Endpoint to retrieve OpenID configuration values for SlashID in JSON format, as per the OpenID specification
       responses:
         '200':
           description: OK
@@ -35,9 +35,9 @@ paths:
     get:
       operationId: GetWellKnownJwksJson
       tags:
-      - OIDC discovery
+      - OIDC Discovery
       summary: Retrieve public key JWKS for user tokens
-      description: Endpoint to retrieve a JSON Web Key Set for JWT validation, as per the [OpenID specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+      description: Endpoint to retrieve a JSON Web Key Set for JWT validation, as per the OpenID specification
       responses:
         '200':
           description: OK

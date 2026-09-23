@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: SlashID Groups Super Admin Management API
-  description: "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n"
+  title: SlashID Super Admin Management API
+  description: This is the OpenAPI specification for communicating with the SlashID service.
   version: '1.1'
   termsOfService: https://www.slashid.dev/terms-of-use/
   contact:
@@ -26,9 +26,7 @@ paths:
       tags:
       - Super Admin Management
       summary: Create a super-admin
-      description: 'Add a person to the super-admins table. Only existing super-admins can create new super-admins. The person must already exist in the system.
-
-        '
+      description: Add a person to the super-admins table. Only existing super-admins can create new super-admins. The person must already exist in the system.
       requestBody:
         description: Super-admin creation request
         required: true
@@ -97,9 +95,7 @@ paths:
       tags:
       - Super Admin Management
       summary: Remove super-admin access
-      description: 'Remove a person from the super-admins table by their external person ID. Only existing super-admins can revoke super-admin access.
-
-        '
+      description: Remove a person from the super-admins table by their external person ID. Only existing super-admins can revoke super-admin access.
       responses:
         '204':
           $ref: '#/components/responses/NoContent'
@@ -143,9 +139,7 @@ paths:
       tags:
       - Super Admin Management
       summary: Get super-admin audit logs
-      description: 'Retrieve audit logs of super-admin actions. Only super-admins can view audit logs.
-
-        '
+      description: Retrieve audit logs of super-admin actions. Only super-admins can view audit logs.
       responses:
         '200':
           description: List of audit log entries
@@ -168,14 +162,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    NoContent:
-      description: No content
     BadRequest:
       description: Bad Request
       content:
@@ -188,6 +174,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
     Conflict:
       description: Conflict
       content:
@@ -195,18 +189,6 @@ components:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
   schemas:
-    EntityLink:
-      type: object
-      required:
-      - entity_class
-      - entity_id
-      properties:
-        entity_class:
-          $ref: '#/components/schemas/EntityClass'
-        entity_id:
-          type: string
-        identifier:
-          type: string
     APIResponseError:
       type: object
       properties:
@@ -214,6 +196,48 @@ components:
           type: integer
         message:
           type: string
+    SuperAdminCreateReq:
+      type: object
+      required:
+      - person_id
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    EntityClass:
+      type: string
+      enum:
+      - unknown
+      - identity
+      - credential
+      - policy
+      - resource
+      - application
+      - canonical_application
+      - canonical_identity
+      - sensor
+      - person
+    OrganizationID:
+      type: string
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
     APICursorPagination:
       type: object
       required:
@@ -228,44 +252,18 @@ components:
         total_count:
           type: integer
           format: int64
-    APIResponseBase:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/APIMeta'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIResponseError'
-    OrganizationID:
-      type: string
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
-    SuperAdminCreateReq:
+    EntityLink:
       type: object
       required:
-      - person_id
+      - entity_class
+      - entity_id
       properties:
-        person_id:
-          $ref: '#/components/schemas/PersonID'
-    EntityClass:
-      type: string
-      enum:
-      - unknown
-      - identity
-      - credential
-      - policy
-      - resource
-      - application
-      - canonical_application
-      - canonical_identity
-      - sensor
-      - person
+        entity_class:
+          $ref: '#/components/schemas/EntityClass'
+        entity_id:
+          type: string
+        identifier:
+          type: string
     SuperAdmin:
       type: object
       required:
@@ -329,10 +327,6 @@ components:
           type: string
           format: date-time
           description: Timestamp of the action
-    PersonID:
-      type: string
-      description: Person ID
-      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
   parameters:
     OrgIDHeader:
       name: SlashID-OrgID
