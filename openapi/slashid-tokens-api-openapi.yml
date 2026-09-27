@@ -43,23 +43,6 @@ paths:
         '408':
           $ref: '#/components/responses/Timeout'
 components:
-  responses:
-    Timeout:
-      description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
-
-        The operation may still be in progress, and will be completed eventually.'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    NoContent:
-      description: No content
   schemas:
     APIResponseError:
       type: object
@@ -68,13 +51,6 @@ components:
           type: integer
         message:
           type: string
-    RevokeTokenReq:
-      required:
-      - token
-      type: object
-      properties:
-        token:
-          $ref: '#/components/schemas/TokenText'
     APIResponseBase:
       type: object
       properties:
@@ -84,13 +60,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/APIResponseError'
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
     TokenText:
       description: A JWT token. Can be either a User token (`UserTokenText`) or a Token Container (`TokenContainerText`)
       type: string
@@ -122,7 +91,36 @@ components:
         total_count:
           type: integer
           format: int64
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    RevokeTokenReq:
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          $ref: '#/components/schemas/TokenText'
   parameters:
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
     OptionalSdkVersionHeader:
       name: SlashID-SdkVersion
       in: header
@@ -149,21 +147,23 @@ components:
         - local_region
         - all_regions
         default: local_region
-    RequiredConsistencyTimeoutHeader:
-      name: SlashID-Required-Consistency-Timeout
-      in: header
-      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+  responses:
+    NoContent:
+      description: No content
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Timeout:
+      description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
 
-        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
-
-        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
-
-        '
-      schema:
-        type: integer
-        default: 30
-        maximum: 120
-        minimum: 1
+        The operation may still be in progress, and will be completed eventually.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
   securitySchemes:
     ApiKeyAuth:
       description: Authorizes the request with the organization's API Key.

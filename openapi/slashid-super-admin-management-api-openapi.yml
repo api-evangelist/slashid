@@ -161,33 +161,6 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  responses:
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    NoContent:
-      description: No content
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
   schemas:
     APIResponseError:
       type: object
@@ -196,39 +169,6 @@ components:
           type: integer
         message:
           type: string
-    SuperAdminCreateReq:
-      type: object
-      required:
-      - person_id
-      properties:
-        person_id:
-          $ref: '#/components/schemas/PersonID'
-    PersonID:
-      type: string
-      description: Person ID
-      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
-    EntityClass:
-      type: string
-      enum:
-      - unknown
-      - identity
-      - credential
-      - policy
-      - resource
-      - application
-      - canonical_application
-      - canonical_identity
-      - sensor
-      - person
-    OrganizationID:
-      type: string
     APIResponseBase:
       type: object
       properties:
@@ -238,6 +178,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/APIResponseError'
+    SuperAdmin:
+      type: object
+      required:
+      - person
+      - created_at
+      properties:
+        person:
+          $ref: '#/components/schemas/EntityLink'
+          description: Link to the person with this super-admin access
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when super-admin was created
+        created_by:
+          $ref: '#/components/schemas/EntityLink'
+          description: Link to the person who created this super-admin (if available)
+    OrganizationID:
+      type: string
     APICursorPagination:
       type: object
       required:
@@ -264,22 +222,17 @@ components:
           type: string
         identifier:
           type: string
-    SuperAdmin:
+    SuperAdminCreateReq:
       type: object
       required:
-      - person
-      - created_at
+      - person_id
       properties:
-        person:
-          $ref: '#/components/schemas/EntityLink'
-          description: Link to the person with this super-admin access
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when super-admin was created
-        created_by:
-          $ref: '#/components/schemas/EntityLink'
-          description: Link to the person who created this super-admin (if available)
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
     APIPagination:
       type: object
       required:
@@ -294,6 +247,26 @@ components:
         total_count:
           type: integer
           format: int64
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    EntityClass:
+      type: string
+      enum:
+      - unknown
+      - identity
+      - credential
+      - policy
+      - resource
+      - application
+      - canonical_application
+      - canonical_identity
+      - sensor
+      - person
     SuperAdminAuditLog:
       type: object
       required:
@@ -327,6 +300,33 @@ components:
           type: string
           format: date-time
           description: Timestamp of the action
+  responses:
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
   parameters:
     OrgIDHeader:
       name: SlashID-OrgID

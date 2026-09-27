@@ -506,110 +506,6 @@ paths:
                 $ref: '#/components/schemas/WorkflowCypherPreviewError'
 components:
   schemas:
-    WorkflowActionType:
-      type: string
-      enum:
-      - remediation
-      - ticket
-      - data_sink
-      - webhook
-      - notification
-      - condition
-      description: Type of workflow action
-    RemediationActionConfiguration:
-      allOf:
-      - $ref: '#/components/schemas/BaseActionConfiguration'
-      - type: object
-        required:
-        - action
-        - target_type
-        properties:
-          action:
-            $ref: '#/components/schemas/RemediationActionType'
-          target_type:
-            $ref: '#/components/schemas/RemediationTargetType'
-          parameters:
-            type: object
-            additionalProperties: true
-            description: Action-specific parameters
-            example:
-              group_name: suspended_users
-              reason: Suspicious activity detected
-          dry_run:
-            type: boolean
-            description: If true, action is simulated but not executed (logs what would happen)
-            default: false
-    Neo4jQueryPredicate:
-      type: object
-      required:
-      - kind
-      - cypher
-      properties:
-        kind:
-          type: string
-          enum:
-          - neo4j_query
-        cypher:
-          type: string
-        params:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ParamValue'
-        expect:
-          type: boolean
-        count_operator:
-          type: string
-          enum:
-          - gt
-          - gte
-          - lt
-          - lte
-          - eq
-          - neq
-        count_threshold:
-          type: integer
-          format: int64
-        timeout_sec:
-          type: integer
-          minimum: 0
-          maximum: 30
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
-    PgTemplatePredicate:
-      type: object
-      required:
-      - kind
-      - template
-      properties:
-        kind:
-          type: string
-          enum:
-          - pg_template
-        template:
-          type: string
-        params:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ParamValue'
-        expect:
-          type: boolean
-        count_operator:
-          type: string
-          enum:
-          - gt
-          - gte
-          - lt
-          - lte
-          - eq
-          - neq
-        count_threshold:
-          type: integer
-          format: int64
     EventCountSource:
       oneOf:
       - $ref: '#/components/schemas/PgDetectionSource'
@@ -619,20 +515,19 @@ components:
         mapping:
           pg_detection: '#/components/schemas/PgDetectionSource'
           bigquery_analytics: '#/components/schemas/BigQueryAnalyticsSource'
-    RemediationActionType:
+    RemediationTargetType:
       type: string
       enum:
-      - suspend
-      - quarantine
-      - delete
-      - rotate
-      - revoke
-      - remove_from
-      - enable
-      - add_to
-      - update_permissions
-      - force_mfa
-      description: Type of remediation action to perform
+      - user
+      - session
+      - credential
+      - api_key
+      - group_membership
+      - role
+      - permission
+      - entity
+      - group
+      description: Target of the remediation action
     BaseActionConfiguration:
       type: object
       required:
@@ -664,89 +559,58 @@ components:
           items:
             type: string
           default: []
-    LifecycleEventType:
-      type: string
-      enum:
-      - created
-      - deleted
-      - suspended
-      - modified
-      - reactivated
-      - role_changed
-      - group_added
-      - group_removed
-      - risk_score_changed
-      - inactive_threshold
-      description: 'Type of user lifecycle event that triggers the workflow.
-
-        Phase 1 (Core): created, deleted, suspended
-
-        Phase 2 (Extended): modified, reactivated, role_changed, group_added, group_removed, risk_score_changed, inactive_threshold
-
-        '
-    APIResponseError:
-      type: object
-      properties:
-        httpcode:
-          type: integer
-        message:
-          type: string
-    WorkflowDataInputType:
-      type: string
-      enum:
-      - detection
-      - lifecycle
-      - uar_finding
-      - cypher_query
-      description: Type of data input for workflow
-    DataSinkActionConfiguration:
+    WorkflowActionConfiguration:
+      oneOf:
+      - $ref: '#/components/schemas/RemediationActionConfiguration'
+      - $ref: '#/components/schemas/TicketActionConfiguration'
+      - $ref: '#/components/schemas/DataSinkActionConfiguration'
+      - $ref: '#/components/schemas/WebhookActionConfiguration'
+      - $ref: '#/components/schemas/NotificationActionConfiguration'
+      - $ref: '#/components/schemas/ConditionActionConfiguration'
+      discriminator:
+        propertyName: type
+        mapping:
+          remediation: '#/components/schemas/RemediationActionConfiguration'
+          ticket: '#/components/schemas/TicketActionConfiguration'
+          data_sink: '#/components/schemas/DataSinkActionConfiguration'
+          webhook: '#/components/schemas/WebhookActionConfiguration'
+          notification: '#/components/schemas/NotificationActionConfiguration'
+          condition: '#/components/schemas/ConditionActionConfiguration'
+    ConditionActionConfiguration:
       allOf:
       - $ref: '#/components/schemas/BaseActionConfiguration'
       - type: object
         required:
-        - sink_type
+        - type
+        - predicate
+        - on_true
         properties:
-          sink_type:
+          type:
             type: string
             enum:
-            - s3
-            - gcs
-            - bigquery
-            - snowflake
-            - splunk
-            - elasticsearch
-            description: Target data sink type
-          connection_config:
-            type: object
-            additionalProperties: true
-            description: Connection configuration for the data sink
-          data_format:
-            type: string
-            enum:
-            - json
-            - csv
-            - parquet
-            description: Format for exported data
-            default: json
-          include_fields:
+            - condition
+          predicate:
+            $ref: '#/components/schemas/Predicate'
+          on_true:
             type: array
             items:
               type: string
-            description: Fields to include in export
-          transform_rules:
+            minItems: 1
+            description: Action IDs to run for items where the predicate evaluates to true.
+          on_false:
             type: array
             items:
-              type: object
-            description: Data transformation rules
-    ParamValue:
-      type: object
-      description: Exactly one of literal or path must be set.
-      properties:
-        literal: {}
-        path:
-          type: string
-          description: JSONPath expression resolved against the WorkflowDataItem at evaluation time.
-    Neo4jTemplatePredicate:
+              type: string
+            description: 'Action IDs to run for items where the predicate evaluates to false.
+
+              If empty, items routed to this branch are dropped from the subtree.
+
+              '
+          debug:
+            type: boolean
+            default: false
+            description: When true, the evaluator emits per-leaf traces into ResultData.
+    PgTemplatePredicate:
       type: object
       required:
       - kind
@@ -755,7 +619,7 @@ components:
         kind:
           type: string
           enum:
-          - neo4j_template
+          - pg_template
         template:
           type: string
         params:
@@ -776,125 +640,20 @@ components:
         count_threshold:
           type: integer
           format: int64
-    WebhookActionConfiguration:
-      allOf:
-      - $ref: '#/components/schemas/BaseActionConfiguration'
-      - type: object
-        required:
-        - url
-        - method
-        properties:
-          url:
-            type: string
-            format: uri
-            description: Webhook endpoint URL
-          method:
-            type: string
-            enum:
-            - POST
-            - PUT
-            - PATCH
-            description: HTTP method to use
-            default: POST
-          headers:
-            type: object
-            additionalProperties:
-              type: string
-            description: Custom headers to send
-          body_template:
-            type: string
-            description: Template for request body
-          timeout_seconds:
-            type: integer
-            description: Request timeout in seconds
-            default: 30
-            minimum: 1
-            maximum: 300
-          retry_config:
-            type: object
-            properties:
-              max_retries:
-                type: integer
-                default: 3
-                minimum: 0
-                maximum: 10
-              backoff_seconds:
-                type: integer
-                default: 5
-                minimum: 1
-    WorkflowWithConfiguration:
-      allOf:
-      - $ref: '#/components/schemas/Workflow'
-      - $ref: '#/components/schemas/WorkflowConfiguration'
-    APIResponseBase:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/APIMeta'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIResponseError'
-    EventCountOverWindowPredicate:
+    PgDetectionSource:
       type: object
       required:
       - kind
-      - source
-      - window
-      - operator
-      - threshold
+      - match
       properties:
         kind:
           type: string
           enum:
-          - event_count_over_window
-        source:
-          $ref: '#/components/schemas/EventCountSource'
-        window:
-          type: string
-          example: 1h
-          description: Duration string (e.g. "1h", "24h", "7d").
-        operator:
-          type: string
-          enum:
-          - gt
-          - gte
-          - lt
-          - lte
-          - eq
-          - neq
-        threshold:
-          type: integer
-          format: int64
-          minimum: 0
-    APICursorPagination:
-      type: object
-      required:
-      - limit
-      - cursor
-      - total_count
-      properties:
-        limit:
-          type: integer
-        cursor:
-          type: string
-        total_count:
-          type: integer
-          format: int64
-    APIPagination:
-      type: object
-      required:
-      - limit
-      - offset
-      - total_count
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total_count:
-          type: integer
-          format: int64
+          - pg_detection
+        match:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ParamValue'
     OrPredicate:
       type: object
       required:
@@ -910,81 +669,6 @@ components:
           items:
             $ref: '#/components/schemas/Predicate'
           minItems: 1
-    WorkflowCypherPreviewError:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Stable error code (see backend cypher validator sentinels).
-          example: cypher_write_keyword
-        message:
-          type: string
-          description: Human-readable detail. May reference server-side context.
-    WorkflowCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Workflow name
-          minLength: 1
-          maxLength: 255
-        description:
-          type: string
-          description: Workflow description
-          maxLength: 1000
-    WorkflowStatus:
-      type: string
-      enum:
-      - draft
-      - active
-      - paused
-      - deleted
-      description: Current state of a workflow
-    Predicate:
-      oneOf:
-      - $ref: '#/components/schemas/AndPredicate'
-      - $ref: '#/components/schemas/OrPredicate'
-      - $ref: '#/components/schemas/NotPredicate'
-      - $ref: '#/components/schemas/ScimPredicate'
-      - $ref: '#/components/schemas/PgQueryPredicate'
-      - $ref: '#/components/schemas/PgTemplatePredicate'
-      - $ref: '#/components/schemas/Neo4jQueryPredicate'
-      - $ref: '#/components/schemas/Neo4jTemplatePredicate'
-      - $ref: '#/components/schemas/EventCountOverWindowPredicate'
-      discriminator:
-        propertyName: kind
-        mapping:
-          and: '#/components/schemas/AndPredicate'
-          or: '#/components/schemas/OrPredicate'
-          not: '#/components/schemas/NotPredicate'
-          scim: '#/components/schemas/ScimPredicate'
-          pg_query: '#/components/schemas/PgQueryPredicate'
-          pg_template: '#/components/schemas/PgTemplatePredicate'
-          neo4j_query: '#/components/schemas/Neo4jQueryPredicate'
-          neo4j_template: '#/components/schemas/Neo4jTemplatePredicate'
-          event_count_over_window: '#/components/schemas/EventCountOverWindowPredicate'
-    WorkflowActionConfiguration:
-      oneOf:
-      - $ref: '#/components/schemas/RemediationActionConfiguration'
-      - $ref: '#/components/schemas/TicketActionConfiguration'
-      - $ref: '#/components/schemas/DataSinkActionConfiguration'
-      - $ref: '#/components/schemas/WebhookActionConfiguration'
-      - $ref: '#/components/schemas/NotificationActionConfiguration'
-      - $ref: '#/components/schemas/ConditionActionConfiguration'
-      discriminator:
-        propertyName: type
-        mapping:
-          remediation: '#/components/schemas/RemediationActionConfiguration'
-          ticket: '#/components/schemas/TicketActionConfiguration'
-          data_sink: '#/components/schemas/DataSinkActionConfiguration'
-          webhook: '#/components/schemas/WebhookActionConfiguration'
-          notification: '#/components/schemas/NotificationActionConfiguration'
-          condition: '#/components/schemas/ConditionActionConfiguration'
     WorkflowDataInputDetectionConfiguration:
       type: object
       required:
@@ -1027,6 +711,168 @@ components:
                 - desc
                 description: Sort direction
                 default: desc
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    RemediationActionConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/BaseActionConfiguration'
+      - type: object
+        required:
+        - action
+        - target_type
+        properties:
+          action:
+            $ref: '#/components/schemas/RemediationActionType'
+          target_type:
+            $ref: '#/components/schemas/RemediationTargetType'
+          parameters:
+            type: object
+            additionalProperties: true
+            description: Action-specific parameters
+            example:
+              group_name: suspended_users
+              reason: Suspicious activity detected
+          dry_run:
+            type: boolean
+            description: If true, action is simulated but not executed (logs what would happen)
+            default: false
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    WorkflowCypherPreviewResponse:
+      type: object
+      required:
+      - columns
+      - rows
+      - duration_ms
+      - truncated
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Column names in declared order.
+        rows:
+          type: array
+          items:
+            type: array
+            items: {}
+          description: Row values, parallel to `columns`. Cell values are arbitrary JSON.
+        duration_ms:
+          type: integer
+          minimum: 0
+          description: Server-measured query duration in milliseconds.
+        truncated:
+          type: boolean
+          description: True when the query returned more than the preview cap (50 rows).
+    RemediationActionType:
+      type: string
+      enum:
+      - suspend
+      - quarantine
+      - delete
+      - rotate
+      - revoke
+      - remove_from
+      - enable
+      - add_to
+      - update_permissions
+      - force_mfa
+      description: Type of remediation action to perform
+    NotificationActionConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/BaseActionConfiguration'
+      - type: object
+        required:
+        - notification_type
+        - recipients
+        properties:
+          notification_type:
+            type: string
+            enum:
+            - email
+            - slack
+            - teams
+            - pagerduty
+            - sms
+            description: Type of notification to send
+          recipients:
+            type: array
+            items:
+              type: string
+            description: Notification recipients
+            example:
+            - security-team@example.com
+            - '#security-alerts'
+          subject_template:
+            type: string
+            description: Template for notification subject
+          message_template:
+            type: string
+            description: Template for notification message
+          severity:
+            type: string
+            enum:
+            - info
+            - warning
+            - error
+            - critical
+            description: Notification severity level
+            default: warning
+          include_data:
+            type: boolean
+            description: Whether to include detection data in notification
+            default: true
+    WorkflowActionType:
+      type: string
+      enum:
+      - remediation
+      - ticket
+      - data_sink
+      - webhook
+      - notification
+      - condition
+      description: Type of workflow action
+    WorkflowStatus:
+      type: string
+      enum:
+      - draft
+      - active
+      - paused
+      - deleted
+      description: Current state of a workflow
+    ParamValue:
+      type: object
+      description: Exactly one of literal or path must be set.
+      properties:
+        literal: {}
+        path:
+          type: string
+          description: JSONPath expression resolved against the WorkflowDataItem at evaluation time.
+    WorkflowDataInputType:
+      type: string
+      enum:
+      - detection
+      - lifecycle
+      - uar_finding
+      - cypher_query
+      description: Type of data input for workflow
     WorkflowDataInputUarFindingConfiguration:
       type: object
       required:
@@ -1140,128 +986,198 @@ components:
             applied after the structured filters above.
 
             '
-    NotPredicate:
+    EventCountOverWindowPredicate:
       type: object
       required:
       - kind
-      - predicate
+      - source
+      - window
+      - operator
+      - threshold
       properties:
         kind:
           type: string
           enum:
-          - not
-        predicate:
-          $ref: '#/components/schemas/Predicate'
-    WorkflowDataInputCypherConfiguration:
-      type: object
-      required:
-      - type
-      - query
-      properties:
-        type:
+          - event_count_over_window
+        source:
+          $ref: '#/components/schemas/EventCountSource'
+        window:
+          type: string
+          example: 1h
+          description: Duration string (e.g. "1h", "24h", "7d").
+        operator:
           type: string
           enum:
-          - cypher_query
-          description: Data input type discriminator
+          - gt
+          - gte
+          - lt
+          - lte
+          - eq
+          - neq
+        threshold:
+          type: integer
+          format: int64
+          minimum: 0
+    Neo4jTemplatePredicate:
+      type: object
+      required:
+      - kind
+      - template
+      properties:
+        kind:
+          type: string
+          enum:
+          - neo4j_template
+        template:
+          type: string
+        params:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ParamValue'
+        expect:
+          type: boolean
+        count_operator:
+          type: string
+          enum:
+          - gt
+          - gte
+          - lt
+          - lte
+          - eq
+          - neq
+        count_threshold:
+          type: integer
+          format: int64
+    WorkflowCypherPreviewRequest:
+      type: object
+      required:
+      - query
+      properties:
         query:
           type: string
-          description: 'Read-only Cypher query whose rows feed downstream workflow actions.
-
-            Must contain MATCH and RETURN clauses. Write operations and the
-
-            USE clause are rejected by the validator. Comments and strings are
-
-            tokenized before validation, so a write keyword inside a string
-
-            literal is allowed.
-
-            '
           minLength: 1
           maxLength: 10000
+          description: Read-only Cypher query to execute against the org's graph.
           example: MATCH (u:User) WHERE u.active = true RETURN u.id, u.email
         parameters:
           type: object
           additionalProperties: true
-          description: 'Parameters bound into the query at execution time. Keys must match
-
-            the `$name` placeholders in `query`. Values are passed verbatim to
-
-            the Neo4j driver.
-
-            '
-          example:
-            min_age: 7
-        max_rows:
+          description: Parameters bound into the query (same as scheduled config).
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
           type: integer
-          description: 'Maximum rows returned by a scheduled execution (NOT the preview).
-
-            Capped server-side at 10000.
-
-            '
-          default: 1000
-          minimum: 1
-          maximum: 10000
-        timeout_seconds:
-          type: integer
-          description: 'Per-execution query timeout (NOT the preview). Capped server-side
-
-            at 300.
-
-            '
-          default: 30
-          minimum: 1
-          maximum: 300
-        on_limit_exceeded:
+        message:
           type: string
-          enum:
-          - fail
-          - truncate
-          default: fail
-          description: 'Behavior when the query returns more than `max_rows`. `fail` aborts
-
-            the execution with an error; `truncate` returns the first
-
-            `max_rows` rows and marks the execution as truncated.
-
-            '
-        primary_entity_column:
-          type: string
-          description: 'Optional. Name of a query result column whose value is the primary
-
-            entity ID for each row. When set, downstream remediation actions
-
-            can target this entity. Must match one of the column aliases in
-
-            the query''s RETURN clause.
-
-            '
-          example: u.id
-    WorkflowCypherPreviewResponse:
+    ScimPredicate:
       type: object
       required:
-      - columns
-      - rows
-      - duration_ms
-      - truncated
+      - kind
+      - filter
       properties:
-        columns:
+        kind:
+          type: string
+          enum:
+          - scim
+        filter:
+          type: string
+          description: SCIM 2.0 filter string evaluated in-memory against the WorkflowDataItem.
+    Predicate:
+      oneOf:
+      - $ref: '#/components/schemas/AndPredicate'
+      - $ref: '#/components/schemas/OrPredicate'
+      - $ref: '#/components/schemas/NotPredicate'
+      - $ref: '#/components/schemas/ScimPredicate'
+      - $ref: '#/components/schemas/PgQueryPredicate'
+      - $ref: '#/components/schemas/PgTemplatePredicate'
+      - $ref: '#/components/schemas/Neo4jQueryPredicate'
+      - $ref: '#/components/schemas/Neo4jTemplatePredicate'
+      - $ref: '#/components/schemas/EventCountOverWindowPredicate'
+      discriminator:
+        propertyName: kind
+        mapping:
+          and: '#/components/schemas/AndPredicate'
+          or: '#/components/schemas/OrPredicate'
+          not: '#/components/schemas/NotPredicate'
+          scim: '#/components/schemas/ScimPredicate'
+          pg_query: '#/components/schemas/PgQueryPredicate'
+          pg_template: '#/components/schemas/PgTemplatePredicate'
+          neo4j_query: '#/components/schemas/Neo4jQueryPredicate'
+          neo4j_template: '#/components/schemas/Neo4jTemplatePredicate'
+          event_count_over_window: '#/components/schemas/EventCountOverWindowPredicate'
+    WorkflowDataInputLifecycleConfiguration:
+      type: object
+      required:
+      - type
+      - event_types
+      properties:
+        type:
+          type: string
+          enum:
+          - lifecycle
+          description: Data input type discriminator
+        event_types:
+          type: array
+          items:
+            $ref: '#/components/schemas/LifecycleEventType'
+          minItems: 1
+          description: Lifecycle events that trigger this workflow
+          example:
+          - created
+          - deleted
+        entity_types:
           type: array
           items:
             type: string
-          description: Column names in declared order.
-        rows:
+          description: Filter by entity types (e.g., aws_iam_user, entra_user). If empty, all entity types are matched.
+          example:
+          - aws_iam_user
+          - entra_user
+        source_types:
           type: array
           items:
-            type: array
-            items: {}
-          description: Row values, parallel to `columns`. Cell values are arbitrary JSON.
-        duration_ms:
+            type: string
+          description: Filter by identity source types (e.g., aws_account, entra). If empty, all source types are matched.
+          example:
+          - aws_account
+          - entra
+        connection_ids:
+          type: array
+          items:
+            type: string
+          description: Filter by specific connection IDs. If empty, all connections are matched.
+        min_risk_score:
           type: integer
           minimum: 0
-          description: Server-measured query duration in milliseconds.
-        truncated:
+          maximum: 100
+          description: Only trigger for entities with risk score >= this value
+        max_risk_score:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Only trigger for entities with risk score <= this value
+        include_relationships:
           type: boolean
-          description: True when the query returned more than the preview cap (50 rows).
+          default: false
+          description: Fetch manager, groups, direct reports from Neo4j
+        include_permissions:
+          type: boolean
+          default: false
+          description: Fetch permission assignments from Neo4j
+        include_access_history:
+          type: boolean
+          default: false
+          description: Fetch recent access records from Neo4j
+        relationship_depth:
+          type: integer
+          minimum: 0
+          maximum: 3
+          default: 1
+          description: How deep to traverse relationships in Neo4j (default 1, max 3)
+        scim_filter:
+          type: string
+          description: Additional SCIM-style filter criteria for the entity
     BigQueryAnalyticsSource:
       type: object
       required:
@@ -1284,47 +1200,6 @@ components:
           type: integer
           minimum: 0
           default: 300
-    TicketActionConfiguration:
-      allOf:
-      - $ref: '#/components/schemas/BaseActionConfiguration'
-      - type: object
-        required:
-        - ticket_system
-        properties:
-          ticket_system:
-            type: string
-            enum:
-            - jira
-            - servicenow
-            - linear
-            - github
-            description: Target ticket system
-          project_key:
-            type: string
-            description: Project or board identifier
-          issue_type:
-            type: string
-            description: Type of ticket to create
-            example: Incident
-          title_template:
-            type: string
-            description: Template for ticket title
-            example: 'Security Alert: {{detection.name}}'
-          description_template:
-            type: string
-            description: Template for ticket description
-          labels:
-            type: array
-            items:
-              type: string
-            description: Labels to apply to the ticket
-          assignee:
-            type: string
-            description: Default assignee for the ticket
-          priority:
-            type: string
-            description: Ticket priority
-            example: High
     WorkflowDataInputConfiguration:
       oneOf:
       - $ref: '#/components/schemas/WorkflowDataInputDetectionConfiguration'
@@ -1338,84 +1213,113 @@ components:
           lifecycle: '#/components/schemas/WorkflowDataInputLifecycleConfiguration'
           uar_finding: '#/components/schemas/WorkflowDataInputUarFindingConfiguration'
           cypher_query: '#/components/schemas/WorkflowDataInputCypherConfiguration'
-    WorkflowConfiguration:
+    WorkflowUpdateRequest:
       type: object
-      required:
-      - id
-      - workflow_id
-      - org_id
-      - version
-      - data_input_config
-      - actions
-      - created_by
-      - created_at
-      - is_latest
       properties:
-        id:
+        name:
           type: string
-          description: Unique configuration identifier
-        workflow_id:
+          description: New workflow name
+          minLength: 1
+          maxLength: 255
+        description:
           type: string
-          description: Parent workflow ID
-        org_id:
-          type: string
-          description: Organization ID
-        version:
-          type: integer
-          description: Configuration version number
-          minimum: 1
+          description: New workflow description
+          maxLength: 1000
         data_input_config:
           $ref: '#/components/schemas/WorkflowDataInputConfiguration'
-          description: "Configuration for retrieving and filtering data that triggers workflow actions.\n Defines what data to query and how to filter it.\n"
+          description: 'Updated data input configuration.
+
+            If provided, creates a new version with new data retrieval settings.
+
+            '
         actions:
           type: object
-          description: 'Actions configuration. Map of action ID to action configuration.
+          description: 'Updated actions configuration. Map of action ID to action configuration.
 
             '
           additionalProperties:
             $ref: '#/components/schemas/WorkflowActionConfiguration'
         starting_actions:
           type: array
-          description: 'IDs of actions to execute first (after data input).
+          description: 'IDs of actions to execute first after data input completes.
+
+            Enables tree-based execution where only these actions start initially,
+
+            and child actions are triggered via the children field.
 
             '
           items:
             type: string
-        schedule:
-          type: string
-          description: 'Optional cron expression (5-field, UTC). When non-empty, the
-
-            workflow is registered with the scheduler and fires on each tick
-
-            (cron parser: github.com/hashicorp/cronexpr). Must be empty when
-
-            `data_input_config.type` is `lifecycle` — lifecycle workflows are
-
-            event-driven and cannot be scheduled.
-
-            '
-          example: 0 9 * * *
-        created_by:
-          type: string
-          description: User ID who created this version
-        created_at:
-          type: string
-          format: date-time
-          description: Version creation timestamp
-        is_latest:
-          type: boolean
-          description: Whether this is the latest version
-    PgQueryPredicate:
+    WebhookActionConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/BaseActionConfiguration'
+      - type: object
+        required:
+        - url
+        - method
+        properties:
+          url:
+            type: string
+            format: uri
+            description: Webhook endpoint URL
+          method:
+            type: string
+            enum:
+            - POST
+            - PUT
+            - PATCH
+            description: HTTP method to use
+            default: POST
+          headers:
+            type: object
+            additionalProperties:
+              type: string
+            description: Custom headers to send
+          body_template:
+            type: string
+            description: Template for request body
+          timeout_seconds:
+            type: integer
+            description: Request timeout in seconds
+            default: 30
+            minimum: 1
+            maximum: 300
+          retry_config:
+            type: object
+            properties:
+              max_retries:
+                type: integer
+                default: 3
+                minimum: 0
+                maximum: 10
+              backoff_seconds:
+                type: integer
+                default: 5
+                minimum: 1
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    WorkflowWithConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/Workflow'
+      - $ref: '#/components/schemas/WorkflowConfiguration'
+    Neo4jQueryPredicate:
       type: object
       required:
       - kind
-      - sql
+      - cypher
       properties:
         kind:
           type: string
           enum:
-          - pg_query
-        sql:
+          - neo4j_query
+        cypher:
           type: string
         params:
           type: object
@@ -1423,7 +1327,6 @@ components:
             $ref: '#/components/schemas/ParamValue'
         expect:
           type: boolean
-          description: For bool-returning queries — matches this value.
         count_operator:
           type: string
           enum:
@@ -1440,48 +1343,57 @@ components:
           type: integer
           minimum: 0
           maximum: 30
-    AndPredicate:
+    DataSinkActionConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/BaseActionConfiguration'
+      - type: object
+        required:
+        - sink_type
+        properties:
+          sink_type:
+            type: string
+            enum:
+            - s3
+            - gcs
+            - bigquery
+            - snowflake
+            - splunk
+            - elasticsearch
+            description: Target data sink type
+          connection_config:
+            type: object
+            additionalProperties: true
+            description: Connection configuration for the data sink
+          data_format:
+            type: string
+            enum:
+            - json
+            - csv
+            - parquet
+            description: Format for exported data
+            default: json
+          include_fields:
+            type: array
+            items:
+              type: string
+            description: Fields to include in export
+          transform_rules:
+            type: array
+            items:
+              type: object
+            description: Data transformation rules
+    NotPredicate:
       type: object
       required:
       - kind
-      - predicates
+      - predicate
       properties:
         kind:
           type: string
           enum:
-          - and
-        predicates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Predicate'
-          minItems: 1
-    RemediationTargetType:
-      type: string
-      enum:
-      - user
-      - session
-      - credential
-      - api_key
-      - group_membership
-      - role
-      - permission
-      - entity
-      - group
-      description: Target of the remediation action
-    PgDetectionSource:
-      type: object
-      required:
-      - kind
-      - match
-      properties:
-        kind:
-          type: string
-          enum:
-          - pg_detection
-        match:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/ParamValue'
+          - not
+        predicate:
+          $ref: '#/components/schemas/Predicate'
     Workflow:
       type: object
       required:
@@ -1591,221 +1503,309 @@ components:
           type: integer
           description: Latest configuration version number
           minimum: 0
-    ScimPredicate:
+    WorkflowConfiguration:
       type: object
       required:
-      - kind
-      - filter
+      - id
+      - workflow_id
+      - org_id
+      - version
+      - data_input_config
+      - actions
+      - created_by
+      - created_at
+      - is_latest
       properties:
-        kind:
+        id:
           type: string
-          enum:
-          - scim
-        filter:
+          description: Unique configuration identifier
+        workflow_id:
           type: string
-          description: SCIM 2.0 filter string evaluated in-memory against the WorkflowDataItem.
-    ConditionActionConfiguration:
-      allOf:
-      - $ref: '#/components/schemas/BaseActionConfiguration'
-      - type: object
-        required:
-        - type
-        - predicate
-        - on_true
-        properties:
-          type:
-            type: string
-            enum:
-            - condition
-          predicate:
-            $ref: '#/components/schemas/Predicate'
-          on_true:
-            type: array
-            items:
-              type: string
-            minItems: 1
-            description: Action IDs to run for items where the predicate evaluates to true.
-          on_false:
-            type: array
-            items:
-              type: string
-            description: 'Action IDs to run for items where the predicate evaluates to false.
-
-              If empty, items routed to this branch are dropped from the subtree.
-
-              '
-          debug:
-            type: boolean
-            default: false
-            description: When true, the evaluator emits per-leaf traces into ResultData.
-    WorkflowDataInputLifecycleConfiguration:
-      type: object
-      required:
-      - type
-      - event_types
-      properties:
-        type:
+          description: Parent workflow ID
+        org_id:
           type: string
-          enum:
-          - lifecycle
-          description: Data input type discriminator
-        event_types:
-          type: array
-          items:
-            $ref: '#/components/schemas/LifecycleEventType'
-          minItems: 1
-          description: Lifecycle events that trigger this workflow
-          example:
-          - created
-          - deleted
-        entity_types:
-          type: array
-          items:
-            type: string
-          description: Filter by entity types (e.g., aws_iam_user, entra_user). If empty, all entity types are matched.
-          example:
-          - aws_iam_user
-          - entra_user
-        source_types:
-          type: array
-          items:
-            type: string
-          description: Filter by identity source types (e.g., aws_account, entra). If empty, all source types are matched.
-          example:
-          - aws_account
-          - entra
-        connection_ids:
-          type: array
-          items:
-            type: string
-          description: Filter by specific connection IDs. If empty, all connections are matched.
-        min_risk_score:
+          description: Organization ID
+        version:
           type: integer
-          minimum: 0
-          maximum: 100
-          description: Only trigger for entities with risk score >= this value
-        max_risk_score:
-          type: integer
-          minimum: 0
-          maximum: 100
-          description: Only trigger for entities with risk score <= this value
-        include_relationships:
-          type: boolean
-          default: false
-          description: Fetch manager, groups, direct reports from Neo4j
-        include_permissions:
-          type: boolean
-          default: false
-          description: Fetch permission assignments from Neo4j
-        include_access_history:
-          type: boolean
-          default: false
-          description: Fetch recent access records from Neo4j
-        relationship_depth:
-          type: integer
-          minimum: 0
-          maximum: 3
-          default: 1
-          description: How deep to traverse relationships in Neo4j (default 1, max 3)
-        scim_filter:
-          type: string
-          description: Additional SCIM-style filter criteria for the entity
-    WorkflowUpdateRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: New workflow name
-          minLength: 1
-          maxLength: 255
-        description:
-          type: string
-          description: New workflow description
-          maxLength: 1000
+          description: Configuration version number
+          minimum: 1
         data_input_config:
           $ref: '#/components/schemas/WorkflowDataInputConfiguration'
-          description: 'Updated data input configuration.
-
-            If provided, creates a new version with new data retrieval settings.
-
-            '
+          description: "Configuration for retrieving and filtering data that triggers workflow actions.\n Defines what data to query and how to filter it.\n"
         actions:
           type: object
-          description: 'Updated actions configuration. Map of action ID to action configuration.
+          description: 'Actions configuration. Map of action ID to action configuration.
 
             '
           additionalProperties:
             $ref: '#/components/schemas/WorkflowActionConfiguration'
         starting_actions:
           type: array
-          description: 'IDs of actions to execute first after data input completes.
-
-            Enables tree-based execution where only these actions start initially,
-
-            and child actions are triggered via the children field.
+          description: 'IDs of actions to execute first (after data input).
 
             '
           items:
             type: string
-    NotificationActionConfiguration:
+        schedule:
+          type: string
+          description: 'Optional cron expression (5-field, UTC). When non-empty, the
+
+            workflow is registered with the scheduler and fires on each tick
+
+            (cron parser: github.com/hashicorp/cronexpr). Must be empty when
+
+            `data_input_config.type` is `lifecycle` — lifecycle workflows are
+
+            event-driven and cannot be scheduled.
+
+            '
+          example: 0 9 * * *
+        created_by:
+          type: string
+          description: User ID who created this version
+        created_at:
+          type: string
+          format: date-time
+          description: Version creation timestamp
+        is_latest:
+          type: boolean
+          description: Whether this is the latest version
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    PgQueryPredicate:
+      type: object
+      required:
+      - kind
+      - sql
+      properties:
+        kind:
+          type: string
+          enum:
+          - pg_query
+        sql:
+          type: string
+        params:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ParamValue'
+        expect:
+          type: boolean
+          description: For bool-returning queries — matches this value.
+        count_operator:
+          type: string
+          enum:
+          - gt
+          - gte
+          - lt
+          - lte
+          - eq
+          - neq
+        count_threshold:
+          type: integer
+          format: int64
+        timeout_sec:
+          type: integer
+          minimum: 0
+          maximum: 30
+    LifecycleEventType:
+      type: string
+      enum:
+      - created
+      - deleted
+      - suspended
+      - modified
+      - reactivated
+      - role_changed
+      - group_added
+      - group_removed
+      - risk_score_changed
+      - inactive_threshold
+      description: 'Type of user lifecycle event that triggers the workflow.
+
+        Phase 1 (Core): created, deleted, suspended
+
+        Phase 2 (Extended): modified, reactivated, role_changed, group_added, group_removed, risk_score_changed, inactive_threshold
+
+        '
+    TicketActionConfiguration:
       allOf:
       - $ref: '#/components/schemas/BaseActionConfiguration'
       - type: object
         required:
-        - notification_type
-        - recipients
+        - ticket_system
         properties:
-          notification_type:
+          ticket_system:
             type: string
             enum:
-            - email
-            - slack
-            - teams
-            - pagerduty
-            - sms
-            description: Type of notification to send
-          recipients:
+            - jira
+            - servicenow
+            - linear
+            - github
+            description: Target ticket system
+          project_key:
+            type: string
+            description: Project or board identifier
+          issue_type:
+            type: string
+            description: Type of ticket to create
+            example: Incident
+          title_template:
+            type: string
+            description: Template for ticket title
+            example: 'Security Alert: {{detection.name}}'
+          description_template:
+            type: string
+            description: Template for ticket description
+          labels:
             type: array
             items:
               type: string
-            description: Notification recipients
-            example:
-            - security-team@example.com
-            - '#security-alerts'
-          subject_template:
+            description: Labels to apply to the ticket
+          assignee:
             type: string
-            description: Template for notification subject
-          message_template:
+            description: Default assignee for the ticket
+          priority:
             type: string
-            description: Template for notification message
-          severity:
-            type: string
-            enum:
-            - info
-            - warning
-            - error
-            - critical
-            description: Notification severity level
-            default: warning
-          include_data:
-            type: boolean
-            description: Whether to include detection data in notification
-            default: true
-    WorkflowCypherPreviewRequest:
+            description: Ticket priority
+            example: High
+    WorkflowCreateRequest:
       type: object
       required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Workflow name
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          description: Workflow description
+          maxLength: 1000
+    WorkflowDataInputCypherConfiguration:
+      type: object
+      required:
+      - type
       - query
       properties:
+        type:
+          type: string
+          enum:
+          - cypher_query
+          description: Data input type discriminator
         query:
           type: string
+          description: 'Read-only Cypher query whose rows feed downstream workflow actions.
+
+            Must contain MATCH and RETURN clauses. Write operations and the
+
+            USE clause are rejected by the validator. Comments and strings are
+
+            tokenized before validation, so a write keyword inside a string
+
+            literal is allowed.
+
+            '
           minLength: 1
           maxLength: 10000
-          description: Read-only Cypher query to execute against the org's graph.
           example: MATCH (u:User) WHERE u.active = true RETURN u.id, u.email
         parameters:
           type: object
           additionalProperties: true
-          description: Parameters bound into the query (same as scheduled config).
+          description: 'Parameters bound into the query at execution time. Keys must match
+
+            the `$name` placeholders in `query`. Values are passed verbatim to
+
+            the Neo4j driver.
+
+            '
+          example:
+            min_age: 7
+        max_rows:
+          type: integer
+          description: 'Maximum rows returned by a scheduled execution (NOT the preview).
+
+            Capped server-side at 10000.
+
+            '
+          default: 1000
+          minimum: 1
+          maximum: 10000
+        timeout_seconds:
+          type: integer
+          description: 'Per-execution query timeout (NOT the preview). Capped server-side
+
+            at 300.
+
+            '
+          default: 30
+          minimum: 1
+          maximum: 300
+        on_limit_exceeded:
+          type: string
+          enum:
+          - fail
+          - truncate
+          default: fail
+          description: 'Behavior when the query returns more than `max_rows`. `fail` aborts
+
+            the execution with an error; `truncate` returns the first
+
+            `max_rows` rows and marks the execution as truncated.
+
+            '
+        primary_entity_column:
+          type: string
+          description: 'Optional. Name of a query result column whose value is the primary
+
+            entity ID for each row. When set, downstream remediation actions
+
+            can target this entity. Must match one of the column aliases in
+
+            the query''s RETURN clause.
+
+            '
+          example: u.id
+    AndPredicate:
+      type: object
+      required:
+      - kind
+      - predicates
+      properties:
+        kind:
+          type: string
+          enum:
+          - and
+        predicates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Predicate'
+          minItems: 1
+    WorkflowCypherPreviewError:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Stable error code (see backend cypher validator sentinels).
+          example: cypher_write_keyword
+        message:
+          type: string
+          description: Human-readable detail. May reference server-side context.
   responses:
     NotFound:
       description: Not Found
@@ -1813,14 +1813,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
     BadRequest:
       description: Bad Request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
-    NoContent:
-      description: No content
     Conflict:
       description: Conflict
       content:
