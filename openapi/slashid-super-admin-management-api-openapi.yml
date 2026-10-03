@@ -162,22 +162,35 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    APIResponseError:
+    APICursorPagination:
       type: object
+      required:
+      - limit
+      - cursor
+      - total_count
       properties:
-        httpcode:
+        limit:
           type: integer
-        message:
+        cursor:
           type: string
-    APIResponseBase:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/APIMeta'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIResponseError'
+        total_count:
+          type: integer
+          format: int64
+    EntityClass:
+      type: string
+      enum:
+      - unknown
+      - identity
+      - credential
+      - policy
+      - resource
+      - application
+      - canonical_application
+      - canonical_identity
+      - sensor
+      - person
+    OrganizationID:
+      type: string
     SuperAdmin:
       type: object
       required:
@@ -194,45 +207,22 @@ components:
         created_by:
           $ref: '#/components/schemas/EntityLink'
           description: Link to the person who created this super-admin (if available)
-    OrganizationID:
-      type: string
-    APICursorPagination:
+    APIResponseBase:
       type: object
-      required:
-      - limit
-      - cursor
-      - total_count
       properties:
-        limit:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
           type: integer
-        cursor:
+        message:
           type: string
-        total_count:
-          type: integer
-          format: int64
-    EntityLink:
-      type: object
-      required:
-      - entity_class
-      - entity_id
-      properties:
-        entity_class:
-          $ref: '#/components/schemas/EntityClass'
-        entity_id:
-          type: string
-        identifier:
-          type: string
-    SuperAdminCreateReq:
-      type: object
-      required:
-      - person_id
-      properties:
-        person_id:
-          $ref: '#/components/schemas/PersonID'
-    PersonID:
-      type: string
-      description: Person ID
-      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
     APIPagination:
       type: object
       required:
@@ -247,26 +237,6 @@ components:
         total_count:
           type: integer
           format: int64
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
-    EntityClass:
-      type: string
-      enum:
-      - unknown
-      - identity
-      - credential
-      - policy
-      - resource
-      - application
-      - canonical_application
-      - canonical_identity
-      - sensor
-      - person
     SuperAdminAuditLog:
       type: object
       required:
@@ -300,9 +270,62 @@ components:
           type: string
           format: date-time
           description: Timestamp of the action
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
+    SuperAdminCreateReq:
+      type: object
+      required:
+      - person_id
+      properties:
+        person_id:
+          $ref: '#/components/schemas/PersonID'
+    EntityLink:
+      type: object
+      required:
+      - entity_class
+      - entity_id
+      properties:
+        entity_class:
+          $ref: '#/components/schemas/EntityClass'
+        entity_id:
+          type: string
+        identifier:
+          type: string
+  parameters:
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
   responses:
     NotFound:
       description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
       content:
         application/json:
           schema:
@@ -313,29 +336,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
-    NoContent:
-      description: No content
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-  parameters:
-    OrgIDHeader:
-      name: SlashID-OrgID
-      in: header
-      schema:
-        type: string
-      required: true
-      description: The organization ID
-      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
   securitySchemes:
     ApiKeyAuth:
       description: Authorizes the request with the organization's API Key.

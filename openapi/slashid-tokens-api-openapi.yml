@@ -44,25 +44,6 @@ paths:
           $ref: '#/components/responses/Timeout'
 components:
   schemas:
-    APIResponseError:
-      type: object
-      properties:
-        httpcode:
-          type: integer
-        message:
-          type: string
-    APIResponseBase:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/APIMeta'
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/APIResponseError'
-    TokenText:
-      description: A JWT token. Can be either a User token (`UserTokenText`) or a Token Container (`TokenContainerText`)
-      type: string
     APICursorPagination:
       type: object
       required:
@@ -77,6 +58,25 @@ components:
         total_count:
           type: integer
           format: int64
+    APIResponseBase:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/APIMeta'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/APIResponseError'
+    TokenText:
+      description: A JWT token. Can be either a User token (`UserTokenText`) or a Token Container (`TokenContainerText`)
+      type: string
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
     APIPagination:
       type: object
       required:
@@ -106,21 +106,6 @@ components:
         token:
           $ref: '#/components/schemas/TokenText'
   parameters:
-    RequiredConsistencyTimeoutHeader:
-      name: SlashID-Required-Consistency-Timeout
-      in: header
-      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
-
-        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
-
-        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
-
-        '
-      schema:
-        type: integer
-        default: 30
-        maximum: 120
-        minimum: 1
     OptionalSdkVersionHeader:
       name: SlashID-SdkVersion
       in: header
@@ -147,19 +132,34 @@ components:
         - local_region
         - all_regions
         default: local_region
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
   responses:
-    NoContent:
-      description: No content
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
     Timeout:
       description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
 
         The operation may still be in progress, and will be completed eventually.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    NoContent:
+      description: No content
+    BadRequest:
+      description: Bad Request
       content:
         application/json:
           schema:

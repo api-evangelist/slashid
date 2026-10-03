@@ -156,13 +156,24 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    APIResponseError:
+    SAMLProviderCredentialsID:
+      type: string
+    APICursorPagination:
       type: object
+      required:
+      - limit
+      - cursor
+      - total_count
       properties:
-        httpcode:
+        limit:
           type: integer
-        message:
+        cursor:
           type: string
+        total_count:
+          type: integer
+          format: int64
+    SAMLProviderCredentialsPostResponse:
+      $ref: '#/components/schemas/SAMLProviderCredentials'
     APIResponseBase:
       type: object
       properties:
@@ -172,6 +183,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/APIResponseError'
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    APIPagination:
+      type: object
+      required:
+      - limit
+      - offset
+      - total_count
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total_count:
+          type: integer
+          format: int64
+    SAMLProviderCredentialsPatchRequest:
+      type: object
+      description: Request to modify an existing SAML provider credential
+      properties:
+        label:
+          description: A friendly free-form label to help you identify this set of SAML provider credentials.
+          type: string
+        idp_metadata_url:
+          description: The SAML IdP's metadata URL.
+          type: string
+        email_claims:
+          description: The names of the claims in the SAML response containing the users' email addresses. The first match is added to the person's set of handles.
+          type: array
+          items:
+            type: string
+          maxItems: 3
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
     SAMLProviderCredentialsPostRequest:
       type: object
       description: Request to create a new SAML provider credential
@@ -193,8 +251,6 @@ components:
           description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
       required:
       - idp_metadata_url
-    SAMLProviderCredentialsPostResponse:
-      $ref: '#/components/schemas/SAMLProviderCredentials'
     SAMLProviderCredentialsGetResponse:
       $ref: '#/components/schemas/SAMLProviderCredentials'
     SAMLProviderCredentials:
@@ -221,78 +277,15 @@ components:
       required:
       - id
       - idp_metadata_url
-    APICursorPagination:
-      type: object
-      required:
-      - limit
-      - cursor
-      - total_count
-      properties:
-        limit:
-          type: integer
-        cursor:
-          type: string
-        total_count:
-          type: integer
-          format: int64
-    APIPagination:
-      type: object
-      required:
-      - limit
-      - offset
-      - total_count
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total_count:
-          type: integer
-          format: int64
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
-    SAMLProviderCredentialsID:
-      type: string
-    SAMLProviderCredentialsPatchRequest:
-      type: object
-      description: Request to modify an existing SAML provider credential
-      properties:
-        label:
-          description: A friendly free-form label to help you identify this set of SAML provider credentials.
-          type: string
-        idp_metadata_url:
-          description: The SAML IdP's metadata URL.
-          type: string
-        email_claims:
-          description: The names of the claims in the SAML response containing the users' email addresses. The first match is added to the person's set of handles.
-          type: array
-          items:
-            type: string
-          maxItems: 3
-        enable_in_slashid_oidc_authz_server:
-          type: boolean
-          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
   parameters:
-    RequiredConsistencyTimeoutHeader:
-      name: SlashID-Required-Consistency-Timeout
+    OrgIDHeader:
+      name: SlashID-OrgID
       in: header
-      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
-
-        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
-
-        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
-
-        '
       schema:
-        type: integer
-        default: 30
-        maximum: 120
-        minimum: 1
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
     RequiredConsistencyHeader:
       name: SlashID-Required-Consistency
       in: header
@@ -311,14 +304,6 @@ components:
         - local_region
         - all_regions
         default: local_region
-    OrgIDHeader:
-      name: SlashID-OrgID
-      in: header
-      schema:
-        type: string
-      required: true
-      description: The organization ID
-      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
     SAMLProviderCredentialsIDPathParam:
       name: saml_provider_credentials_id
       description: The SAML provider credentials ID
@@ -326,6 +311,21 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/SAMLProviderCredentialsID'
+    RequiredConsistencyTimeoutHeader:
+      name: SlashID-Required-Consistency-Timeout
+      in: header
+      description: 'The maximum amount of seconds to wait for the requested consistency level to be achieved. If the consistency level is not achieved within this time, the request will fail with a 408 Request Timeout error.
+
+        408 Request Timeout error indicates that request was not handled within the timeout, but it may still be handled after request timeout.
+
+        You can learn more about our replication model on our [Cross-region Replication Model](/docs/access/concepts/replication) page.
+
+        '
+      schema:
+        type: integer
+        default: 30
+        maximum: 120
+        minimum: 1
   responses:
     NotFound:
       description: Not Found
