@@ -60,36 +60,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    OrgIDHeader:
-      name: SlashID-OrgID
-      in: header
-      schema:
-        type: string
-      required: true
-      description: The organization ID
-      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
-  responses:
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
   schemas:
-    Test_TokenMinted_v1:
+    Test_AnonymousPersonCreated_v1:
       allOf:
       - $ref: '#/components/schemas/BaseTestEvent'
-    TestEventsPostResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/TestEvent'
+      - type: object
+        properties:
+          person_id:
+            $ref: '#/components/schemas/PersonID'
     APIPagination:
       type: object
       required:
@@ -104,13 +82,45 @@ components:
         total_count:
           type: integer
           format: int64
-    Test_PersonDeleted_v1:
+    Test_GateRequestCredentialFound_v1:
       allOf:
       - $ref: '#/components/schemas/BaseTestEvent'
-      - type: object
-        properties:
-          person_id:
-            $ref: '#/components/schemas/PersonID'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    PersonID:
+      type: string
+      description: Person ID
+      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
+    Test_GateRequestHandled_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    TestEventsPostResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/TestEvent'
+    Test_VirtualPageLoaded_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - $ref: '#/components/schemas/BaseTestSDKEvent'
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
     BaseTestEvent:
       type: object
       required:
@@ -128,6 +138,102 @@ components:
           type: string
         organization_id:
           $ref: '#/components/schemas/OrganizationID'
+    FactorMethod:
+      type: string
+      description: Allowed login factor
+      enum:
+      - webauthn
+      - email_link
+      - sms_link
+      - otp_via_sms
+      - otp_via_email
+      - totp
+      - oidc
+      - saml
+      - api
+      - direct_id
+      - password
+      - impersonate
+      - anonymous
+    Test_PersonDeleted_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - type: object
+        properties:
+          person_id:
+            $ref: '#/components/schemas/PersonID'
+    TestEventsSpecification:
+      type: object
+      required:
+      - event_name
+      properties:
+        event_name:
+          $ref: '#/components/schemas/EventName'
+        count:
+          type: integer
+          default: 1
+        duplicates:
+          type: boolean
+          default: false
+        analytics_correlation_id:
+          type: string
+          default: ''
+    Test_TokenMinted_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    Test_PasswordChanged_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    TestEventsPostReq:
+      type: array
+      items:
+        $ref: '#/components/schemas/TestEventsSpecification'
+    OrganizationID:
+      type: string
+    TestEvent:
+      oneOf:
+      - $ref: '#/components/schemas/Test_AuthenticationSucceeded_v1'
+      - $ref: '#/components/schemas/Test_AuthenticationFailed_v1'
+      - $ref: '#/components/schemas/Test_PersonCreated_v1'
+      - $ref: '#/components/schemas/Test_AnonymousPersonCreated_v1'
+      - $ref: '#/components/schemas/Test_PersonDeleted_v1'
+      - $ref: '#/components/schemas/Test_VirtualPageLoaded_v1'
+      - $ref: '#/components/schemas/Test_SlashIDSDKLoaded_v1'
+      - $ref: '#/components/schemas/Test_PersonIdentified_v1'
+      - $ref: '#/components/schemas/Test_PersonLoggedOut_v1'
+      - $ref: '#/components/schemas/Test_TokenMinted_v1'
+      - $ref: '#/components/schemas/Test_AnonymousTokenMinted_v1'
+      - $ref: '#/components/schemas/Test_PasswordChanged_v1'
+      - $ref: '#/components/schemas/Test_GdprConsentsChanged_v1'
+      - $ref: '#/components/schemas/Test_GateServerStarted_v1'
+      - $ref: '#/components/schemas/Test_GateRequestCredentialFound_v1'
+      - $ref: '#/components/schemas/Test_GateRequestHandled_v1'
+      discriminator:
+        propertyName: event_name
+        mapping:
+          AuthenticationSucceeded_v1: '#/components/schemas/Test_AuthenticationSucceeded_v1'
+          AuthenticationFailed_v1: '#/components/schemas/Test_AuthenticationFailed_v1'
+          PersonCreated_v1: '#/components/schemas/Test_PersonCreated_v1'
+          AnonymousPersonCreated_v1: '#/components/schemas/Test_AnonymousPersonCreated_v1'
+          PersonDeleted_v1: '#/components/schemas/Test_PersonDeleted_v1'
+          VirtualPageLoaded_v1: '#/components/schemas/Test_VirtualPageLoaded_v1'
+          SlashIDSDKLoaded_v1: '#/components/schemas/Test_SlashIDSDKLoaded_v1'
+          PersonIdentified_v1: '#/components/schemas/Test_PersonIdentified_v1'
+          PersonLoggedOut_v1: '#/components/schemas/Test_PersonLoggedOut_v1'
+          TokenMinted_v1: '#/components/schemas/Test_TokenMinted_v1'
+          AnonymousTokenMinted_v1: '#/components/schemas/Test_AnonymousTokenMinted_v1'
+          PasswordChanged_v1: '#/components/schemas/Test_PasswordChanged_v1'
+          GdprConsentsChanged_v1: '#/components/schemas/Test_GdprConsentsChanged_v1'
+          GateServerStarted_v1: '#/components/schemas/Test_GateServerStarted_v1'
+          GateRequestHandled_v1: '#/components/schemas/Test_GateRequestHandled_v1'
+          GateRequestCredentialFound_v1: '#/components/schemas/Test_GateRequestCredentialFound_v1'
+    Test_SlashIDSDKLoaded_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+      - $ref: '#/components/schemas/BaseTestSDKEvent'
+    Test_GdprConsentsChanged_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
     Test_AuthenticationFailed_v1:
       allOf:
       - $ref: '#/components/schemas/BaseTestEvent'
@@ -137,7 +243,7 @@ components:
             $ref: '#/components/schemas/FactorMethod'
           failure_reason:
             type: string
-    Test_SlashIDSDKLoaded_v1:
+    Test_PersonLoggedOut_v1:
       allOf:
       - $ref: '#/components/schemas/BaseTestEvent'
       - $ref: '#/components/schemas/BaseTestSDKEvent'
@@ -147,30 +253,20 @@ components:
         window_location:
           type: string
           format: url
-    OrganizationID:
-      type: string
-    Test_VirtualPageLoaded_v1:
+    Test_GateServerStarted_v1:
+      allOf:
+      - $ref: '#/components/schemas/BaseTestEvent'
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
+    Test_PersonIdentified_v1:
       allOf:
       - $ref: '#/components/schemas/BaseTestEvent'
       - $ref: '#/components/schemas/BaseTestSDKEvent'
-    PersonID:
-      type: string
-      description: Person ID
-      example: 064b7b63-ea43-76e5-b208-1900795bc5b7
-    APICursorPagination:
-      type: object
-      required:
-      - limit
-      - cursor
-      - total_count
-      properties:
-        limit:
-          type: integer
-        cursor:
-          type: string
-        total_count:
-          type: integer
-          format: int64
     APIResponseBase:
       type: object
       properties:
@@ -189,43 +285,6 @@ components:
             $ref: '#/components/schemas/PersonID'
           authn_method:
             $ref: '#/components/schemas/FactorMethod'
-    TestEventsSpecification:
-      type: object
-      required:
-      - event_name
-      properties:
-        event_name:
-          $ref: '#/components/schemas/EventName'
-        count:
-          type: integer
-          default: 1
-        duplicates:
-          type: boolean
-          default: false
-        analytics_correlation_id:
-          type: string
-          default: ''
-    Test_GateRequestHandled_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-    APIResponseError:
-      type: object
-      properties:
-        httpcode:
-          type: integer
-        message:
-          type: string
-    TestEventsPostReq:
-      type: array
-      items:
-        $ref: '#/components/schemas/TestEventsSpecification'
-    Test_PersonCreated_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-      - type: object
-        properties:
-          person_id:
-            $ref: '#/components/schemas/PersonID'
     EventName:
       type: string
       enum:
@@ -281,97 +340,38 @@ components:
       - ActiveDirectorySPNRoleUpdated_v1
       - ActiveDirectorySPNDeleted_v1
       - ActiveDirectoryUserCreated_v1
-    Test_PersonLoggedOut_v1:
+    Test_AnonymousTokenMinted_v1:
       allOf:
       - $ref: '#/components/schemas/BaseTestEvent'
-      - $ref: '#/components/schemas/BaseTestSDKEvent'
-    FactorMethod:
-      type: string
-      description: Allowed login factor
-      enum:
-      - webauthn
-      - email_link
-      - sms_link
-      - otp_via_sms
-      - otp_via_email
-      - totp
-      - oidc
-      - saml
-      - api
-      - direct_id
-      - password
-      - impersonate
-      - anonymous
-    Test_GateRequestCredentialFound_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-    Test_GdprConsentsChanged_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-    Test_PasswordChanged_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-    Test_AnonymousPersonCreated_v1:
+    Test_PersonCreated_v1:
       allOf:
       - $ref: '#/components/schemas/BaseTestEvent'
       - type: object
         properties:
           person_id:
             $ref: '#/components/schemas/PersonID'
-    Test_PersonIdentified_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-      - $ref: '#/components/schemas/BaseTestSDKEvent'
-    Test_GateServerStarted_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-    Test_AnonymousTokenMinted_v1:
-      allOf:
-      - $ref: '#/components/schemas/BaseTestEvent'
-    TestEvent:
-      oneOf:
-      - $ref: '#/components/schemas/Test_AuthenticationSucceeded_v1'
-      - $ref: '#/components/schemas/Test_AuthenticationFailed_v1'
-      - $ref: '#/components/schemas/Test_PersonCreated_v1'
-      - $ref: '#/components/schemas/Test_AnonymousPersonCreated_v1'
-      - $ref: '#/components/schemas/Test_PersonDeleted_v1'
-      - $ref: '#/components/schemas/Test_VirtualPageLoaded_v1'
-      - $ref: '#/components/schemas/Test_SlashIDSDKLoaded_v1'
-      - $ref: '#/components/schemas/Test_PersonIdentified_v1'
-      - $ref: '#/components/schemas/Test_PersonLoggedOut_v1'
-      - $ref: '#/components/schemas/Test_TokenMinted_v1'
-      - $ref: '#/components/schemas/Test_AnonymousTokenMinted_v1'
-      - $ref: '#/components/schemas/Test_PasswordChanged_v1'
-      - $ref: '#/components/schemas/Test_GdprConsentsChanged_v1'
-      - $ref: '#/components/schemas/Test_GateServerStarted_v1'
-      - $ref: '#/components/schemas/Test_GateRequestCredentialFound_v1'
-      - $ref: '#/components/schemas/Test_GateRequestHandled_v1'
-      discriminator:
-        propertyName: event_name
-        mapping:
-          AuthenticationSucceeded_v1: '#/components/schemas/Test_AuthenticationSucceeded_v1'
-          AuthenticationFailed_v1: '#/components/schemas/Test_AuthenticationFailed_v1'
-          PersonCreated_v1: '#/components/schemas/Test_PersonCreated_v1'
-          AnonymousPersonCreated_v1: '#/components/schemas/Test_AnonymousPersonCreated_v1'
-          PersonDeleted_v1: '#/components/schemas/Test_PersonDeleted_v1'
-          VirtualPageLoaded_v1: '#/components/schemas/Test_VirtualPageLoaded_v1'
-          SlashIDSDKLoaded_v1: '#/components/schemas/Test_SlashIDSDKLoaded_v1'
-          PersonIdentified_v1: '#/components/schemas/Test_PersonIdentified_v1'
-          PersonLoggedOut_v1: '#/components/schemas/Test_PersonLoggedOut_v1'
-          TokenMinted_v1: '#/components/schemas/Test_TokenMinted_v1'
-          AnonymousTokenMinted_v1: '#/components/schemas/Test_AnonymousTokenMinted_v1'
-          PasswordChanged_v1: '#/components/schemas/Test_PasswordChanged_v1'
-          GdprConsentsChanged_v1: '#/components/schemas/Test_GdprConsentsChanged_v1'
-          GateServerStarted_v1: '#/components/schemas/Test_GateServerStarted_v1'
-          GateRequestHandled_v1: '#/components/schemas/Test_GateRequestHandled_v1'
-          GateRequestCredentialFound_v1: '#/components/schemas/Test_GateRequestCredentialFound_v1'
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
+  responses:
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+  parameters:
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
   securitySchemes:
     ApiKeyAuth:
       description: Authorizes the request with the organization's API Key.

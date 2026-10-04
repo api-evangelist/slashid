@@ -156,24 +156,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    SAMLProviderCredentialsID:
-      type: string
-    APICursorPagination:
-      type: object
-      required:
-      - limit
-      - cursor
-      - total_count
-      properties:
-        limit:
-          type: integer
-        cursor:
-          type: string
-        total_count:
-          type: integer
-          format: int64
-    SAMLProviderCredentialsPostResponse:
-      $ref: '#/components/schemas/SAMLProviderCredentials'
     APIResponseBase:
       type: object
       properties:
@@ -183,13 +165,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/APIResponseError'
-    APIResponseError:
-      type: object
-      properties:
-        httpcode:
-          type: integer
-        message:
-          type: string
     APIPagination:
       type: object
       required:
@@ -230,27 +205,6 @@ components:
           $ref: '#/components/schemas/APIPagination'
         cursor_pagination:
           $ref: '#/components/schemas/APICursorPagination'
-    SAMLProviderCredentialsPostRequest:
-      type: object
-      description: Request to create a new SAML provider credential
-      properties:
-        label:
-          description: A friendly free-form label to help you identify this set of SAML provider credentials.
-          type: string
-        idp_metadata_url:
-          description: The SAML IdP's metadata URL.
-          type: string
-        email_claims:
-          description: The names of the claims in the SAML response containing the users' email addresses. The first match is added to the person's set of handles.
-          type: array
-          items:
-            type: string
-          maxItems: 3
-        enable_in_slashid_oidc_authz_server:
-          type: boolean
-          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
-      required:
-      - idp_metadata_url
     SAMLProviderCredentialsGetResponse:
       $ref: '#/components/schemas/SAMLProviderCredentials'
     SAMLProviderCredentials:
@@ -277,15 +231,53 @@ components:
       required:
       - id
       - idp_metadata_url
+    SAMLProviderCredentialsID:
+      type: string
+    SAMLProviderCredentialsPostResponse:
+      $ref: '#/components/schemas/SAMLProviderCredentials'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
+    SAMLProviderCredentialsPostRequest:
+      type: object
+      description: Request to create a new SAML provider credential
+      properties:
+        label:
+          description: A friendly free-form label to help you identify this set of SAML provider credentials.
+          type: string
+        idp_metadata_url:
+          description: The SAML IdP's metadata URL.
+          type: string
+        email_claims:
+          description: The names of the claims in the SAML response containing the users' email addresses. The first match is added to the person's set of handles.
+          type: array
+          items:
+            type: string
+          maxItems: 3
+        enable_in_slashid_oidc_authz_server:
+          type: boolean
+          description: Indicates whether these credentials can be used for SSO authentication during an OIDC flow in which SlashID acts as the Authorization Server.
+      required:
+      - idp_metadata_url
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
   parameters:
-    OrgIDHeader:
-      name: SlashID-OrgID
-      in: header
-      schema:
-        type: string
-      required: true
-      description: The organization ID
-      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
     RequiredConsistencyHeader:
       name: SlashID-Required-Consistency
       in: header
@@ -304,13 +296,6 @@ components:
         - local_region
         - all_regions
         default: local_region
-    SAMLProviderCredentialsIDPathParam:
-      name: saml_provider_credentials_id
-      description: The SAML provider credentials ID
-      in: path
-      required: true
-      schema:
-        $ref: '#/components/schemas/SAMLProviderCredentialsID'
     RequiredConsistencyTimeoutHeader:
       name: SlashID-Required-Consistency-Timeout
       in: header
@@ -326,17 +311,32 @@ components:
         default: 30
         maximum: 120
         minimum: 1
+    OrgIDHeader:
+      name: SlashID-OrgID
+      in: header
+      schema:
+        type: string
+      required: true
+      description: The organization ID
+      example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
+    SAMLProviderCredentialsIDPathParam:
+      name: saml_provider_credentials_id
+      description: The SAML provider credentials ID
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/SAMLProviderCredentialsID'
   responses:
-    NotFound:
-      description: Not Found
+    BadRequest:
+      description: Bad Request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
     NoContent:
       description: No content
-    BadRequest:
-      description: Bad Request
+    NotFound:
+      description: Not Found
       content:
         application/json:
           schema:

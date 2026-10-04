@@ -162,51 +162,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    APICursorPagination:
-      type: object
-      required:
-      - limit
-      - cursor
-      - total_count
-      properties:
-        limit:
-          type: integer
-        cursor:
-          type: string
-        total_count:
-          type: integer
-          format: int64
-    EntityClass:
-      type: string
-      enum:
-      - unknown
-      - identity
-      - credential
-      - policy
-      - resource
-      - application
-      - canonical_application
-      - canonical_identity
-      - sensor
-      - person
-    OrganizationID:
-      type: string
-    SuperAdmin:
-      type: object
-      required:
-      - person
-      - created_at
-      properties:
-        person:
-          $ref: '#/components/schemas/EntityLink'
-          description: Link to the person with this super-admin access
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when super-admin was created
-        created_by:
-          $ref: '#/components/schemas/EntityLink'
-          description: Link to the person who created this super-admin (if available)
     APIResponseBase:
       type: object
       properties:
@@ -216,13 +171,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/APIResponseError'
-    APIResponseError:
-      type: object
-      properties:
-        httpcode:
-          type: integer
-        message:
-          type: string
     APIPagination:
       type: object
       required:
@@ -237,6 +185,13 @@ components:
         total_count:
           type: integer
           format: int64
+    APIMeta:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/APIPagination'
+        cursor_pagination:
+          $ref: '#/components/schemas/APICursorPagination'
     SuperAdminAuditLog:
       type: object
       required:
@@ -270,17 +225,24 @@ components:
           type: string
           format: date-time
           description: Timestamp of the action
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
     PersonID:
       type: string
       description: Person ID
       example: 064b7b63-ea43-76e5-b208-1900795bc5b7
-    APIMeta:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/APIPagination'
-        cursor_pagination:
-          $ref: '#/components/schemas/APICursorPagination'
     SuperAdminCreateReq:
       type: object
       required:
@@ -288,6 +250,8 @@ components:
       properties:
         person_id:
           $ref: '#/components/schemas/PersonID'
+    OrganizationID:
+      type: string
     EntityLink:
       type: object
       required:
@@ -300,6 +264,42 @@ components:
           type: string
         identifier:
           type: string
+    SuperAdmin:
+      type: object
+      required:
+      - person
+      - created_at
+      properties:
+        person:
+          $ref: '#/components/schemas/EntityLink'
+          description: Link to the person with this super-admin access
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when super-admin was created
+        created_by:
+          $ref: '#/components/schemas/EntityLink'
+          description: Link to the person who created this super-admin (if available)
+    EntityClass:
+      type: string
+      enum:
+      - unknown
+      - identity
+      - credential
+      - policy
+      - resource
+      - application
+      - canonical_application
+      - canonical_identity
+      - sensor
+      - person
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
   parameters:
     OrgIDHeader:
       name: SlashID-OrgID
@@ -310,16 +310,8 @@ components:
       description: The organization ID
       example: af5fbd30-7ce7-4548-8b30-4cd59cb2aba1
   responses:
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/APIResponseBase'
-    NoContent:
-      description: No content
-    Conflict:
-      description: Conflict
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
@@ -330,8 +322,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
-    Forbidden:
-      description: Forbidden
+    NoContent:
+      description: No content
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/APIResponseBase'
+    Conflict:
+      description: Conflict
       content:
         application/json:
           schema:

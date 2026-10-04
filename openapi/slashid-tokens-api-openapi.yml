@@ -44,20 +44,6 @@ paths:
           $ref: '#/components/responses/Timeout'
 components:
   schemas:
-    APICursorPagination:
-      type: object
-      required:
-      - limit
-      - cursor
-      - total_count
-      properties:
-        limit:
-          type: integer
-        cursor:
-          type: string
-        total_count:
-          type: integer
-          format: int64
     APIResponseBase:
       type: object
       properties:
@@ -67,16 +53,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/APIResponseError'
-    TokenText:
-      description: A JWT token. Can be either a User token (`UserTokenText`) or a Token Container (`TokenContainerText`)
-      type: string
-    APIResponseError:
-      type: object
-      properties:
-        httpcode:
-          type: integer
-        message:
-          type: string
     APIPagination:
       type: object
       required:
@@ -98,6 +74,20 @@ components:
           $ref: '#/components/schemas/APIPagination'
         cursor_pagination:
           $ref: '#/components/schemas/APICursorPagination'
+    APICursorPagination:
+      type: object
+      required:
+      - limit
+      - cursor
+      - total_count
+      properties:
+        limit:
+          type: integer
+        cursor:
+          type: string
+        total_count:
+          type: integer
+          format: int64
     RevokeTokenReq:
       required:
       - token
@@ -105,15 +95,17 @@ components:
       properties:
         token:
           $ref: '#/components/schemas/TokenText'
+    TokenText:
+      description: A JWT token. Can be either a User token (`UserTokenText`) or a Token Container (`TokenContainerText`)
+      type: string
+    APIResponseError:
+      type: object
+      properties:
+        httpcode:
+          type: integer
+        message:
+          type: string
   parameters:
-    OptionalSdkVersionHeader:
-      name: SlashID-SdkVersion
-      in: header
-      schema:
-        type: string
-      required: false
-      description: Optional SDK version
-      example: 1.4.1
     RequiredConsistencyHeader:
       name: SlashID-Required-Consistency
       in: header
@@ -147,19 +139,27 @@ components:
         default: 30
         maximum: 120
         minimum: 1
+    OptionalSdkVersionHeader:
+      name: SlashID-SdkVersion
+      in: header
+      schema:
+        type: string
+      required: false
+      description: Optional SDK version
+      example: 1.4.1
   responses:
-    Timeout:
-      description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
-
-        The operation may still be in progress, and will be completed eventually.'
+    BadRequest:
+      description: Bad Request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/APIResponseBase'
     NoContent:
       description: No content
-    BadRequest:
-      description: Bad Request
+    Timeout:
+      description: 'Request Timeout - operation exceeded the timeout limit from SlashID-Required-Consistency-Timeout.
+
+        The operation may still be in progress, and will be completed eventually.'
       content:
         application/json:
           schema:
