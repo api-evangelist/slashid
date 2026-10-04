@@ -1,0 +1,46 @@
+slug: slashid
+provider: SlashID
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Identity Management
+  spec_file: slashid-identity-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: '''Validate a user token'', ''Retrieve a person''s credentials'', ''Create or overwrite a
+    password credential'', schemas ''PutPersonPermissionsRequest'', ''PostRBACCheckResp'', ''SsoOidcTokensGetResponse'''
+  reason: Operations issue and revoke tokens, manage person credentials, SSO/OIDC federation and RBAC
+    permissions — unambiguously Identity & Access Management.
+- tag: Super Admin Management
+  spec_file: slashid-super-admin-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '"Create a super-admin", "Remove super-admin access", "Get super-admin audit logs"; schema
+    SuperAdminAuditLog'
+  reason: Grant and revocation of privileged administrator access with an audit trail is privileged access
+    / identity and access management, not a domain business function.
+- tag: Organization SSO config
+  spec_file: slashid-organization-sso-config-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /organizations/sso/saml/provider-credentials — "Create a new set of SAML provider credentials
+    for SSO"; schema SAMLProviderCredentials
+  reason: Operations manage SAML provider credentials enabling single sign-on for organizations — identity
+    federation, which sits squarely in Identity & Access Management (IAM, federation). Could alternatively
+    be read as tenant identity federation, hence not maximal confidence.

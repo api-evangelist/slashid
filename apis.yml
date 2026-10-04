@@ -158,6 +158,9 @@ apis:
   - type: Documentation
     url: https://developer.slashid.dev/docs/intro
 common:
+  - type: CapabilityMap
+    url: capabilities/slashid-capability-edges.yml
+    name: SlashID Business Capability Map
   - type: AgenticAccess
     url: agentic-access/slashid-agentic-access.yml
   - type: TrustCenter
