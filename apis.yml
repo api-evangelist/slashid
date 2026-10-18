@@ -48,7 +48,7 @@ tags:
   - Passkeys
   - User Management
   - CIAM
-  - OIDC
+  - OpenID Connect
   - SSO
   - RBAC
   - Security
@@ -76,6 +76,8 @@ apis:
   humanURL: https://developer.slashid.dev/docs/api/slash-id-api
   baseURL: https://api.slashid.com
   tags:
+  - Identity and Access Management
+  tags_raw:
   - Identity Management
   properties:
   - type: OpenAPI
