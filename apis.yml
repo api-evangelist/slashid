@@ -160,6 +160,8 @@ apis:
   - type: Documentation
     url: https://developer.slashid.dev/docs/intro
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/slashid/overview
   - type: CapabilityMap
     url: capabilities/slashid-capability-edges.yml
     name: SlashID Business Capability Map
