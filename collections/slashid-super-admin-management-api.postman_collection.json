@@ -1,35 +1,440 @@
 {
+  "info": {
+    "_postman_id": "9266f160-9246-42f2-aa69-9d7db6d55198",
+    "name": "SlashID Super Admin Management API",
+    "description": "This is the OpenAPI specification for communicating with the SlashID service.\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:30:52.000Z",
+    "updatedAt": "2026-10-22T01:30:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9266f160-9246-42f2-aa69-9d7db6d55198"
+  },
   "item": [
     {
-      "id": "00401084-88e7-414f-b526-3ce66b8429d4",
-      "name": "Super Admin Management",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "super-admins",
       "item": [
         {
-          "id": "6bb2ae01-ca7e-4f92-bcd6-addb72317cb6",
+          "name": "{person_id}",
+          "item": [
+            {
+              "name": "Remove super-admin access",
+              "id": "171cff57-be8f-4d6d-86f8-7a3978fa3f53",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins/:person_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins",
+                    ":person_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0f7dea55-c09e-47af-98bf-2784d67bae77",
+                      "key": "person_id",
+                      "value": "<uuid>",
+                      "description": "(Required) External person ID (UUID)"
+                    }
+                  ]
+                },
+                "description": "Remove a person from the super-admins table by their external person ID. Only existing super-admins can revoke super-admin access."
+              },
+              "response": [
+                {
+                  "id": "36a1f743-8870-4a8a-b4c3-297c94007d19",
+                  "name": "No content",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The organization ID",
+                        "key": "SlashID-OrgID",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "SlashID-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/super-admins/:person_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "super-admins",
+                        ":person_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "person_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:30:53.000Z",
+                  "updatedAt": "2026-10-22T01:30:53.000Z",
+                  "uid": "35240-36a1f743-8870-4a8a-b4c3-297c94007d19"
+                },
+                {
+                  "id": "7c107643-acaa-4255-b1ef-8b682b9b6e4c",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The organization ID",
+                        "key": "SlashID-OrgID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "SlashID-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/super-admins/:person_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "super-admins",
+                        ":person_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "person_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:30:53.000Z",
+                  "updatedAt": "2026-10-22T01:30:53.000Z",
+                  "uid": "35240-7c107643-acaa-4255-b1ef-8b682b9b6e4c"
+                },
+                {
+                  "id": "459bf330-40d8-425c-91f2-d3dfd927dbbc",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The organization ID",
+                        "key": "SlashID-OrgID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "SlashID-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/super-admins/:person_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "super-admins",
+                        ":person_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "person_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:30:53.000Z",
+                  "updatedAt": "2026-10-22T01:30:53.000Z",
+                  "uid": "35240-459bf330-40d8-425c-91f2-d3dfd927dbbc"
+                }
+              ],
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-171cff57-be8f-4d6d-86f8-7a3978fa3f53"
+            }
+          ],
+          "id": "2d313d25-8ec1-4fb2-9c53-dae3df87c6f3",
+          "createdAt": "2026-10-22T01:30:53.000Z",
+          "updatedAt": "2026-10-22T01:30:53.000Z",
+          "uid": "35240-2d313d25-8ec1-4fb2-9c53-dae3df87c6f3"
+        },
+        {
+          "name": "audit-logs",
+          "item": [
+            {
+              "name": "Get super-admin audit logs",
+              "id": "d47ca361-72ec-41fc-93ce-1f4a3555fbfc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins/audit-logs?limit=100&offset=0&person_id=<uuid>&organization_id=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins",
+                    "audit-logs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of audit log entries to return",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Number of audit log entries to skip",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by super-admin person ID",
+                      "key": "person_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Filter by organization ID",
+                      "key": "organization_id",
+                      "value": "<uuid>"
+                    }
+                  ]
+                },
+                "description": "Retrieve audit logs of super-admin actions. Only super-admins can view audit logs."
+              },
+              "response": [
+                {
+                  "id": "1d63c514-b996-4408-8a47-81f7a8e78db1",
+                  "name": "List of audit log entries",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The organization ID",
+                        "key": "SlashID-OrgID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "SlashID-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/super-admins/audit-logs?limit=100&offset=0&person_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "super-admins",
+                        "audit-logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of audit log entries to return",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Number of audit log entries to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter by super-admin person ID",
+                          "key": "person_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Filter by organization ID",
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"audit_id\": \"<uuid>\",\n      \"request_method\": \"<string>\",\n      \"request_path\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"super_admin\": {\n        \"entity_class\": \"resource\",\n        \"entity_id\": \"<string>\",\n        \"identifier\": \"<string>\"\n      },\n      \"organization_id\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"metadata\": {}\n    },\n    {\n      \"audit_id\": \"<uuid>\",\n      \"request_method\": \"<string>\",\n      \"request_path\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"super_admin\": {\n        \"entity_class\": \"unknown\",\n        \"entity_id\": \"<string>\",\n        \"identifier\": \"<string>\"\n      },\n      \"organization_id\": \"<string>\",\n      \"organization_name\": \"<string>\",\n      \"metadata\": {}\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:30:53.000Z",
+                  "updatedAt": "2026-10-22T01:30:53.000Z",
+                  "uid": "35240-1d63c514-b996-4408-8a47-81f7a8e78db1"
+                },
+                {
+                  "id": "13c0b8f1-b8e3-4661-a8e9-2e94b6637aee",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The organization ID",
+                        "key": "SlashID-OrgID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "SlashID-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/super-admins/audit-logs?limit=100&offset=0&person_id=<uuid>&organization_id=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "super-admins",
+                        "audit-logs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of audit log entries to return",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Number of audit log entries to skip",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter by super-admin person ID",
+                          "key": "person_id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Filter by organization ID",
+                          "key": "organization_id",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:30:53.000Z",
+                  "updatedAt": "2026-10-22T01:30:53.000Z",
+                  "uid": "35240-13c0b8f1-b8e3-4661-a8e9-2e94b6637aee"
+                }
+              ],
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-d47ca361-72ec-41fc-93ce-1f4a3555fbfc"
+            }
+          ],
+          "id": "1657783a-eb63-49c7-868f-1f8ec0315987",
+          "createdAt": "2026-10-22T01:30:53.000Z",
+          "updatedAt": "2026-10-22T01:30:53.000Z",
+          "uid": "35240-1657783a-eb63-49c7-868f-1f8ec0315987"
+        },
+        {
           "name": "Create a super-admin",
+          "id": "3d948f22-2c98-4a39-84bf-0996dde41136",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create a super-admin",
-            "description": {
-              "content": "Add a person to the super-admins table. Only existing super-admins can create new super-admins. The person must already exist in the system.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "super-admins"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "(Required) The organization ID",
                 "key": "SlashID-OrgID",
                 "value": "<string>"
@@ -43,823 +448,412 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"person_id\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/super-admins",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "super-admins"
+              ]
+            },
+            "description": "Add a person to the super-admins table. Only existing super-admins can create new super-admins. The person must already exist in the system."
           },
           "response": [
             {
-              "id": "a1b112a4-e1d7-4843-bf46-508237ce2186",
+              "id": "11278b26-02fb-48e7-8522-e60b20c5bc67",
               "name": "Super-admin created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) The organization ID",
                     "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\"\n}",
+                  "raw": "{\n  \"person_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"result\": {\n    \"person\": {\n      \"entity_class\": \"credential\",\n      \"entity_id\": \"string\",\n      \"identifier\": \"string\"\n    },\n    \"created_at\": \"1993-03-20T15:48:51.313Z\",\n    \"created_by\": {\n      \"entity_class\": \"unknown\",\n      \"entity_id\": \"string\",\n      \"identifier\": \"string\"\n    }\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 991,\n      \"offset\": 8566,\n      \"total_count\": 5184\n    },\n    \"cursor_pagination\": {\n      \"limit\": 7460,\n      \"cursor\": \"string\",\n      \"total_count\": 3229\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 9047,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 5758,\n      \"message\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"result\": {\n    \"person\": {\n      \"entity_class\": \"sensor\",\n      \"entity_id\": \"<string>\",\n      \"identifier\": \"<string>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": {\n      \"entity_class\": \"person\",\n      \"entity_id\": \"<string>\",\n      \"identifier\": \"<string>\"\n    }\n  },\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-11278b26-02fb-48e7-8522-e60b20c5bc67"
             },
             {
-              "id": "30665bc6-c309-4208-b276-9f3362824001",
+              "id": "83b3d5dc-4473-48a0-bcc7-1ae5d4566dae",
               "name": "Bad Request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) The organization ID",
                     "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\"\n}",
+                  "raw": "{\n  \"person_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2196,\n      \"offset\": 22,\n      \"total_count\": 9383\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5405,\n      \"cursor\": \"string\",\n      \"total_count\": 8465\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1655,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4644,\n      \"message\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-83b3d5dc-4473-48a0-bcc7-1ae5d4566dae"
             },
             {
-              "id": "bd728c85-706c-4b0e-902d-018237309662",
+              "id": "a4c60391-235d-448c-86f9-776194f196a1",
               "name": "Forbidden",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) The organization ID",
                     "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\"\n}",
+                  "raw": "{\n  \"person_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins"
+                  ]
                 }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2196,\n      \"offset\": 22,\n      \"total_count\": 9383\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5405,\n      \"cursor\": \"string\",\n      \"total_count\": 8465\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1655,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4644,\n      \"message\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-a4c60391-235d-448c-86f9-776194f196a1"
             },
             {
-              "id": "04b02d99-660f-495c-814d-5adab754f674",
+              "id": "c41786a1-2199-42c1-8d1d-3b6c5557575b",
               "name": "Conflict",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) The organization ID",
                     "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"person_id\": \"064b7b63-ea43-76e5-b208-1900795bc5b7\"\n}",
+                  "raw": "{\n  \"person_id\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins"
+                  ]
                 }
               },
               "status": "Conflict",
               "code": 409,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2196,\n      \"offset\": 22,\n      \"total_count\": 9383\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5405,\n      \"cursor\": \"string\",\n      \"total_count\": 8465\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1655,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4644,\n      \"message\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-c41786a1-2199-42c1-8d1d-3b6c5557575b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:30:53.000Z",
+          "updatedAt": "2026-10-22T01:30:53.000Z",
+          "uid": "35240-3d948f22-2c98-4a39-84bf-0996dde41136"
         },
         {
-          "id": "5876e9ce-75ac-4af9-9744-562279b7f0a0",
           "name": "List all super-admins",
+          "id": "943b3774-9c59-4bea-b29f-6e95ba3c2706",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List all super-admins",
-            "description": {
-              "content": "Retrieve a list of all super-admins in the system. Only super-admins can view this list",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The organization ID",
+                "key": "SlashID-OrgID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/super-admins",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "super-admins"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The organization ID",
-                "key": "SlashID-OrgID",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7d2c6e02-64a3-4a81-a3c3-5de38123553e",
-              "name": "List of super-admins",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The organization ID",
-                    "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"result\": [\n    {\n      \"person\": {\n        \"entity_class\": \"credential\",\n        \"entity_id\": \"string\",\n        \"identifier\": \"string\"\n      },\n      \"created_at\": \"1951-11-12T09:36:54.490Z\",\n      \"created_by\": {\n        \"entity_class\": \"identity\",\n        \"entity_id\": \"string\",\n        \"identifier\": \"string\"\n      }\n    },\n    {\n      \"person\": {\n        \"entity_class\": \"person\",\n        \"entity_id\": \"string\",\n        \"identifier\": \"string\"\n      },\n      \"created_at\": \"1959-02-12T11:19:39.326Z\",\n      \"created_by\": {\n        \"entity_class\": \"canonical_identity\",\n        \"entity_id\": \"string\",\n        \"identifier\": \"string\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 7316,\n      \"offset\": 1881,\n      \"total_count\": 8341\n    },\n    \"cursor_pagination\": {\n      \"limit\": 9694,\n      \"cursor\": \"string\",\n      \"total_count\": 5484\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 4331,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 6525,\n      \"message\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d6709a01-7a28-4e36-aec0-7d91781ad16a",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The organization ID",
-                    "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2196,\n      \"offset\": 22,\n      \"total_count\": 9383\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5405,\n      \"cursor\": \"string\",\n      \"total_count\": 8465\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1655,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4644,\n      \"message\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "edd6c3a4-dea2-426a-b60f-ca6bb5e9d71a",
-          "name": "Remove super-admin access",
-          "request": {
-            "name": "Remove super-admin access",
-            "description": {
-              "content": "Remove a person from the super-admins table by their external person ID. Only existing super-admins can revoke super-admin access.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "super-admins",
-                ":person_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "person_id",
-                  "description": "(Required) External person ID (UUID)"
-                }
               ]
             },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The organization ID",
-                "key": "SlashID-OrgID",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
+            "description": "Retrieve a list of all super-admins in the system. Only super-admins can view this list"
           },
           "response": [
             {
-              "id": "dcf60f35-abe0-40c1-a329-d9135e48ec85",
-              "name": "No content",
+              "id": "54422f5e-517a-4601-bd7d-00f3c095ef0e",
+              "name": "List of super-admins",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins",
-                    ":person_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "person_id",
-                      "description": "(Required) External person ID (UUID)"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The organization ID",
-                    "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c2192040-659a-43cd-ab06-3d31dd91b12c",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins",
-                    ":person_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "person_id",
-                      "description": "(Required) External person ID (UUID)"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The organization ID",
-                    "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2196,\n      \"offset\": 22,\n      \"total_count\": 9383\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5405,\n      \"cursor\": \"string\",\n      \"total_count\": 8465\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1655,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4644,\n      \"message\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "26f769fe-ff66-4c3a-8954-0843e65ce55b",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins",
-                    ":person_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "person_id",
-                      "description": "(Required) External person ID (UUID)"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The organization ID",
-                    "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2196,\n      \"offset\": 22,\n      \"total_count\": 9383\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5405,\n      \"cursor\": \"string\",\n      \"total_count\": 8465\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1655,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4644,\n      \"message\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f483ebae-bd1c-40e1-be6b-2b55ed220153",
-          "name": "Get super-admin audit logs",
-          "request": {
-            "name": "Get super-admin audit logs",
-            "description": {
-              "content": "Retrieve audit logs of super-admin actions. Only super-admins can view audit logs.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "super-admins",
-                "audit-logs"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "Maximum number of audit log entries to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of audit log entries to skip"
-                },
-                {
-                  "disabled": false,
-                  "key": "person_id",
-                  "value": "<uuid>",
-                  "description": "Filter by super-admin person ID"
-                },
-                {
-                  "disabled": false,
-                  "key": "organization_id",
-                  "value": "<uuid>",
-                  "description": "Filter by organization ID"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) The organization ID",
-                "key": "SlashID-OrgID",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "758f7cbb-858a-4211-9e09-04496f858153",
-              "name": "List of audit log entries",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins",
-                    "audit-logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "person_id",
-                      "value": "<uuid>"
-                    },
-                    {
-                      "key": "organization_id",
-                      "value": "<uuid>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) The organization ID",
-                    "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "description": "(Required) The organization ID",
+                    "key": "SlashID-OrgID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"result\": [\n    {\n      \"audit_id\": \"9917043e-a936-af27-9256-d6df36cff43a\",\n      \"request_method\": \"string\",\n      \"request_path\": \"string\",\n      \"created_at\": \"1963-02-11T10:12:54.344Z\",\n      \"super_admin\": {\n        \"entity_class\": \"person\",\n        \"entity_id\": \"string\",\n        \"identifier\": \"string\"\n      },\n      \"organization_id\": \"string\",\n      \"organization_name\": \"string\",\n      \"metadata\": {}\n    },\n    {\n      \"audit_id\": \"6b4b7e6e-6b10-5a02-bfbc-dadb566f168a\",\n      \"request_method\": \"string\",\n      \"request_path\": \"string\",\n      \"created_at\": \"1971-10-13T03:55:13.626Z\",\n      \"super_admin\": {\n        \"entity_class\": \"canonical_identity\",\n        \"entity_id\": \"string\",\n        \"identifier\": \"string\"\n      },\n      \"organization_id\": \"string\",\n      \"organization_name\": \"string\",\n      \"metadata\": {}\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 8677,\n      \"offset\": 9862,\n      \"total_count\": 1261\n    },\n    \"cursor_pagination\": {\n      \"limit\": 6849,\n      \"cursor\": \"string\",\n      \"total_count\": 1099\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 2495,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 8382,\n      \"message\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"result\": [\n    {\n      \"person\": {\n        \"entity_class\": \"credential\",\n        \"entity_id\": \"<string>\",\n        \"identifier\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": {\n        \"entity_class\": \"canonical_application\",\n        \"entity_id\": \"<string>\",\n        \"identifier\": \"<string>\"\n      }\n    },\n    {\n      \"person\": {\n        \"entity_class\": \"credential\",\n        \"entity_id\": \"<string>\",\n        \"identifier\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": {\n        \"entity_class\": \"policy\",\n        \"entity_id\": \"<string>\",\n        \"identifier\": \"<string>\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-54422f5e-517a-4601-bd7d-00f3c095ef0e"
             },
             {
-              "id": "fb5713c8-e510-47c4-95b6-93d16e4452f0",
+              "id": "c0beefe7-dbf0-4881-b1ea-65d685cf179a",
               "name": "Forbidden",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "super-admins",
-                    "audit-logs"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "100"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "person_id",
-                      "value": "<uuid>"
-                    },
-                    {
-                      "key": "organization_id",
-                      "value": "<uuid>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "SlashID-API-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) The organization ID",
                     "key": "SlashID-OrgID",
-                    "value": "af5fbd30-7ce7-4548-8b30-4cd59cb2aba1"
+                    "value": "<string>"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "SlashID-API-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/super-admins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "super-admins"
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": 2196,\n      \"offset\": 22,\n      \"total_count\": 9383\n    },\n    \"cursor_pagination\": {\n      \"limit\": 5405,\n      \"cursor\": \"string\",\n      \"total_count\": 8465\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": 1655,\n      \"message\": \"string\"\n    },\n    {\n      \"httpcode\": 4644,\n      \"message\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"pagination\": {\n      \"limit\": \"<integer>\",\n      \"offset\": \"<integer>\",\n      \"total_count\": \"<long>\"\n    },\n    \"cursor_pagination\": {\n      \"limit\": \"<integer>\",\n      \"cursor\": \"<string>\",\n      \"total_count\": \"<long>\"\n    }\n  },\n  \"errors\": [\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"httpcode\": \"<integer>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:30:53.000Z",
+              "updatedAt": "2026-10-22T01:30:53.000Z",
+              "uid": "35240-c0beefe7-dbf0-4881-b1ea-65d685cf179a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:30:53.000Z",
+          "updatedAt": "2026-10-22T01:30:53.000Z",
+          "uid": "35240-943b3774-9c59-4bea-b29f-6e95ba3c2706"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.slashid.com",
-      "key": "baseUrl"
+      "id": "39700488-76c1-4e4a-8aaf-0c8575225d27",
+      "createdAt": "2026-10-22T01:30:53.000Z",
+      "updatedAt": "2026-10-22T01:30:53.000Z",
+      "uid": "35240-39700488-76c1-4e4a-8aaf-0c8575225d27"
     }
   ],
   "auth": {
@@ -867,25 +861,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "SlashID-API-Key"
+        "value": "SlashID-API-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "72773253-dc62-4d40-b5d1-48a3288cbdcb",
-    "name": "SlashID Groups Super Admin Management API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "This is the [OpenAPI](https://www.openapis.org/) specification for communicating with the [SlashID](https://www.slashid.dev/) service.\n\nThe latest version of the OpenAPI API spec can be fetched from [our CDN](https://cdn.slashid.com/slashid-openapi-latest.yaml).\n\nWe recommend you use an [OpenAPI SDK generator](https://openapi.tools/#sdk) to create a client library in your programming language,\nbut you can also use this documentation to make HTTP calls directly.\n\n> **Compatibility note**: We aim to keep wire compatibility whenever we update the API, but parts of the specification may occasionally be refactored.\n  If you use an SDK generator, your code may require minor changes between versions.\n\n\nContact Support:\n Name: API Support\n Email: contact@slashid.dev",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slashid.com"
     }
-  }
+  ]
 }
